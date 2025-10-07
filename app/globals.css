@@ -36,13 +36,6 @@ html, body {
   -webkit-mask-composite:xor; mask-composite: exclude;
 }
 
-/* Spotlight cursor */
-.spotlight {
-  --mx: 50%;
-  --my: 50%;
-  background: radial-gradient(400px 200px at var(--mx) var(--my), rgba(20,184,166,.12), transparent 70%);
-}
-
 /* Badge shimmer */
 .badge-shimmer {
   background: linear-gradient(110deg, rgba(20,184,166,.15), rgba(94,234,212,.35), rgba(20,184,166,.15));
