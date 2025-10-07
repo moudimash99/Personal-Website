@@ -1,17 +1,19 @@
 export default function Button({
   children,
   href,
-  onClick,                 // ✅ accept onClick
-  type = 'button',         // ✅ default type for buttons
+  onClick,
+  type = 'button',
   variant = 'primary',
   className = '',
+  newTab = false,               // <- new optional prop
 }: {
   children: React.ReactNode
   href?: string
-  onClick?: React.MouseEventHandler<HTMLButtonElement> // ✅ type it
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
   type?: 'button' | 'submit' | 'reset'
   variant?: 'primary' | 'outline'
   className?: string
+  newTab?: boolean              // <- add to prop types
 }) {
   const base =
     "inline-flex items-center justify-center rounded-xl px-3.5 py-2 text-sm font-medium transition-colors " +
@@ -22,7 +24,19 @@ export default function Button({
       : "bg-[color:var(--tw-color-accent-600,#0d9488)] hover:bg-[color:var(--tw-color-accent-500,#14b8a6)] text-white focus:ring-[color:var(--tw-color-accent-700,#0f766e)]"
   const cls = `${base} ${v} ${className}`
 
-  if (href) return <a className={cls} href={href}>{children}</a>
+  if (href) {
+    return (
+      <a
+        className={cls}
+        href={href}
+        target={newTab ? '_blank' : undefined}
+        rel={newTab ? 'noopener noreferrer' : undefined} // security + performance
+      >
+        {children}
+      </a>
+    )
+  }
+
   return (
     <button type={type} onClick={onClick} className={cls}>
       {children}

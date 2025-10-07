@@ -4,9 +4,10 @@ import Container from './Container'
 import { useEffect, useState } from 'react'
 
 function openIntro() {
-  localStorage.removeItem('mc_intro_hide')
-  window.location.reload()
+  // no reload; just ask the overlay to open
+  window.dispatchEvent(new CustomEvent('mc-intro', { detail: 'open' }))
 }
+
 
 
 export default function Nav() {

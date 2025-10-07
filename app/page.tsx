@@ -32,13 +32,15 @@ export default function Page() {
                 <h1 className="text-4xl md:text-6xl font-semibold leading-tight font-display">
                   Flight Director for data-intensive systems.
                 </h1>
-                <p className="text-sm md:text-base text-muted max-w-2xl">
+                <p className="text-xl text-foreground/80 mt-6 max-w-3xl">
                   Cloud/Data engineer with an aerospace mindset — pipelines that launch and keep flying.
                 </p>
                 <Metrics />
                 <div className="flex gap-3 pt-2">
-                  <Button href="#projects">Proceed to Projects <ArrowRight className="ml-2 h-4 w-4" /></Button>
-                  <Button href="/cv.pdf" variant="outline"><Download className="mr-2 h-4 w-4" /> Download CV</Button>
+                  <Button href="/projects">Proceed to Projects <ArrowRight className="ml-2 h-4 w-4" /></Button>
+                  <Button href="/cv.pdf" variant="outline" newTab>
+                    <Download className="mr-2 h-4 w-4" /> Download CV
+                  </Button>
                 </div>
               </div>
             </div>

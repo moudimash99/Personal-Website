@@ -7,7 +7,7 @@ import Button from '@/components/Button'
 import Starfield from '@/components/Starfield'
 import CommandCenterBackdrop from '@/components/CommandCenterBackdrop'
 import Nav from '@/components/Nav'                          // ✅ add
-
+import Footer from '@/components/Footer'
 export default function ContactPage() {
   return (
     <>
@@ -34,6 +34,8 @@ export default function ContactPage() {
             </div>
           </section>
         </Container>
+        <Footer />
+
       </main>
     </>
   )

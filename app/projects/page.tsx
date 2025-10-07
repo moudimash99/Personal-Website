@@ -7,10 +7,10 @@ import Button from '@/components/Button'
 import Starfield from '@/components/Starfield'
 import CommandCenterBackdrop from '@/components/CommandCenterBackdrop'
 import Nav from '@/components/Nav'                          // ✅ add
-import { ArrowRight, Mail, MapPinned, Rocket, Satellite, Activity, ChevronRight, Download } from 'lucide-react'
+import { ArrowRight, Mail, MapPinned, Rocket, Satellite, Activity, ChevronRight, Download, Import } from 'lucide-react'
 import { missions } from '@/data/missions'
 import { motion } from 'framer-motion'
-
+import Footer from '@/components/Footer'
 function OperationCard({ op }: any) {
   return (
     <Panel className="transition-all hover:shadow-glow hover:border-accent-500/50">
@@ -85,11 +85,10 @@ export default function ProjectsPage() {
             <div className="space-y-12">
               {missions.map((m) => (<Mission key={m.id} mission={m} />))}
             </div>
-            <div className="pt-6 flex justify-center">
-              <Button href="/contact">Go to Contact <ArrowRight className="ml-2 h-4 w-4" /></Button> {/* ✅ use page link */}
-            </div>
+            
           </section>
         </Container>
+        <Footer />  
       </main>
     </>
   )

@@ -10,7 +10,7 @@ const config: Config = {
         surface2: '#0b1416',
         border: '#163a41',
         foreground: '#e7f5f2',
-        muted: '#93a3a7',
+        muted: '#B7C8CB', // lighter, still cool-toned
         accent: {
           100: '#ccfbf1',
           300: '#5eead4',
