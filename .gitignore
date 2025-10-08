@@ -62,7 +62,6 @@ dist/
 
 # Gatsby
 .cache/
-public/
 
 # React Native
 .expo/
