@@ -82,3 +82,5 @@ Desktop.ini
 # Test output
 test-output/
 node_modules/
+
+certs/
