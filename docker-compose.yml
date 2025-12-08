@@ -4,7 +4,7 @@ services:
   perso-web:
     container_name: web
     build:
-      context: ./app
+      context: .
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=production
