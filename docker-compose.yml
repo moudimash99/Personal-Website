@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  perso-web:
+    container_name: web
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+      - PORT=3000
+    expose:
+      - "3000"           # only inside Docker, nginx will reach it via proxy_net
+    restart: unless-stopped
+    networks:
+      - proxy_net
+
+networks:
+  proxy_net:
+    external: true       # uses the shared network you created
