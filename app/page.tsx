@@ -11,7 +11,8 @@ import Button from '@/components/Button'
 import Footer from '@/components/Footer'
 import Metrics from '@/components/Metrics'
 import Starfield from '@/components/Starfield'
-import { profile } from '@/data/profile'
+import Link from 'next/link'
+import { profile, credentials } from './data/profile'
 
 // Animation variants
 const heroContainer = {
@@ -42,66 +43,20 @@ const credentialCardVariant = {
   })
 }
 
-const credentials = [
-  {
-    name: 'Airbus',
-    subtitle: 'Systems & Data Engineering',
-    logo: '/images/real-logo-airbus.png',
-    glow: 'rgba(59,130,246,0.4)',
-    ring: 'ring-blue-500/40 hover:ring-blue-400/70',
-    shadow: 'hover:shadow-[0_0_40px_rgba(59,130,246,0.35)]',
-    float: 0,
-  },
-  {
-    name: 'Green Praxis',
-    subtitle: 'Cloud & Geo Pipelines',
-    logo: '/images/real-logo-greenpraxis.png',
-    glow: 'rgba(52,211,153,0.4)',
-    ring: 'ring-emerald-500/40 hover:ring-emerald-400/70',
-    shadow: 'hover:shadow-[0_0_40px_rgba(52,211,153,0.35)]',
-    float: 1.2,
-  },
-  {
-    name: 'Murex',
-    subtitle: 'HFT Log Analysis & Delivery',
-    logo: '/images/real-logo-murex.png',
-    glow: 'rgba(34,211,238,0.4)',
-    ring: 'ring-cyan-500/40 hover:ring-cyan-400/70',
-    shadow: 'hover:shadow-[0_0_40px_rgba(34,211,238,0.35)]',
-    float: 0.6,
-  },
-  {
-    name: 'AWS SAA-C03',
-    subtitle: 'Solutions Architect Certified',
-    logo: '/images/real-logo-aws.png',
-    glow: 'rgba(251,191,36,0.4)',
-    ring: 'ring-amber-500/40 hover:ring-amber-400/70',
-    shadow: 'hover:shadow-[0_0_40px_rgba(251,191,36,0.35)]',
-    float: 1.8,
-  },
-  {
-    name: 'INCOSE ASEP',
-    subtitle: 'Systems Engineering Professional',
-    logo: '/images/real-logo-incose.png',
-    glow: 'rgba(168,85,247,0.4)',
-    ring: 'ring-purple-500/40 hover:ring-purple-400/70',
-    shadow: 'hover:shadow-[0_0_40px_rgba(168,85,247,0.35)]',
-    float: 0.3,
-  },
-  {
-    name: 'ISAE-SUPAERO',
-    subtitle: 'MS Systems Engineering',
-    logo: '/images/real-logo-isae.png',
-    glow: 'rgba(139,92,246,0.4)',
-    ring: 'ring-violet-500/40 hover:ring-violet-400/70',
-    shadow: 'hover:shadow-[0_0_40px_rgba(139,92,246,0.35)]',
-    float: 1.5,
-  },
-]
-
 export default function Page() {
   return (
     <>
+      {/* PROTOTYPE SELECTOR */}
+      <div className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md border-b border-white/10 z-50 py-3 px-6 flex justify-center items-center gap-6 overflow-x-auto text-xs font-mono">
+        <span className="text-white/50 tracking-widest uppercase shrink-0">Select Prototype:</span>
+        <Link href="/" className="text-white font-bold tracking-widest hover:text-accent-400 shrink-0 border-b border-accent-500">BASE (Current)</Link>
+        <Link href="/v1" className="text-white/70 hover:text-white transition-colors shrink-0">v1: The Terminal</Link>
+        <Link href="/v2" className="text-white/70 hover:text-white transition-colors shrink-0">v2: The HUD</Link>
+        <Link href="/v3" className="text-white/70 hover:text-white transition-colors shrink-0">v3: Neumorphic Console</Link>
+        <Link href="/v4" className="text-white/70 hover:text-white transition-colors shrink-0">v4: Cinematic Focus</Link>
+        <Link href="/v5" className="text-white/70 hover:text-white transition-colors shrink-0">v5: Data Flow</Link>
+      </div>
+
       <CommandCenterBackdrop />
       <Starfield />
       <Nav />
@@ -176,7 +131,7 @@ export default function Page() {
               </motion.div>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                {credentials.map((cred, i) => (
+                {credentials.map((cred: any, i: number) => (
                   <motion.div
                     key={cred.name}
                     custom={i}
