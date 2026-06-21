@@ -47,14 +47,23 @@ export default function Page() {
   return (
     <>
       {/* PROTOTYPE SELECTOR */}
-      <div className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md border-b border-white/10 z-50 py-3 px-6 flex justify-center items-center gap-6 overflow-x-auto text-xs font-mono">
-        <span className="text-white/50 tracking-widest uppercase shrink-0">Select Prototype:</span>
-        <Link href="/" className="text-white font-bold tracking-widest hover:text-accent-400 shrink-0 border-b border-accent-500">BASE (Current)</Link>
-        <Link href="/v1" className="text-white/70 hover:text-white transition-colors shrink-0">v1: The Terminal</Link>
-        <Link href="/v2" className="text-white/70 hover:text-white transition-colors shrink-0">v2: The HUD</Link>
-        <Link href="/v3" className="text-white/70 hover:text-white transition-colors shrink-0">v3: Neumorphic Console</Link>
-        <Link href="/v4" className="text-white/70 hover:text-white transition-colors shrink-0">v4: Cinematic Focus</Link>
-        <Link href="/v5" className="text-white/70 hover:text-white transition-colors shrink-0">v5: Data Flow</Link>
+      <div className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md border-b border-white/10 z-50 py-3 px-6 flex justify-center items-center gap-6 overflow-x-auto text-[10px] font-mono">
+        <span className="text-white/50 tracking-widest uppercase shrink-0">Batch 1:</span>
+        <Link href="/" className="text-white font-bold tracking-widest hover:text-accent-400 shrink-0 border-b border-accent-500">BASE</Link>
+        <Link href="/v1" className="text-white/70 hover:text-white transition-colors shrink-0">v1</Link>
+        <Link href="/v2" className="text-white/70 hover:text-white transition-colors shrink-0">v2</Link>
+        <Link href="/v3" className="text-white/70 hover:text-white transition-colors shrink-0">v3</Link>
+        <Link href="/v4" className="text-white/70 hover:text-white transition-colors shrink-0">v4</Link>
+        <Link href="/v5" className="text-white/70 hover:text-white transition-colors shrink-0">v5</Link>
+        
+        <div className="w-px h-4 bg-white/20 shrink-0 mx-2" />
+        
+        <span className="text-white/50 tracking-widest uppercase shrink-0">Batch 2:</span>
+        <Link href="/v6" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v6</Link>
+        <Link href="/v7" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v7</Link>
+        <Link href="/v8" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v8</Link>
+        <Link href="/v9" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v9</Link>
+        <Link href="/v10" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v10</Link>
       </div>
 
       <CommandCenterBackdrop />
