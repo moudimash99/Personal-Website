@@ -260,7 +260,7 @@ export default function Page() {
                   <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
                 </motion.div>
 
-                <div className="flex overflow-x-auto gap-4 lg:gap-6 pb-6 pt-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-accent-700/50 scrollbar-track-transparent">
+                <div className="flex overflow-x-auto gap-4 lg:gap-6 pb-6 pt-2 snap-x snap-mandatory no-scrollbar">
                   {credentials.slice(3).map((cred, i) => (
                     <motion.div
                       key={cred.name}
