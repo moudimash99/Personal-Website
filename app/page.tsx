@@ -177,21 +177,20 @@ export default function Page() {
           {/* ═══════════════════════════════════════════════════════════════
               CREDENTIALS — Big, Logo-first, Alive
               ═══════════════════════════════════════════════════════════════ */}
-          <section className="pt-2 pb-8 w-full max-w-5xl mx-auto">
-            <div className="space-y-12">
+          <section className="pt-8 pb-16 w-full max-w-5xl mx-auto">
+            <div className="space-y-16">
+              
               {/* Tier 1 - The Experience Band */}
               <div>
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="flex items-center gap-3 mb-6"
+                  className="mb-6 flex justify-center md:justify-start"
                 >
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
-                  <span className="text-[11px] font-mono font-bold text-accent-400/80 uppercase tracking-[0.2em] whitespace-nowrap">
+                  <h3 className="text-xs font-mono font-medium text-accent-500/70 uppercase tracking-[0.2em]">
                     Trusted By
-                  </span>
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
+                  </h3>
                 </motion.div>
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6 justify-center">
@@ -204,8 +203,8 @@ export default function Page() {
                       animate="show"
                       whileHover={{ scale: 1.05, y: -4 }}
                       className={`
-                        glass rounded-2xl p-4 flex flex-col items-center text-center
-                        cursor-default transition-all duration-500
+                        glass rounded-2xl p-5 flex flex-col items-center justify-center text-center
+                        cursor-default transition-all duration-500 h-full min-h-[180px]
                         ring-1 ${cred.ring} ${cred.shadow}
                         group relative overflow-hidden
                       `}
@@ -217,7 +216,7 @@ export default function Page() {
                         transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                       />
                       <motion.div
-                        className="relative z-10 w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden ring-1 ring-white/10 mb-3 shadow-lg"
+                        className="relative z-10 w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden ring-1 ring-white/10 mb-4 shadow-lg shrink-0"
                         animate={{ y: [0, -4, 0] }}
                         transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
                       >
@@ -230,7 +229,7 @@ export default function Page() {
                         {cred.subtitle}
                       </p>
                       <motion.div
-                        className="absolute top-2.5 right-2.5 h-2 w-2 rounded-full"
+                        className="absolute top-3 right-3 h-1.5 w-1.5 rounded-full"
                         style={{ background: cred.glow }}
                         animate={{ opacity: [0.4, 1, 0.4], scale: [0.8, 1.2, 0.8] }}
                         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
@@ -240,27 +239,20 @@ export default function Page() {
                 </div>
               </div>
 
-              {/* Tactical Divider */}
-              <div className="w-full flex items-center justify-center">
-                <div className="w-full h-px border-t border-dashed border-accent-500/20 opacity-60" />
-              </div>
-
               {/* Tier 2 - The Credentials Band */}
               <div className="w-full overflow-hidden">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="flex items-center gap-3 mb-6"
+                  transition={{ delay: 0.6 }}
+                  className="mb-6 flex justify-center md:justify-start"
                 >
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
-                  <span className="text-[11px] font-mono font-bold text-accent-400/80 uppercase tracking-[0.2em] whitespace-nowrap">
+                  <h3 className="text-xs font-mono font-medium text-accent-500/70 uppercase tracking-[0.2em]">
                     Certified By
-                  </span>
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
+                  </h3>
                 </motion.div>
 
-                <div className="flex overflow-x-auto gap-4 lg:gap-6 pb-6 pt-2 snap-x snap-mandatory no-scrollbar">
+                <div className="flex items-stretch overflow-x-auto gap-4 lg:gap-6 pb-6 pt-2 snap-x snap-mandatory no-scrollbar">
                   {credentials.slice(3).map((cred, i) => (
                     <motion.div
                       key={cred.name}
@@ -271,8 +263,8 @@ export default function Page() {
                       whileHover={{ scale: 1.05, y: -4 }}
                       className={`
                         min-w-[160px] md:min-w-[180px] snap-center shrink-0
-                        glass rounded-2xl p-4 flex flex-col items-center text-center
-                        cursor-default transition-all duration-500
+                        glass rounded-2xl p-5 flex flex-col items-center justify-center text-center
+                        cursor-default transition-all duration-500 h-full min-h-[180px]
                         ring-1 ${cred.ring} ${cred.shadow}
                         group relative overflow-hidden
                       `}
@@ -284,7 +276,7 @@ export default function Page() {
                         transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                       />
                       <motion.div
-                        className="relative z-10 w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden ring-1 ring-white/10 mb-3 shadow-lg"
+                        className="relative z-10 w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden ring-1 ring-white/10 mb-4 shadow-lg shrink-0"
                         animate={{ y: [0, -4, 0] }}
                         transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
                       >
@@ -297,7 +289,7 @@ export default function Page() {
                         {cred.subtitle}
                       </p>
                       <motion.div
-                        className="absolute top-2.5 right-2.5 h-2 w-2 rounded-full"
+                        className="absolute top-3 right-3 h-1.5 w-1.5 rounded-full"
                         style={{ background: cred.glow }}
                         animate={{ opacity: [0.4, 1, 0.4], scale: [0.8, 1.2, 0.8] }}
                         transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
