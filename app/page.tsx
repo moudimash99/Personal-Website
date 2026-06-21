@@ -130,9 +130,12 @@ export default function Page() {
                   <span className="text-teal-400 font-bold">data-intensive</span> systems.
                 </motion.h1>
 
-                {/* Intro — single concise line to save vertical space */}
+                {/* Intro */}
                 <motion.p variants={fadeUp} className="text-lg text-foreground/75 max-w-3xl">
                   {profile.introLines[0]}
+                </motion.p>
+                <motion.p variants={fadeUp} className="text-base text-foreground/65 max-w-3xl">
+                  {profile.introLines[1]}
                 </motion.p>
 
                 {/* Metrics */}
