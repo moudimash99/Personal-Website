@@ -64,6 +64,10 @@ export default function Page() {
         <Link href="/v8" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v8</Link>
         <Link href="/v9" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v9</Link>
         <Link href="/v10" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v10</Link>
+        
+        <div className="w-px h-4 bg-white/20 shrink-0 mx-2" />
+        
+        <Link href="/v11" className="text-purple-400 font-bold tracking-widest hover:text-purple-300 transition-colors shrink-0 uppercase border-b border-purple-500 pb-1">v11: The Perfect Hybrid</Link>
       </div>
 
       <CommandCenterBackdrop />
