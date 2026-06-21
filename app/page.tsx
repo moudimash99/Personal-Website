@@ -62,17 +62,21 @@ export default function Page() {
                 {/* Status Indicator Badge */}
                 <motion.div 
                   variants={heroItemVariants}
-                  className="inline-flex items-center gap-2 rounded-full border border-accent-700/50 bg-accent-500/10 px-3 py-1 text-xs text-accent-100"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-teal-500/30 bg-teal-950/40 px-3.5 py-1.5 text-xs text-accent-300 backdrop-blur-md"
                 >
-                  <MapPinned className="h-3.5 w-3.5" /> <span>Mission Debrief</span>
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+                  </span>
+                  <span className="font-mono text-[10px] tracking-widest uppercase">SYS_NOMINAL • MISSION_DEBRIEF</span>
                 </motion.div>
                 
                 {/* Headline */}
                 <motion.h1 
                   variants={heroItemVariants}
-                  className="text-4xl md:text-6xl font-semibold leading-tight font-display"
+                  className="text-4xl md:text-6xl font-semibold leading-tight font-display tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-teal-200"
                 >
-                  {profile.headline} for data-intensive systems.
+                  {profile.headline} for <span className="text-teal-400 font-bold hover:text-teal-300 transition-colors duration-300">data-intensive</span> systems.
                 </motion.h1>
 
                 {/* Subheadlines */}
@@ -98,16 +102,34 @@ export default function Page() {
                     <Download className="mr-2 h-4 w-4" /> Download CV
                   </Button>
                 </motion.div>
-                {/* Simple Credentials Row */}
-                <motion.div variants={heroItemVariants} className="pt-8 mt-4 border-t border-accent-900/30">
-                  <p className="text-[11px] font-mono text-muted uppercase tracking-wider mb-4">Credentials & Affiliations</p>
-                  <div className="flex flex-wrap gap-5 items-center opacity-80 text-accent-100">
-                    <div className="flex items-center gap-2 text-sm font-medium"><Plane className="h-4 w-4"/> Airbus</div>
-                    <div className="flex items-center gap-2 text-sm font-medium"><Satellite className="h-4 w-4"/> Green Praxis</div>
-                    <div className="flex items-center gap-2 text-sm font-medium"><Activity className="h-4 w-4"/> Murex</div>
-                    <div className="flex items-center gap-2 text-sm font-medium"><Cloud className="h-4 w-4"/> AWS Certified</div>
-                    <div className="flex items-center gap-2 text-sm font-medium"><Shield className="h-4 w-4"/> INCOSE ASEP</div>
-                    <div className="flex items-center gap-2 text-sm font-medium"><GraduationCap className="h-4 w-4"/> ISAE-SUPAERO</div>
+                {/* Big Catchy Credentials Row */}
+                <motion.div variants={heroItemVariants} className="pt-10 mt-6 border-t border-accent-900/40">
+                  <p className="text-xs font-mono text-accent-300/80 uppercase tracking-[0.2em] mb-5">Trusted & Certified By</p>
+                  <div className="flex flex-wrap gap-4 items-center text-accent-100">
+                    <div className="glass px-5 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 hover:bg-teal-900/30 hover:border-teal-500/50 transition-all duration-300 cursor-default shadow-[0_0_15px_rgba(20,184,166,0.1)] hover:shadow-[0_0_25px_rgba(20,184,166,0.3)]">
+                      <Plane className="h-6 w-6 text-blue-400"/>
+                      <span className="font-display font-bold tracking-wide text-lg text-white">Airbus</span>
+                    </div>
+                    <div className="glass px-5 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 hover:bg-emerald-900/30 hover:border-emerald-500/50 transition-all duration-300 cursor-default shadow-[0_0_15px_rgba(52,211,153,0.1)] hover:shadow-[0_0_25px_rgba(52,211,153,0.3)]">
+                      <Satellite className="h-6 w-6 text-emerald-400"/>
+                      <span className="font-display font-bold tracking-wide text-lg text-white">Green Praxis</span>
+                    </div>
+                    <div className="glass px-5 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 hover:bg-cyan-900/30 hover:border-cyan-500/50 transition-all duration-300 cursor-default shadow-[0_0_15px_rgba(34,211,238,0.1)] hover:shadow-[0_0_25px_rgba(34,211,238,0.3)]">
+                      <Activity className="h-6 w-6 text-cyan-400"/>
+                      <span className="font-display font-bold tracking-wide text-lg text-white">Murex</span>
+                    </div>
+                    <div className="glass px-5 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 hover:bg-amber-900/30 hover:border-amber-500/50 transition-all duration-300 cursor-default shadow-[0_0_15px_rgba(251,191,36,0.1)] hover:shadow-[0_0_25px_rgba(251,191,36,0.3)]">
+                      <Cloud className="h-6 w-6 text-amber-400"/>
+                      <span className="font-display font-bold tracking-wide text-lg text-white">AWS SAA-C03</span>
+                    </div>
+                    <div className="glass px-5 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 hover:bg-purple-900/30 hover:border-purple-500/50 transition-all duration-300 cursor-default shadow-[0_0_15px_rgba(168,85,247,0.1)] hover:shadow-[0_0_25px_rgba(168,85,247,0.3)]">
+                      <Shield className="h-6 w-6 text-purple-400"/>
+                      <span className="font-display font-bold tracking-wide text-lg text-white">INCOSE ASEP</span>
+                    </div>
+                    <div className="glass px-5 py-3 rounded-2xl flex items-center gap-3 hover:scale-105 hover:bg-violet-900/30 hover:border-violet-500/50 transition-all duration-300 cursor-default shadow-[0_0_15px_rgba(139,92,246,0.1)] hover:shadow-[0_0_25px_rgba(139,92,246,0.3)]">
+                      <GraduationCap className="h-6 w-6 text-violet-400"/>
+                      <span className="font-display font-bold tracking-wide text-lg text-white">ISAE-SUPAERO</span>
+                    </div>
                   </div>
                 </motion.div>
 
