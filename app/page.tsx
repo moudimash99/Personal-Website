@@ -64,10 +64,16 @@ export default function Page() {
         <Link href="/v8" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v8</Link>
         <Link href="/v9" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v9</Link>
         <Link href="/v10" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v10</Link>
+        <Link href="/v11" className="text-purple-400 hover:text-purple-300 transition-colors shrink-0">v11</Link>
         
         <div className="w-px h-4 bg-white/20 shrink-0 mx-2" />
         
-        <Link href="/v11" className="text-purple-400 font-bold tracking-widest hover:text-purple-300 transition-colors shrink-0 uppercase border-b border-purple-500 pb-1">v11: The Perfect Hybrid</Link>
+        <span className="text-white/50 tracking-widest uppercase shrink-0">Batch 3 (Vertical):</span>
+        <Link href="/v12" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v12</Link>
+        <Link href="/v13" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v13</Link>
+        <Link href="/v14" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v14</Link>
+        <Link href="/v15" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v15</Link>
+        <Link href="/v16" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v16</Link>
       </div>
 
       <CommandCenterBackdrop />
