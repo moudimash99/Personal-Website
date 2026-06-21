@@ -28,7 +28,7 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)'],
         display: ['var(--font-spacegrotesk)'],
-        mono: ['var(--font-dmmono)']
+        mono: ['var(--font-jetbrains)']
       },
       borderRadius: { '2xl': '1rem', '3xl': '1.25rem' },
       boxShadow: {
