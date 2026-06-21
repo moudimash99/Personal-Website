@@ -67,20 +67,20 @@ export default function CredentialsDashboard() {
     {
       id: 'airbus',
       title: 'Airbus',
-      role: 'Systems Eng. & Quality / Data Engineer',
-      sector: 'Toulouse Sector',
+      role: 'Systems Engineering & Quality / Data Engineer',
+      sector: 'Toulouse • Jan 2023 – Present',
       status: 'Nominal',
       icon: Plane,
       color: 'from-blue-500/20 to-teal-500/10 border-blue-500/40 text-blue-300',
       telemetry: [
         { label: 'Platform', value: 'Skywise' },
-        { label: 'Deploy time', value: '-80%' },
-        { label: 'NC Errors', value: '-90%' }
+        { label: 'Deploy time', value: '−80%' },
+        { label: 'Entry errors', value: '−90%' }
       ],
       details: [
-        'Transformed legacy Quality workflows into unified Skywise data models with structured failure-mode taxonomy.',
-        'Led OPTIMATE exchange project specifying automated taxiing data pipelines and telemetry handover.',
-        'Standardized regional HR reporting dashboards across 5 major global divisions.'
+        'Driving Non-Conformance reduction and Cost of Non-Quality tracking by converting legacy quality workflows into a Skywise data model.',
+        'Consolidated heterogeneous HR sources and automated validation, packaging, and release steps for dashboard deployments across 5 regions.',
+        'Designed the end-to-end data-flow architecture for the OPTIMATE exchange project with clear interfaces and SLAs.'
       ],
       svgGraphic: (
         <svg className="w-full h-24 text-blue-400/30" viewBox="0 0 200 100" fill="none">
@@ -116,19 +116,19 @@ export default function CredentialsDashboard() {
       id: 'green-praxis',
       title: 'Green Praxis',
       role: 'Cloud & Data Engineer',
-      sector: 'Aix-en-Provence Sector',
+      sector: 'Aix-en-Provence • Jan 2025 – Present',
       status: 'Active',
       icon: Satellite,
       color: 'from-emerald-500/20 to-teal-500/10 border-emerald-500/40 text-emerald-300',
       telemetry: [
-        { label: 'Ingest', value: 'Airflow STAC' },
-        { label: 'Storage', value: '-80%' },
-        { label: 'Cache', value: 'Redis EGE' }
+        { label: 'DAGs', value: '15+' },
+        { label: 'Storage', value: '−80%' },
+        { label: 'Coverage', value: '95%' }
       ],
       details: [
-        'Built automated geo-pipelines for satellite raster inputs and processed metrics.',
-        'Migrated map tiles to on-demand Google Earth Engine backends with custom Redis optimization.',
-        'Established VPC, EKS cluster nodes, and least-privilege IAM policies via reusable Terraform modules.'
+        'Built and maintained Airflow DAGs for STAC ingest, download, reprojection, mosaicking, and raster product generation.',
+        'Deployed Prometheus and Grafana via Helm; 24 dashboards, 35 alerts, 95% coverage.',
+        'Built reusable Terraform modules for VPC, EKS, versioned S3 buckets, and least-privilege IAM.'
       ],
       svgGraphic: (
         <svg className="w-full h-24 text-emerald-400/30" viewBox="0 0 200 100" fill="none">
@@ -157,20 +157,20 @@ export default function CredentialsDashboard() {
     {
       id: 'murex',
       title: 'Murex Systems',
-      role: 'Project Manager / Scrum Lead',
-      sector: 'Beirut Sector',
+      role: 'Project Manager',
+      sector: 'Beirut • May 2021 – Jan 2022',
       status: 'Nominal',
       icon: Activity,
       color: 'from-cyan-500/20 to-teal-500/10 border-cyan-500/40 text-cyan-300',
       telemetry: [
-        { label: 'Scrum', value: '3-Person MVP' },
-        { label: 'Platform', value: 'HFT Trading' },
-        { label: 'CI/CD', value: 'Jenkins/K8s' }
+        { label: 'Discovery', value: '>50 patterns' },
+        { label: 'Repro.', value: 'one-command' },
+        { label: 'Delivery', value: 'on time' }
       ],
       details: [
-        'Managed development and containerized release of a logs-analysis prototype for high-frequency trading.',
-        'Implemented unsupervised parsing algorithms to cluster anomalies and identify hidden error paths.',
-        'Created Jenkins pipelines and environment setups to enable single-command deployment.'
+        'Led a 3-person Scrum team delivering a log-analysis demonstrator for a high-frequency trading platform, shipping the MVP on time.',
+        'Shaped the Python pipeline for parsing and clustering anomalies, discovering >50 error patterns.',
+        'Containerized services with Docker and Kubernetes with Jenkins CI for one-command reproducible deployments.'
       ],
       svgGraphic: (
         <svg className="w-full h-24 text-cyan-400/30" viewBox="0 0 200 100" fill="none">
@@ -203,13 +203,13 @@ export default function CredentialsDashboard() {
       color: 'from-amber-500/20 to-teal-500/10 border-amber-500/40 text-amber-300',
       telemetry: [
         { label: 'Token', value: 'SAA-C03' },
-        { label: 'Infra', value: 'Terraform' },
+        { label: 'Infra', value: 'AWS, K8s, TF' },
         { label: 'Security', value: 'IAM Least-Priv' }
       ],
       details: [
-        'Officially certified AWS Solutions Architect (SAA-C03 / SA-C003).',
-        'Expert in designing secure multi-AZ VPC layouts, autoscaling EKS Kubernetes clusters, and API gateways.',
-        'Experienced in implementing least-privilege IAM profiles, S3 bucket life cycles, and CloudWatch metrics.'
+        'AWS Certified Solutions Architect – Associate (SAA-C03).',
+        'Designs secure multi-AZ VPC layouts, autoscaling EKS clusters, and API gateways.',
+        'Implements least-privilege IAM policies, versioned S3 bucket lifecycles, and CloudWatch observability.'
       ],
       svgGraphic: (
         <svg className="w-full h-24 text-amber-400/30" viewBox="0 0 200 100" fill="none">
@@ -239,13 +239,13 @@ export default function CredentialsDashboard() {
       color: 'from-purple-500/20 to-teal-500/10 border-purple-500/40 text-purple-300',
       telemetry: [
         { label: 'Standard', value: 'ISO 15288' },
-        { label: 'Focus', value: 'V-Model Lifecycle' },
-        { label: 'Creds', value: 'ASEP / Systems' }
+        { label: 'Focus', value: 'V&V Lifecycle' },
+        { label: 'Creds', value: 'ASEP' }
       ],
       details: [
-        'INCOSE certified Associate Systems Engineering Professional (ASEP).',
-        'Proficient in architectural decomposition, structured requirements elicitation, and interface control documents (ICDs).',
-        'Expertise in System Validation & Verification (V&V), configuration management, and life-cycle costing.'
+        'INCOSE Associate Systems Engineering Professional (ASEP) certified.',
+        'Proficient in architectural decomposition, requirements elicitation, and interface control documents.',
+        'Trained in System V&V, configuration management, MBSE, and life-cycle costing.'
       ],
       svgGraphic: (
         <svg className="w-full h-24 text-purple-400/30" viewBox="0 0 200 100" fill="none">
@@ -278,13 +278,13 @@ export default function CredentialsDashboard() {
       color: 'from-violet-500/20 to-teal-500/10 border-violet-500/40 text-violet-300',
       telemetry: [
         { label: 'Degree', value: 'Mastère Spécialisé' },
-        { label: 'Sector', value: 'Aerospace/Space' },
+        { label: 'Focus', value: 'SEN / MBSE' },
         { label: 'Cohort', value: '2025-2026' }
       ],
       details: [
-        'Pursued postgraduate systems engineering specialization at the world-renowned ISAE-SUPAERO (Toulouse).',
-        'Trained in safety-critical system architectures, aircraft/spacecraft dynamics, MBSE and Capella workflows.',
-        'Bridge software development agile workflows with classical heavy systems engineering lifecycle structures.'
+        'Postgraduate systems engineering specialization (Mastère Spécialisé SEN) at ISAE-SUPAERO, Toulouse.',
+        'Trained in safety-critical architectures, MBSE with Capella, and spacecraft/aircraft system dynamics.',
+        'Bridging agile software delivery with classical systems engineering lifecycle processes.'
       ],
       svgGraphic: (
         <svg className="w-full h-24 text-violet-400/30" viewBox="0 0 200 100" fill="none">
