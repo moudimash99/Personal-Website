@@ -72,15 +72,22 @@ function Mission({ mission }: any) {
   )
 }
 
+import CredentialsDashboard from '@/components/CredentialsDashboard'
+
 export default function ProjectsPage() {
   return (
     <>
       <CommandCenterBackdrop />
       <Starfield />
-      <Nav />                                                {/* ✅ add the nav so spacing/z works */}
-      <main className="pt-24 relative z-30" style={{ isolation: 'isolate' }}>  {/* ✅ shell */}
+      <Nav />
+      <main className="pt-24 relative z-30" style={{ isolation: 'isolate' }}>
         <Container>
-          <section id="projects" className="scroll-mt-28 space-y-10 mt-16">
+          
+          <section id="credentials-overview" className="mt-16">
+            <CredentialsDashboard />
+          </section>
+
+          <section id="projects" className="scroll-mt-28 space-y-10 mt-24">
             <SectionHeader icon={<Rocket className="h-5 w-5 text-accent-400" />} title="Projects" subtitle="Six missions; each includes focused Operations with telemetry." />
             <div className="space-y-12">
               {missions.map((m) => (<Mission key={m.id} mission={m} />))}

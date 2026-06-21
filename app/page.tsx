@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowRight, Download, MapPinned, Terminal, Shield } from 'lucide-react'
+import { ArrowRight, Download, MapPinned, Plane, Satellite, Activity, Cloud, Shield, GraduationCap } from 'lucide-react'
 import { motion } from 'framer-motion'
 import CommandCenterBackdrop from '@/components/CommandCenterBackdrop'
 import Container from '@/components/Container'
@@ -10,7 +10,6 @@ import Button from '@/components/Button'
 import Footer from '@/components/Footer'
 import Metrics from '@/components/Metrics'
 import Starfield from '@/components/Starfield'
-import CredentialsDashboard from '@/components/CredentialsDashboard'
 import { profile } from '@/data/profile'
 
 // Animation variants for staggered reveal
@@ -63,38 +62,29 @@ export default function Page() {
                 {/* Status Indicator Badge */}
                 <motion.div 
                   variants={heroItemVariants}
-                  className="inline-flex items-center gap-2.5 rounded-full border border-teal-500/30 bg-teal-950/40 px-3.5 py-1.5 text-xs text-accent-300 backdrop-blur-md"
+                  className="inline-flex items-center gap-2 rounded-full border border-accent-700/50 bg-accent-500/10 px-3 py-1 text-xs text-accent-100"
                 >
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
-                  </span>
-                  <span className="font-mono text-[10px] tracking-widest uppercase">SYS_NOMINAL • MISSION_DEBRIEF</span>
+                  <MapPinned className="h-3.5 w-3.5" /> <span>Mission Debrief</span>
                 </motion.div>
                 
-                {/* Headline with metallic / glow gradient styling */}
+                {/* Headline */}
                 <motion.h1 
                   variants={heroItemVariants}
-                  className="text-4xl md:text-6xl font-semibold leading-tight font-display tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-teal-200"
+                  className="text-4xl md:text-6xl font-semibold leading-tight font-display"
                 >
-                  {profile.headline} for <span className="text-teal-400 font-bold hover:text-teal-300 transition-colors duration-300">data-intensive</span> systems.
+                  {profile.headline} for data-intensive systems.
                 </motion.h1>
 
-                {/* Subheadlines with bordered callout styling */}
-                <motion.div 
-                  variants={heroItemVariants}
-                  className="space-y-4 text-lg md:text-xl text-foreground/90 max-w-3xl leading-relaxed border-l-2 border-accent-600/30 pl-5"
-                >
-                  <p className="font-medium text-white/95">
-                    {profile.introLines[0]}
-                  </p>
-                  <p className="text-muted text-base md:text-lg">
-                    {profile.introLines[1]}
-                  </p>
-                  <p className="text-muted/80 text-sm md:text-base italic">
-                    {profile.introLines[2]}
-                  </p>
-                </motion.div>
+                {/* Subheadlines */}
+                <motion.p variants={heroItemVariants} className="text-xl text-foreground/80 mt-6 max-w-3xl">
+                  {profile.introLines[0]}
+                </motion.p>
+                <motion.p variants={heroItemVariants} className="text-lg text-foreground/75 max-w-3xl">
+                  {profile.introLines[1]}
+                </motion.p>
+                <motion.p variants={heroItemVariants} className="text-base text-muted max-w-3xl">
+                  {profile.introLines[2]}
+                </motion.p>
 
                 {/* Micro metrics highlight */}
                 <motion.div variants={heroItemVariants} className="pt-2">
@@ -102,23 +92,28 @@ export default function Page() {
                 </motion.div>
 
                 {/* Action buttons */}
-                <motion.div variants={heroItemVariants} className="flex flex-wrap gap-4 pt-2">
-                  <Button href="/projects" className="bg-teal-600 hover:bg-teal-500 text-white shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_25px_rgba(20,184,166,0.5)] transition-all duration-300">
-                    Proceed to Projects <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                  <Button href={profile.cvUrl} variant="outline" newTab className="border-accent-700/50 hover:bg-white/5">
+                <motion.div variants={heroItemVariants} className="flex gap-3 pt-2">
+                  <Button href="/projects">Proceed to Projects <ArrowRight className="ml-2 h-4 w-4" /></Button>
+                  <Button href={profile.cvUrl} variant="outline" newTab>
                     <Download className="mr-2 h-4 w-4" /> Download CV
                   </Button>
+                </motion.div>
+                {/* Simple Credentials Row */}
+                <motion.div variants={heroItemVariants} className="pt-8 mt-4 border-t border-accent-900/30">
+                  <p className="text-[11px] font-mono text-muted uppercase tracking-wider mb-4">Credentials & Affiliations</p>
+                  <div className="flex flex-wrap gap-5 items-center opacity-80 text-accent-100">
+                    <div className="flex items-center gap-2 text-sm font-medium"><Plane className="h-4 w-4"/> Airbus</div>
+                    <div className="flex items-center gap-2 text-sm font-medium"><Satellite className="h-4 w-4"/> Green Praxis</div>
+                    <div className="flex items-center gap-2 text-sm font-medium"><Activity className="h-4 w-4"/> Murex</div>
+                    <div className="flex items-center gap-2 text-sm font-medium"><Cloud className="h-4 w-4"/> AWS Certified</div>
+                    <div className="flex items-center gap-2 text-sm font-medium"><Shield className="h-4 w-4"/> INCOSE ASEP</div>
+                    <div className="flex items-center gap-2 text-sm font-medium"><GraduationCap className="h-4 w-4"/> ISAE-SUPAERO</div>
+                  </div>
                 </motion.div>
 
               </div>
             </div>
           </motion.section>
-
-          {/* Credentials and Certifications Dashboard (Worked for Airbus, GP, Murex, AWS SAA, INCOSE ASEP, ISAE SUPAERO) */}
-          <section id="credentials-sector" className="pt-8">
-            <CredentialsDashboard />
-          </section>
 
         </Container>
         <Footer />
