@@ -373,9 +373,9 @@ export default function ProjectsPage() {
                   <div className="grid md:grid-cols-2 gap-8">
                     {mission.operations.map((op, opIdx) => (
                       <div key={opIdx} className="bg-black/30 rounded-xl p-6 border border-white/5 hover:border-white/10 transition-colors">
-                        <div className="flex items-center gap-2 mb-3">
-                          <span className="text-xs font-mono font-bold bg-teal-500/20 text-teal-300 px-2 py-0.5 rounded">OP: {op.code}</span>
-                          <h4 className="text-lg font-medium text-white/90">{op.name}</h4>
+                        <div className="mb-4">
+                          <div className="text-[10px] font-mono font-bold text-teal-400 mb-1.5 tracking-wider uppercase">OP: {op.code}</div>
+                          <h4 className="text-lg font-medium text-white/90 leading-tight">{op.name}</h4>
                         </div>
                         <p className="text-sm text-muted mb-5">{op.objective}</p>
 
@@ -388,11 +388,11 @@ export default function ProjectsPage() {
                           ))}
                         </ul>
 
-                        <div className="mt-auto pt-4 border-t border-white/10">
-                          <div className="flex flex-wrap gap-2">
+                        <div className="mt-auto pt-5 border-t border-white/10">
+                          <div className="flex flex-wrap gap-2.5">
                             {op.telemetry.map((t, tIdx) => (
-                              <div key={tIdx} className="text-[11px] font-mono bg-white/5 px-2 py-1 rounded-md text-muted border border-white/5 flex items-center gap-1.5">
-                                <span className="text-teal-500/50">{t.label}:</span> <span className="text-white/80">{t.value}</span>
+                              <div key={tIdx} className="text-[11px] font-mono bg-white/[0.03] px-2.5 py-1.5 rounded-md border border-teal-400/20 flex items-center gap-1.5">
+                                <span className="text-teal-400/70">{t.label}:</span> <span className="text-slate-200 font-medium">{t.value}</span>
                               </div>
                             ))}
                           </div>
