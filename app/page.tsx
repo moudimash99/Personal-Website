@@ -162,115 +162,57 @@ export default function Page() {
           {/* ═══════════════════════════════════════════════════════════════
               CREDENTIALS — Big, Logo-first, Alive
               ═══════════════════════════════════════════════════════════════ */}
-          <section className="pt-8 pb-16 w-full max-w-4xl mx-auto">
-            <div className="space-y-16">
-              
-              {/* Tier 1 - The Experience Band */}
-              <div>
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="mb-4 flex justify-start"
-                >
-                  <h3 className="text-xs font-mono font-medium text-white/50 uppercase tracking-[0.2em]">
-                    Trusted By
-                  </h3>
-                </motion.div>
+          <section className="pt-8 pb-16 w-full max-w-5xl mx-auto">
+            <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="flex justify-center md:justify-start"
+              >
+                <h3 className="text-[10px] font-mono font-medium text-white/40 uppercase tracking-[0.25em]">
+                  Trusted &amp; Certified By
+                </h3>
+              </motion.div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
-                  {credentials.slice(0, 3).map((cred, i) => (
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                {credentials.map((cred, i) => (
+                  <motion.div
+                    key={cred.name}
+                    custom={i}
+                    variants={credentialCardVariant}
+                    initial="hidden"
+                    animate="show"
+                    whileHover={{ scale: 1.05, y: -4 }}
+                    className="glass rounded-2xl p-4 flex flex-col items-center justify-center text-center cursor-default transition-all duration-500 min-h-[140px] group relative overflow-hidden"
+                  >
                     <motion.div
-                      key={cred.name}
-                      custom={i}
-                      variants={credentialCardVariant}
-                      initial="hidden"
-                      animate="show"
-                      whileHover={{ scale: 1.05, y: -4 }}
-                      className="glass rounded-2xl p-5 flex flex-col items-center justify-center text-center cursor-default transition-all duration-500 h-full min-h-[180px] group relative overflow-hidden"
-                    >
-                      <motion.div
-                        className="absolute -top-6 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none"
-                        style={{ background: cred.glow }}
-                        animate={{ scale: [1, 1.3, 1] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                      />
-                      <motion.div
-                        className="relative z-10 w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden ring-1 ring-white/5 mb-4 shadow-lg shrink-0"
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
-                      >
-                        <Image src={cred.logo} alt={`${cred.name} logo`} fill sizes="80px" className="object-cover" />
-                      </motion.div>
-                      <h3 className="relative z-10 font-display font-bold text-sm md:text-base text-white/90 group-hover:text-white transition-colors duration-300 leading-tight">
-                        {cred.name}
-                      </h3>
-                      <p className="relative z-10 text-[10px] md:text-[11px] text-white/50 mt-1 leading-snug">
-                        {cred.subtitle}
-                      </p>
-                      <motion.div
-                        className="absolute top-3 right-3 h-1.5 w-1.5 rounded-full"
-                        style={{ background: cred.glow }}
-                        animate={{ opacity: [0.3, 0.8, 0.3], scale: [0.8, 1.2, 0.8] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Tier 2 - The Credentials Band */}
-              <div className="w-full">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="mb-4 flex justify-start"
-                >
-                  <h3 className="text-xs font-mono font-medium text-white/50 uppercase tracking-[0.2em]">
-                    Certified By
-                  </h3>
-                </motion.div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
-                  {credentials.slice(3).map((cred, i) => (
+                      className="absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-20 rounded-full blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none"
+                      style={{ background: cred.glow }}
+                      animate={{ scale: [1, 1.3, 1] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                    />
                     <motion.div
-                      key={cred.name}
-                      custom={i + 3}
-                      variants={credentialCardVariant}
-                      initial="hidden"
-                      animate="show"
-                      whileHover={{ scale: 1.05, y: -4 }}
-                      className="glass rounded-2xl p-5 flex flex-col items-center justify-center text-center cursor-default transition-all duration-500 h-full min-h-[180px] group relative overflow-hidden"
+                      className="relative z-10 w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden ring-1 ring-white/5 mb-3 shadow-lg shrink-0"
+                      animate={{ y: [0, -3, 0] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
                     >
-                      <motion.div
-                        className="absolute -top-6 left-1/2 -translate-x-1/2 w-24 h-24 rounded-full blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none"
-                        style={{ background: cred.glow }}
-                        animate={{ scale: [1, 1.3, 1] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                      />
-                      <motion.div
-                        className="relative z-10 w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden ring-1 ring-white/5 mb-4 shadow-lg shrink-0"
-                        animate={{ y: [0, -4, 0] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
-                      >
-                        <Image src={cred.logo} alt={`${cred.name} logo`} fill sizes="80px" className="object-cover" />
-                      </motion.div>
-                      <h3 className="relative z-10 font-display font-bold text-sm md:text-base text-white/90 group-hover:text-white transition-colors duration-300 leading-tight">
-                        {cred.name}
-                      </h3>
-                      <p className="relative z-10 text-[10px] md:text-[11px] text-white/50 mt-1 leading-snug">
-                        {cred.subtitle}
-                      </p>
-                      <motion.div
-                        className="absolute top-3 right-3 h-1.5 w-1.5 rounded-full"
-                        style={{ background: cred.glow }}
-                        animate={{ opacity: [0.3, 0.8, 0.3], scale: [0.8, 1.2, 0.8] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
-                      />
+                      <Image src={cred.logo} alt={`${cred.name} logo`} fill sizes="60px" className="object-cover" />
                     </motion.div>
-                  ))}
-                </div>
+                    <h3 className="relative z-10 font-display font-bold text-[12px] md:text-[13px] text-white/90 group-hover:text-white transition-colors duration-300 leading-tight">
+                      {cred.name}
+                    </h3>
+                    <p className="relative z-10 text-[9px] md:text-[10px] text-white/50 mt-1 leading-snug">
+                      {cred.subtitle}
+                    </p>
+                    <motion.div
+                      className="absolute top-2.5 right-2.5 h-1.5 w-1.5 rounded-full"
+                      style={{ background: cred.glow }}
+                      animate={{ opacity: [0.3, 0.8, 0.3], scale: [0.8, 1.2, 0.8] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
+                    />
+                  </motion.div>
+                ))}
               </div>
             </div>
           </section>
