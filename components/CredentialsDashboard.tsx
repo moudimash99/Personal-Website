@@ -377,98 +377,207 @@ export default function CredentialsDashboard() {
         </div>
       </div>
 
-      {/* 2. Interactive System Node Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {credentials.map((node, i) => {
-          const NodeIcon = node.icon
-          const isHovered = hoveredCard === node.id
-          const isActive = activeCard === node.id
+      {/* 2. Interactive System Node Cards Grid - Split into two bands */}
+      <div className="space-y-16 mt-12">
+        
+        {/* Tier 1 - The Experience Band */}
+        <div>
+          <h3 className="text-[11px] font-mono font-bold text-accent-400 mb-6 tracking-[0.2em]">INDUSTRY EXPERIENCE</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {credentials.slice(0, 3).map((node, i) => {
+              const NodeIcon = node.icon
+              const isHovered = hoveredCard === node.id
+              const isActive = activeCard === node.id
 
-          return (
-            <motion.div
-              key={node.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.08, duration: 0.5, type: 'spring', stiffness: 100 }}
-              onMouseEnter={() => setHoveredCard(node.id)}
-              onMouseLeave={() => setHoveredCard(null)}
-              onClick={() => setActiveCard(isActive ? null : node.id)}
-              className={`glass flex flex-col justify-between overflow-hidden group cursor-pointer border-t-2 bg-gradient-to-b ${node.color} transition-all duration-300 hover:shadow-glow hover:scale-[1.01]`}
-            >
-              {/* Card Header overlay details */}
-              <div className="p-5 flex-1 flex flex-col">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="p-2.5 bg-background/80 border border-border/40 rounded-xl text-accent-300">
-                    <NodeIcon className="h-5 w-5" />
-                  </div>
-                  <div className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase bg-accent-500/10 px-2 py-0.5 rounded border border-accent-400/20 text-accent-100 font-mono">
-                    <span className="h-1.5 w-1.5 rounded-full bg-ok animate-pulse" />
-                    {node.status}
-                  </div>
-                </div>
-
-                {/* Node Identity */}
-                <div className="mb-4">
-                  <h3 className="text-xl font-bold font-display text-white group-hover:text-accent-300 transition-colors flex items-center gap-2">
-                    {node.title} 
-                    <ChevronRight className="h-4 w-4 text-accent-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                  </h3>
-                  <p className="text-xs font-mono text-accent-300/80 mt-0.5">{node.role}</p>
-                  <p className="text-[10px] font-mono text-muted mt-1 uppercase tracking-wide">{node.sector}</p>
-                </div>
-
-                {/* Micro-illustration SVG display area */}
-                <div className="bg-black/40 rounded-xl p-3 border border-border/30 mb-5 relative flex items-center justify-center overflow-hidden h-28 group-hover:border-accent-500/30 transition-all duration-500">
-                  {/* Subtle scanning horizontal bar */}
-                  <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-400/40 to-transparent animate-[shimmer_3s_infinite]" />
-                  {node.svgGraphic}
-                </div>
-
-                {/* Active telemetry readouts */}
-                <div className="grid grid-cols-3 gap-2 border-t border-border/20 pt-4 mt-auto">
-                  {node.telemetry.map((t, idx) => (
-                    <div key={idx} className="bg-black/30 p-1.5 rounded border border-border/20 text-center flex flex-col justify-center">
-                      <span className="text-[8px] text-muted font-mono uppercase block">{t.label}</span>
-                      <span className="text-[10px] text-accent-100 font-mono font-medium truncate mt-0.5">{t.value}</span>
+              return (
+                <motion.div
+                  key={node.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: i * 0.08, duration: 0.5, type: 'spring', stiffness: 100 }}
+                  onMouseEnter={() => setHoveredCard(node.id)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  onClick={() => setActiveCard(isActive ? null : node.id)}
+                  className={`glass flex flex-col justify-between overflow-hidden group cursor-pointer border-t-2 bg-gradient-to-b ${node.color} transition-all duration-300 hover:shadow-glow hover:scale-[1.01]`}
+                >
+                  {/* Card Header overlay details */}
+                  <div className="p-5 flex-1 flex flex-col">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="p-2.5 bg-background/80 border border-border/40 rounded-xl text-accent-300">
+                        <NodeIcon className="h-5 w-5" />
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase bg-accent-500/10 px-2 py-0.5 rounded border border-accent-400/20 text-accent-100 font-mono">
+                        <span className="h-1.5 w-1.5 rounded-full bg-ok animate-pulse" />
+                        {node.status}
+                      </div>
                     </div>
-                  ))}
-                </div>
-              </div>
 
-              {/* Expander Footer */}
-              <div className="px-5 py-3 border-t border-border/20 bg-background/50 flex justify-between items-center text-xs font-mono text-accent-300/80 group-hover:bg-accent-500/5 transition-colors">
-                <span>{isActive ? 'SHRINK NODE DETAILS' : 'EXPAND NODE DETAILS'}</span>
-                <ChevronRight className={`h-4 w-4 transform transition-transform duration-300 ${isActive ? 'rotate-90 text-accent-400' : 'text-muted'}`} />
-              </div>
-
-              {/* Collapsed slide-out details */}
-              <AnimatePresence initial={false}>
-                {isActive && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="border-t border-border/30 bg-black/70 overflow-hidden font-sans"
-                  >
-                    <div className="p-5 space-y-3.5">
-                      <h4 className="text-xs font-mono text-accent-300 tracking-wider uppercase border-b border-border/20 pb-1">Verified Operations</h4>
-                      <ul className="space-y-2.5">
-                        {node.details.map((detail, idx) => (
-                          <li key={idx} className="text-xs text-foreground/80 flex items-start gap-2.5 leading-relaxed">
-                            <CheckCircle2 className="h-4 w-4 text-accent-400 mt-0.5 shrink-0" />
-                            <span>{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
+                    {/* Node Identity */}
+                    <div className="mb-4">
+                      <h3 className="text-xl font-bold font-display text-white group-hover:text-accent-300 transition-colors flex items-center gap-2">
+                        {node.title} 
+                        <ChevronRight className="h-4 w-4 text-accent-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      </h3>
+                      <p className="text-xs font-mono text-accent-300/80 mt-0.5">{node.role}</p>
+                      <p className="text-[10px] font-mono text-muted mt-1 uppercase tracking-wide">{node.sector}</p>
                     </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          )
-        })}
+
+                    {/* Micro-illustration SVG display area */}
+                    <div className="bg-black/40 rounded-xl p-3 border border-border/30 mb-5 relative flex items-center justify-center overflow-hidden h-28 group-hover:border-accent-500/30 transition-all duration-500">
+                      {/* Subtle scanning horizontal bar */}
+                      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-400/40 to-transparent animate-[shimmer_3s_infinite]" />
+                      {node.svgGraphic}
+                    </div>
+
+                    {/* Active telemetry readouts */}
+                    <div className="grid grid-cols-3 gap-2 border-t border-border/20 pt-4 mt-auto">
+                      {node.telemetry.map((t, idx) => (
+                        <div key={idx} className="bg-black/30 p-1.5 rounded border border-border/20 text-center flex flex-col justify-center">
+                          <span className="text-[8px] text-muted font-mono uppercase block">{t.label}</span>
+                          <span className="text-[10px] text-accent-100 font-mono font-medium truncate mt-0.5">{t.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Expander Footer */}
+                  <div className="px-5 py-3 border-t border-border/20 bg-background/50 flex justify-between items-center text-xs font-mono text-accent-300/80 group-hover:bg-accent-500/5 transition-colors">
+                    <span>{isActive ? 'SHRINK NODE DETAILS' : 'EXPAND NODE DETAILS'}</span>
+                    <ChevronRight className={`h-4 w-4 transform transition-transform duration-300 ${isActive ? 'rotate-90 text-accent-400' : 'text-muted'}`} />
+                  </div>
+
+                  {/* Collapsed slide-out details */}
+                  <AnimatePresence initial={false}>
+                    {isActive && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="border-t border-border/30 bg-black/70 overflow-hidden font-sans"
+                      >
+                        <div className="p-5 space-y-3.5">
+                          <h4 className="text-xs font-mono text-accent-300 tracking-wider uppercase border-b border-border/20 pb-1">Verified Operations</h4>
+                          <ul className="space-y-2.5">
+                            {node.details.map((detail, idx) => (
+                              <li key={idx} className="text-xs text-foreground/80 flex items-start gap-2.5 leading-relaxed">
+                                <CheckCircle2 className="h-4 w-4 text-accent-400 mt-0.5 shrink-0" />
+                                <span>{detail}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Tactical Divider */}
+        <div className="w-full flex items-center justify-center">
+          <div className="w-full h-px border-t border-dashed border-accent-500/30 opacity-60" />
+        </div>
+
+        {/* Tier 2 - The Credentials Band */}
+        <div>
+          <h3 className="text-[11px] font-mono font-bold text-accent-400 mb-6 tracking-[0.2em]">SYSTEM CERTIFICATIONS & DEGREES</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {credentials.slice(3).map((node, i) => {
+              const NodeIcon = node.icon
+              const isHovered = hoveredCard === node.id
+              const isActive = activeCard === node.id
+
+              return (
+                <motion.div
+                  key={node.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: i * 0.08, duration: 0.5, type: 'spring', stiffness: 100 }}
+                  onMouseEnter={() => setHoveredCard(node.id)}
+                  onMouseLeave={() => setHoveredCard(null)}
+                  onClick={() => setActiveCard(isActive ? null : node.id)}
+                  className={`glass flex flex-col justify-between overflow-hidden group cursor-pointer border-t-2 bg-gradient-to-b ${node.color} transition-all duration-300 hover:shadow-glow hover:scale-[1.01]`}
+                >
+                  {/* Card Header overlay details */}
+                  <div className="p-5 flex-1 flex flex-col">
+                    <div className="flex justify-between items-start mb-4">
+                      <div className="p-2.5 bg-background/80 border border-border/40 rounded-xl text-accent-300">
+                        <NodeIcon className="h-5 w-5" />
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[10px] tracking-wider uppercase bg-accent-500/10 px-2 py-0.5 rounded border border-accent-400/20 text-accent-100 font-mono">
+                        <span className="h-1.5 w-1.5 rounded-full bg-ok animate-pulse" />
+                        {node.status}
+                      </div>
+                    </div>
+
+                    {/* Node Identity */}
+                    <div className="mb-4">
+                      <h3 className="text-xl font-bold font-display text-white group-hover:text-accent-300 transition-colors flex items-center gap-2">
+                        {node.title} 
+                        <ChevronRight className="h-4 w-4 text-accent-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      </h3>
+                      <p className="text-xs font-mono text-accent-300/80 mt-0.5">{node.role}</p>
+                      <p className="text-[10px] font-mono text-muted mt-1 uppercase tracking-wide">{node.sector}</p>
+                    </div>
+
+                    {/* Micro-illustration SVG display area */}
+                    <div className="bg-black/40 rounded-xl p-3 border border-border/30 mb-5 relative flex items-center justify-center overflow-hidden h-28 group-hover:border-accent-500/30 transition-all duration-500">
+                      {/* Subtle scanning horizontal bar */}
+                      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent-400/40 to-transparent animate-[shimmer_3s_infinite]" />
+                      {node.svgGraphic}
+                    </div>
+
+                    {/* Active telemetry readouts */}
+                    <div className="grid grid-cols-3 gap-2 border-t border-border/20 pt-4 mt-auto">
+                      {node.telemetry.map((t, idx) => (
+                        <div key={idx} className="bg-black/30 p-1.5 rounded border border-border/20 text-center flex flex-col justify-center">
+                          <span className="text-[8px] text-muted font-mono uppercase block">{t.label}</span>
+                          <span className="text-[10px] text-accent-100 font-mono font-medium truncate mt-0.5">{t.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Expander Footer */}
+                  <div className="px-5 py-3 border-t border-border/20 bg-background/50 flex justify-between items-center text-xs font-mono text-accent-300/80 group-hover:bg-accent-500/5 transition-colors">
+                    <span>{isActive ? 'SHRINK NODE DETAILS' : 'EXPAND NODE DETAILS'}</span>
+                    <ChevronRight className={`h-4 w-4 transform transition-transform duration-300 ${isActive ? 'rotate-90 text-accent-400' : 'text-muted'}`} />
+                  </div>
+
+                  {/* Collapsed slide-out details */}
+                  <AnimatePresence initial={false}>
+                    {isActive && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="border-t border-border/30 bg-black/70 overflow-hidden font-sans"
+                      >
+                        <div className="p-5 space-y-3.5">
+                          <h4 className="text-xs font-mono text-accent-300 tracking-wider uppercase border-b border-border/20 pb-1">Verified Operations</h4>
+                          <ul className="space-y-2.5">
+                            {node.details.map((detail, idx) => (
+                              <li key={idx} className="text-xs text-foreground/80 flex items-start gap-2.5 leading-relaxed">
+                                <CheckCircle2 className="h-4 w-4 text-accent-400 mt-0.5 shrink-0" />
+                                <span>{detail}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </div>
   )
