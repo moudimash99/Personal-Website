@@ -74,6 +74,10 @@ export default function Page() {
         <Link href="/v14" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v14</Link>
         <Link href="/v15" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v15</Link>
         <Link href="/v16" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v16</Link>
+        
+        <div className="w-px h-4 bg-white/20 shrink-0 mx-2" />
+        
+        <Link href="/v17" className="text-rose-400 font-bold tracking-widest hover:text-rose-300 transition-colors shrink-0 uppercase border-b border-rose-500 pb-1">v17: The Ultimate Vertical Hybrid</Link>
       </div>
 
       <CommandCenterBackdrop />
