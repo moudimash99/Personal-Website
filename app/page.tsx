@@ -121,18 +121,6 @@ export default function Page() {
             <div className="flex flex-col lg:flex-row items-start gap-8">
               <div className="flex-1 space-y-3">
 
-                {/* Status Badge */}
-                <motion.div
-                  variants={fadeUp}
-                  className="inline-flex items-center gap-2.5 rounded-full border border-teal-500/30 bg-teal-950/40 px-3.5 py-1.5 text-xs text-accent-300 backdrop-blur-md"
-                >
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500" />
-                  </span>
-                  <span className="font-mono text-[10px] tracking-widest uppercase">SYS_NOMINAL • MISSION_DEBRIEF</span>
-                </motion.div>
-
                 {/* Headline */}
                 <motion.h1
                   variants={fadeUp}
