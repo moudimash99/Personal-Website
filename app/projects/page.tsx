@@ -13,89 +13,297 @@ import { ReactNode } from 'react'
 /* ── SVG animations mapped by mission id ── */
 const missionGraphics: Record<string, ReactNode> = {
   'airbus-electric-center': (
-    <svg className="w-full h-full text-blue-400/30" viewBox="0 0 200 160" fill="none">
-      <circle cx="100" cy="80" r="60" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
-      <circle cx="100" cy="80" r="38" stroke="currentColor" strokeWidth="0.5" />
-      <motion.line x1="100" y1="80" x2="145" y2="40" stroke="currentColor" strokeWidth="1.5"
-        animate={{ rotate: 360 }} transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-        style={{ originX: "100px", originY: "80px" }} />
-      <motion.circle cx="135" cy="50" r="2.5" fill="#60a5fa"
-        animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1.5, repeat: Infinity }} />
-      <motion.circle cx="70" cy="105" r="3" fill="#2dd4bf"
-        animate={{ opacity: [0.1, 0.8, 0.1] }} transition={{ duration: 2, repeat: Infinity, delay: 0.5 }} />
-      <path d="M60,80 L90,80 L105,65 L120,80 L140,80" stroke="currentColor" strokeWidth="1" />
-      <path d="M93,80 L100,50 L107,50 L100,80" stroke="currentColor" strokeWidth="0.8" />
-      <path d="M93,80 L100,110 L107,110 L100,80" stroke="currentColor" strokeWidth="0.8" />
+    <svg className="w-full h-full text-blue-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
+      {/* Background grid */}
+      <pattern id="grid-aec" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.2" />
+      </pattern>
+      <rect width="800" height="200" fill="url(#grid-aec)" />
+      
+      {/* Central Radar */}
+      <g transform="translate(400, 100)">
+        <circle cx="0" cy="0" r="80" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
+        <circle cx="0" cy="0" r="50" stroke="currentColor" strokeWidth="0.5" />
+        <motion.path d="M 0 0 L 0 -80 A 80 80 0 0 1 56 -56 Z" fill="currentColor" fillOpacity="0.1" 
+          animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }} />
+        <motion.line x1="0" y1="0" x2="0" y2="-80" stroke="#60a5fa" strokeWidth="2"
+          animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }} />
+        
+        {/* Radar blips */}
+        <motion.circle cx="30" cy="-40" r="4" fill="#2dd4bf" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, delay: 0.5 }} />
+        <motion.circle cx="-50" cy="20" r="3" fill="#60a5fa" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, delay: 1.8 }} />
+        <motion.circle cx="10" cy="60" r="5" fill="#2dd4bf" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, delay: 2.5 }} />
+      </g>
+
+      {/* Left data feeds */}
+      <path d="M 100 100 L 250 100 L 320 100" stroke="currentColor" strokeWidth="1" strokeDasharray="5 5" />
+      <motion.circle cx="100" cy="100" r="3" fill="#60a5fa" animate={{ cx: [100, 320] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
+      <motion.circle cx="150" cy="100" r="3" fill="#60a5fa" animate={{ cx: [150, 320] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
+
+      <path d="M 100 150 L 200 150 L 250 120 L 320 120" stroke="currentColor" strokeWidth="1" />
+      <motion.circle cx="100" cy="150" r="3" fill="#2dd4bf" animate={{ cx: [100, 200, 250, 320], cy: [150, 150, 120, 120] }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }} />
+
+      {/* Right analysis output */}
+      <path d="M 480 100 L 550 100 L 600 60 L 700 60" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M 480 120 L 550 120 L 600 140 L 700 140" stroke="currentColor" strokeWidth="1.5" />
+      
+      {/* Bar charts on right */}
+      <motion.rect x="620" y="30" width="10" height="30" fill="#60a5fa" fillOpacity="0.5" animate={{ height: [30, 10, 30], y: [30, 50, 30] }} transition={{ duration: 2, repeat: Infinity }} />
+      <motion.rect x="640" y="20" width="10" height="40" fill="#2dd4bf" fillOpacity="0.5" animate={{ height: [40, 20, 40], y: [20, 40, 20] }} transition={{ duration: 2.5, repeat: Infinity }} />
+      <motion.rect x="660" y="40" width="10" height="20" fill="#60a5fa" fillOpacity="0.5" animate={{ height: [20, 40, 20], y: [40, 20, 40] }} transition={{ duration: 1.5, repeat: Infinity }} />
+      
+      <text x="100" y="80" fill="currentColor" className="text-[10px] font-mono tracking-widest">LEGACY_QMS</text>
+      <text x="620" y="160" fill="currentColor" className="text-[10px] font-mono tracking-widest">SKYWISE_ANALYTICS</text>
     </svg>
   ),
   'green': (
-    <svg className="w-full h-full text-emerald-400/30" viewBox="0 0 200 160" fill="none">
-      <circle cx="100" cy="120" r="70" stroke="currentColor" strokeWidth="0.75" />
-      <ellipse cx="100" cy="80" rx="80" ry="30" stroke="currentColor" strokeWidth="0.75" transform="rotate(-12 100 80)" />
-      <motion.g animate={{ x: [-55, 55, -55], y: [-15, 15, -15], scale: [0.8, 1.2, 0.8] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}>
-        <rect x="95" y="72" width="12" height="12" rx="1.5" fill="currentColor" />
-        <line x1="82" y1="78" x2="95" y2="78" stroke="currentColor" strokeWidth="2.5" />
-        <line x1="107" y1="78" x2="120" y2="78" stroke="currentColor" strokeWidth="2.5" />
-        <circle cx="101" cy="66" r="2" fill="#34d399" />
+    <svg className="w-full h-full text-emerald-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
+      {/* Earth Horizon */}
+      <path d="M -100 250 Q 400 150 900 250" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
+      <path d="M -100 270 Q 400 170 900 270" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
+      
+      {/* Orbit paths */}
+      <path d="M -50 100 Q 400 -50 850 100" stroke="currentColor" strokeWidth="1" strokeDasharray="8 8" />
+      <path d="M 100 150 Q 400 0 700 150" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" />
+
+      {/* Satellites */}
+      <motion.g animate={{ x: [-100, 900], y: [120, -70, 120] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
+        <rect x="-10" y="-5" width="20" height="10" fill="currentColor" />
+        <rect x="-25" y="-3" width="12" height="6" fill="#34d399" />
+        <rect x="13" y="-3" width="12" height="6" fill="#34d399" />
+        <circle cx="0" cy="0" r="3" fill="#fff" />
+        {/* Downlink beam */}
+        <motion.path d="M 0 5 L -20 150 L 20 150 Z" fill="#34d399" fillOpacity="0.1" animate={{ opacity: [0.1, 0.3, 0.1] }} transition={{ duration: 2, repeat: Infinity }} />
       </motion.g>
-      <path d="M100,88 C100,96 88,108 100,115" stroke="#34d399" strokeWidth="1" strokeDasharray="2 2" className="animate-pulse" />
+
+      <motion.g animate={{ x: [900, -100], y: [170, 20, 170] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }}>
+        <rect x="-8" y="-4" width="16" height="8" fill="currentColor" />
+        <rect x="-20" y="-2" width="10" height="4" fill="#34d399" />
+        <rect x="10" y="-2" width="10" height="4" fill="#34d399" />
+      </motion.g>
+
+      {/* Ground Station processing nodes */}
+      <g transform="translate(200, 170)">
+        <rect x="0" y="0" width="40" height="30" rx="4" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="20" cy="15" r="5" fill="#34d399" className="animate-pulse" />
+        <text x="0" y="-10" fill="currentColor" className="text-[8px] font-mono">STAC_INGEST</text>
+      </g>
+
+      <g transform="translate(400, 160)">
+        <rect x="0" y="0" width="60" height="40" rx="4" stroke="currentColor" strokeWidth="1.5" />
+        <motion.line x1="10" y1="20" x2="50" y2="20" stroke="#34d399" strokeWidth="2" strokeDasharray="4 4" animate={{ strokeDashoffset: [0, -16] }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} />
+        <text x="0" y="-10" fill="currentColor" className="text-[8px] font-mono">REDIS_TILE_CACHE</text>
+      </g>
+
+      <g transform="translate(600, 170)">
+        <rect x="0" y="0" width="40" height="30" rx="4" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="10" y="10" width="8" height="8" fill="#34d399" />
+        <rect x="22" y="10" width="8" height="8" fill="currentColor" />
+        <text x="-10" y="-10" fill="currentColor" className="text-[8px] font-mono">PROMETHEUS</text>
+      </g>
+
+      {/* Ground connections */}
+      <path d="M 240 185 L 400 180" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
+      <path d="M 460 180 L 600 185" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
     </svg>
   ),
   'airbus': (
-    <svg className="w-full h-full text-blue-400/25" viewBox="0 0 200 160" fill="none">
-      <rect x="30" y="30" width="140" height="100" rx="6" stroke="currentColor" strokeWidth="0.75" strokeDasharray="4 4" />
-      <motion.rect x="45" y="50" width="50" height="30" rx="3" stroke="#60a5fa" strokeWidth="1" fill="none"
-        animate={{ opacity: [0.3, 0.8, 0.3] }} transition={{ duration: 3, repeat: Infinity }} />
-      <motion.rect x="105" y="50" width="50" height="30" rx="3" stroke="#2dd4bf" strokeWidth="1" fill="none"
-        animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2.5, repeat: Infinity, delay: 0.8 }} />
-      <motion.rect x="75" y="95" width="50" height="25" rx="3" stroke="#60a5fa" strokeWidth="1" fill="none"
-        animate={{ opacity: [0.4, 0.9, 0.4] }} transition={{ duration: 3.5, repeat: Infinity, delay: 0.4 }} />
-      <line x1="70" y1="80" x2="70" y2="95" stroke="currentColor" strokeWidth="0.75" />
-      <line x1="130" y1="80" x2="130" y2="95" stroke="currentColor" strokeWidth="0.75" />
-      <line x1="70" y1="95" x2="130" y2="95" stroke="currentColor" strokeWidth="0.75" />
-      <line x1="100" y1="95" x2="100" y2="95" stroke="currentColor" strokeWidth="0.75" />
+    <svg className="w-full h-full text-blue-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
+      <pattern id="dots-airbus" width="20" height="20" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.2" />
+      </pattern>
+      <rect width="800" height="200" fill="url(#dots-airbus)" />
+
+      {/* Data Sources (Regions) */}
+      {[50, 80, 110, 140, 170].map((y, i) => (
+        <g key={i}>
+          <rect x="50" y={y-10} width="60" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
+          <text x="55" y={y+2} fill="currentColor" className="text-[8px] font-mono">REGION_{i+1}</text>
+          <path d={`M 110 ${y} L 250 110`} stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.5" />
+          <motion.circle cx="110" cy={y} r="2" fill="#60a5fa" animate={{ cx: [110, 250], cy: [y, 110] }} transition={{ duration: 1.5 + i*0.2, repeat: Infinity, delay: i*0.3 }} />
+        </g>
+      ))}
+
+      {/* Central Processing Hub (OPTIMATE / HR DB) */}
+      <g transform="translate(250, 60)">
+        <rect x="0" y="0" width="120" height="100" rx="8" stroke="#60a5fa" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
+        <path d="M 20 30 L 100 30" stroke="currentColor" strokeWidth="1" />
+        <path d="M 20 50 L 100 50" stroke="currentColor" strokeWidth="1" />
+        <path d="M 20 70 L 100 70" stroke="currentColor" strokeWidth="1" />
+        <motion.rect x="20" y="25" width="20" height="10" fill="#2dd4bf" animate={{ x: [20, 80, 20] }} transition={{ duration: 3, repeat: Infinity }} />
+        <motion.rect x="40" y="45" width="40" height="10" fill="#60a5fa" animate={{ x: [40, 60, 40] }} transition={{ duration: 2.5, repeat: Infinity }} />
+        <text x="10" y="-10" fill="#60a5fa" className="text-[10px] font-mono font-bold">DATA_CONSOLIDATION</text>
+      </g>
+
+      {/* Output Pipelines */}
+      <path d="M 370 90 L 500 60" stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" />
+      <path d="M 370 110 L 500 110" stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" />
+      <path d="M 370 130 L 500 160" stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" />
+
+      {/* Moving data packets on pipelines */}
+      <motion.rect x="370" y="88" width="10" height="4" fill="#2dd4bf" animate={{ x: [370, 500], y: [88, 58] }} transition={{ duration: 2, repeat: Infinity }} />
+      <motion.rect x="370" y="108" width="15" height="4" fill="#60a5fa" animate={{ x: [370, 500] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }} />
+      <motion.rect x="370" y="128" width="12" height="4" fill="#2dd4bf" animate={{ x: [370, 500], y: [128, 158] }} transition={{ duration: 2.2, repeat: Infinity, delay: 0.2 }} />
+
+      {/* Dashboard Endpoints */}
+      <rect x="500" y="40" width="100" height="40" rx="4" stroke="currentColor" strokeWidth="1" />
+      <text x="510" y="65" fill="currentColor" className="text-[8px] font-mono">EXEC_DASH</text>
+      <rect x="500" y="90" width="100" height="40" rx="4" stroke="currentColor" strokeWidth="1" />
+      <text x="510" y="115" fill="currentColor" className="text-[8px] font-mono">HR_METRICS</text>
+      <rect x="500" y="140" width="100" height="40" rx="4" stroke="currentColor" strokeWidth="1" />
+      <text x="510" y="165" fill="currentColor" className="text-[8px] font-mono">OPTIMATE_API</text>
+
+      {/* KPI readouts */}
+      <text x="650" y="80" fill="#2dd4bf" className="text-xl font-mono">90% <tspan fontSize="10" fill="currentColor">ACCURACY</tspan></text>
+      <text x="650" y="130" fill="#60a5fa" className="text-xl font-mono">80% <tspan fontSize="10" fill="currentColor">FASTER</tspan></text>
     </svg>
   ),
   'murex': (
-    <svg className="w-full h-full text-cyan-400/30" viewBox="0 0 200 160" fill="none">
-      <path d="M10,80 L50,80 L62,30 L74,130 L86,60 L94,90 L104,80 L190,80" stroke="currentColor" strokeWidth="1" />
-      <motion.path d="M10,80 L50,80 L62,30 L74,130 L86,60 L94,90 L104,80 L190,80"
-        stroke="#22d3ee" strokeWidth="1.5" strokeDasharray="40 160"
-        animate={{ strokeDashoffset: [-200, 200] }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }} />
-      <line x1="10" y1="25" x2="190" y2="25" stroke="currentColor" strokeWidth="0.25" strokeDasharray="4 4" />
-      <line x1="10" y1="135" x2="190" y2="135" stroke="currentColor" strokeWidth="0.25" strokeDasharray="4 4" />
-      <text x="130" y="42" fill="currentColor" className="text-[8px] font-mono">THR: 98.4%</text>
-      <text x="130" y="56" fill="currentColor" className="text-[8px] font-mono">LAT: &lt;1.2ms</text>
+    <svg className="w-full h-full text-cyan-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="grad-murex" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="transparent" />
+          <stop offset="50%" stopColor="#22d3ee" stopOpacity="0.5" />
+          <stop offset="100%" stopColor="transparent" />
+        </linearGradient>
+      </defs>
+
+      {/* Grid */}
+      <path d="M 0 50 L 800 50 M 0 100 L 800 100 M 0 150 L 800 150" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.3" />
+      <path d="M 100 0 L 100 200 M 200 0 L 200 200 M 300 0 L 300 200 M 400 0 L 400 200 M 500 0 L 500 200 M 600 0 L 600 200 M 700 0 L 700 200" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.3" />
+
+      {/* Complex HFT Waveform */}
+      <path d="M 0 100 L 50 100 L 60 70 L 70 120 L 80 90 L 100 100 L 150 100 L 160 40 L 180 180 L 200 60 L 220 100 L 300 100 L 310 80 L 330 140 L 350 100 L 450 100 L 470 20 L 500 160 L 530 50 L 550 100 L 650 100 L 660 70 L 680 130 L 700 100 L 800 100" stroke="currentColor" strokeWidth="1" />
+      
+      {/* Animated glowing wave trace */}
+      <motion.path d="M 0 100 L 50 100 L 60 70 L 70 120 L 80 90 L 100 100 L 150 100 L 160 40 L 180 180 L 200 60 L 220 100 L 300 100 L 310 80 L 330 140 L 350 100 L 450 100 L 470 20 L 500 160 L 530 50 L 550 100 L 650 100 L 660 70 L 680 130 L 700 100 L 800 100" 
+        stroke="#22d3ee" strokeWidth="2" strokeDasharray="100 800"
+        animate={{ strokeDashoffset: [-800, 800] }} transition={{ duration: 6, repeat: Infinity, ease: "linear" }} />
+
+      {/* Scanning vertical beam */}
+      <motion.rect x="0" y="0" width="20" height="200" fill="url(#grad-murex)" 
+        animate={{ x: [-20, 800] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} />
+
+      {/* Anomaly markers */}
+      <circle cx="180" cy="180" r="6" stroke="#ef4444" strokeWidth="2" fill="none" className="animate-ping" />
+      <circle cx="470" cy="20" r="6" stroke="#ef4444" strokeWidth="2" fill="none" className="animate-ping" />
+      <text x="190" y="185" fill="#ef4444" className="text-[10px] font-mono">LATENCY_SPIKE</text>
+      <text x="480" y="25" fill="#ef4444" className="text-[10px] font-mono">ERR_OOM</text>
+
+      {/* Telemetry Readouts */}
+      <rect x="20" y="20" width="120" height="40" rx="4" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1" />
+      <text x="30" y="35" fill="currentColor" className="text-[8px] font-mono">THROUGHPUT</text>
+      <text x="30" y="50" fill="#22d3ee" className="text-[12px] font-mono">14.2k <tspan fontSize="8" fill="currentColor">msg/s</tspan></text>
+
+      <rect x="650" y="140" width="120" height="40" rx="4" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1" />
+      <text x="660" y="155" fill="currentColor" className="text-[8px] font-mono">SYSTEM_STATE</text>
+      <text x="660" y="170" fill="#22d3ee" className="text-[12px] font-mono">NOMINAL</text>
     </svg>
   ),
   'zaka': (
-    <svg className="w-full h-full text-teal-400/30" viewBox="0 0 200 160" fill="none">
-      <rect x="40" y="40" width="120" height="80" rx="4" stroke="currentColor" strokeWidth="0.75" />
-      <motion.circle cx="80" cy="80" r="20" stroke="#2dd4bf" strokeWidth="1" fill="none"
-        animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.9, 0.4] }}
-        transition={{ duration: 2.5, repeat: Infinity }} />
-      <motion.circle cx="130" cy="70" r="14" stroke="#5eead4" strokeWidth="0.8" fill="none"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.8, 0.3] }}
-        transition={{ duration: 3, repeat: Infinity, delay: 0.5 }} />
-      <motion.rect x="115" y="95" width="30" height="15" rx="2" stroke="currentColor" strokeWidth="0.75"
-        animate={{ opacity: [0.3, 0.7, 0.3] }} transition={{ duration: 2, repeat: Infinity, delay: 1 }} />
-      <text x="55" y="130" fill="currentColor" className="text-[7px] font-mono">GPU_STREAMS: 400+</text>
+    <svg className="w-full h-full text-teal-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
+      {/* Background network lines */}
+      <path d="M 100 40 L 400 100 L 700 40 M 100 100 L 400 100 L 700 100 M 100 160 L 400 100 L 700 160" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.3" />
+
+      {/* Camera inputs (left) */}
+      {[40, 100, 160].map((y, i) => (
+        <g key={`cam-${i}`} transform={`translate(80, ${y})`}>
+          <rect x="0" y="-15" width="20" height="30" rx="2" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="20" cy="0" r="8" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="20" cy="0" r="3" fill="#2dd4bf" />
+          <motion.path d="M 28 0 L 100 0" stroke="#2dd4bf" strokeWidth="1" strokeDasharray="4 4" 
+            animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 0.5, repeat: Infinity, ease: "linear" }} />
+          <text x="-40" y="3" fill="currentColor" className="text-[8px] font-mono">CAM_0{i+1}</text>
+        </g>
+      ))}
+
+      {/* GPU Inference Core (center) */}
+      <g transform="translate(350, 60)">
+        <rect x="0" y="0" width="100" height="80" rx="8" stroke="#5eead4" strokeWidth="2" fill="currentColor" fillOpacity="0.1" />
+        {/* Core grid */}
+        <path d="M 20 0 L 20 80 M 40 0 L 40 80 M 60 0 L 60 80 M 80 0 L 80 80" stroke="currentColor" strokeWidth="0.5" />
+        <path d="M 0 20 L 100 20 M 0 40 L 100 40 M 0 60 L 100 60" stroke="currentColor" strokeWidth="0.5" />
+        {/* Active cores */}
+        <motion.rect x="20" y="20" width="20" height="20" fill="#2dd4bf" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1, repeat: Infinity }} />
+        <motion.rect x="60" y="40" width="20" height="20" fill="#2dd4bf" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }} />
+        <motion.rect x="40" y="60" width="20" height="20" fill="#2dd4bf" animate={{ opacity: [0.2, 0.8, 0.2] }} transition={{ duration: 1.2, repeat: Infinity, delay: 0.5 }} />
+        
+        <text x="10" y="-10" fill="#5eead4" className="text-[10px] font-mono font-bold">DEEPSTREAM_GPU_NODE</text>
+      </g>
+
+      {/* Output streams (right) */}
+      {[40, 100, 160].map((y, i) => (
+        <g key={`out-${i}`} transform={`translate(650, ${y})`}>
+          <rect x="0" y="-15" width="60" height="30" rx="2" stroke="currentColor" strokeWidth="1" />
+          <motion.rect x="5" y="-10" width="50" height="5" fill="#2dd4bf" fillOpacity="0.5" animate={{ width: [10, 50, 10] }} transition={{ duration: 2+i, repeat: Infinity }} />
+          <motion.rect x="5" y="0" width="30" height="5" fill="currentColor" fillOpacity="0.5" animate={{ width: [10, 30, 10] }} transition={{ duration: 1.5+i, repeat: Infinity, delay: 0.5 }} />
+          <motion.path d="M -200 0 L -10 0" stroke="#2dd4bf" strokeWidth="1" strokeDasharray="4 4" 
+            animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 0.5, repeat: Infinity, ease: "linear" }} />
+          <text x="70" y="3" fill="currentColor" className="text-[8px] font-mono">INFERENCE_OUT</text>
+        </g>
+      ))}
+      
+      {/* Metrics */}
+      <text x="350" y="170" fill="#2dd4bf" className="text-[10px] font-mono font-bold">FPS: 450+ | LATENCY: 12ms</text>
     </svg>
   ),
   'aimtools': (
-    <svg className="w-full h-full text-teal-400/25" viewBox="0 0 200 160" fill="none">
-      <rect x="30" y="50" width="60" height="60" rx="5" stroke="currentColor" strokeWidth="0.75" />
-      <rect x="110" y="50" width="60" height="60" rx="5" stroke="currentColor" strokeWidth="0.75" />
-      <motion.path d="M90,80 L110,80" stroke="#5eead4" strokeWidth="1.5" strokeDasharray="4 4"
-        animate={{ strokeDashoffset: [0, -16] }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} />
-      <text x="42" y="78" fill="currentColor" className="text-[7px] font-mono">API</text>
-      <text x="42" y="90" fill="currentColor" className="text-[7px] font-mono">C# / .NET</text>
-      <text x="120" y="78" fill="currentColor" className="text-[7px] font-mono">UI</text>
-      <text x="120" y="90" fill="currentColor" className="text-[7px] font-mono">Angular</text>
-      <motion.circle cx="100" cy="130" r="3" fill="#5eead4"
-        animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity }} />
-      <text x="70" y="145" fill="currentColor" className="text-[7px] font-mono">Azure Cloud</text>
+    <svg className="w-full h-full text-teal-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
+      {/* Client Layer (Left) */}
+      <g transform="translate(50, 50)">
+        <rect x="0" y="0" width="80" height="100" rx="4" stroke="currentColor" strokeWidth="1.5" />
+        <rect x="10" y="10" width="60" height="40" rx="2" stroke="currentColor" strokeWidth="1" />
+        <path d="M 10 60 L 70 60 M 10 70 L 50 70 M 10 80 L 60 80" stroke="currentColor" strokeWidth="1" />
+        <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono font-bold">ANGULAR_SPA</text>
+      </g>
+
+      {/* Network */}
+      <path d="M 130 100 L 250 100" stroke="currentColor" strokeWidth="2" strokeDasharray="5 5" />
+      <motion.circle cx="150" cy="100" r="4" fill="#5eead4" animate={{ cx: [130, 250] }} transition={{ duration: 1.5, repeat: Infinity }} />
+      <motion.circle cx="180" cy="100" r="4" fill="#5eead4" animate={{ cx: [130, 250] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }} />
+      <text x="170" y="90" fill="currentColor" className="text-[8px] font-mono">HTTPS</text>
+
+      {/* API Gateway / .NET Core (Center) */}
+      <g transform="translate(250, 40)">
+        <rect x="0" y="0" width="120" height="120" rx="8" stroke="#5eead4" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
+        <rect x="20" y="20" width="80" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
+        <text x="25" y="32" fill="currentColor" className="text-[8px] font-mono">AUTH / ROUTING</text>
+        
+        <rect x="20" y="50" width="80" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
+        <text x="25" y="62" fill="currentColor" className="text-[8px] font-mono">ORDER_SERVICE</text>
+
+        <rect x="20" y="80" width="80" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
+        <text x="25" y="92" fill="currentColor" className="text-[8px] font-mono">INVENTORY_SYNC</text>
+
+        <text x="0" y="-10" fill="#5eead4" className="text-[10px] font-mono font-bold">.NET_CORE_API</text>
+      </g>
+
+      {/* Backend network */}
+      <path d="M 370 70 L 500 70" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M 370 130 L 500 130" stroke="currentColor" strokeWidth="1.5" />
+      <motion.circle cx="400" cy="70" r="3" fill="#5eead4" animate={{ cx: [370, 500] }} transition={{ duration: 1, repeat: Infinity }} />
+      <motion.circle cx="400" cy="130" r="3" fill="#5eead4" animate={{ cx: [370, 500] }} transition={{ duration: 1, repeat: Infinity, delay: 0.3 }} />
+
+      {/* Database / Azure Services (Right) */}
+      <g transform="translate(500, 40)">
+        {/* DB Cylinder */}
+        <path d="M 0 20 C 0 10 60 10 60 20 L 60 60 C 60 70 0 70 0 60 Z" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.1" />
+        <path d="M 0 20 C 0 30 60 30 60 20" stroke="currentColor" strokeWidth="1.5" fill="none" />
+        <path d="M 0 40 C 0 50 60 50 60 40" stroke="currentColor" strokeWidth="1.5" fill="none" />
+        <text x="0" y="-5" fill="currentColor" className="text-[8px] font-mono">AZURE_SQL</text>
+
+        {/* Storage / queues */}
+        <rect x="0" y="90" width="60" height="30" rx="4" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="15" cy="105" r="5" fill="currentColor" />
+        <line x1="30" y1="100" x2="50" y2="100" stroke="currentColor" strokeWidth="1" />
+        <line x1="30" y1="105" x2="45" y2="105" stroke="currentColor" strokeWidth="1" />
+        <line x1="30" y1="110" x2="50" y2="110" stroke="currentColor" strokeWidth="1" />
+        <text x="0" y="135" fill="currentColor" className="text-[8px] font-mono">BLOB_STORAGE</text>
+      </g>
+      
+      {/* Azure Logo / Cloud icon abstraction */}
+      <path d="M 680 100 C 680 80 720 80 720 100 C 740 100 740 130 720 130 L 670 130 C 650 130 650 100 680 100 Z" stroke="#5eead4" strokeWidth="2" fill="none" />
+      <text x="680" y="150" fill="#5eead4" className="text-[12px] font-mono font-bold">AZURE_CLOUD</text>
     </svg>
   ),
 }
