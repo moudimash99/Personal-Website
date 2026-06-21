@@ -97,6 +97,24 @@ const credentials = [
     shadow: 'hover:shadow-[0_0_40px_rgba(139,92,246,0.35)]',
     float: 1.5,
   },
+  {
+    name: 'Azure Fundamentals',
+    subtitle: 'AZ-900 Certified',
+    logo: '/images/logo-murex.jpg', // Reusing placeholder logo
+    glow: 'rgba(14,165,233,0.4)',
+    ring: 'ring-sky-500/40 hover:ring-sky-400/70',
+    shadow: 'hover:shadow-[0_0_40px_rgba(14,165,233,0.35)]',
+    float: 0.8,
+  },
+  {
+    name: 'HashiCorp TF',
+    subtitle: 'Terraform Associate',
+    logo: '/images/logo-greenpraxis.jpg', // Reusing placeholder logo
+    glow: 'rgba(236,72,153,0.4)',
+    ring: 'ring-pink-500/40 hover:ring-pink-400/70',
+    shadow: 'hover:shadow-[0_0_40px_rgba(236,72,153,0.35)]',
+    float: 2.1,
+  },
 ]
 
 export default function Page() {
@@ -159,28 +177,24 @@ export default function Page() {
           {/* ═══════════════════════════════════════════════════════════════
               CREDENTIALS — Big, Logo-first, Alive
               ═══════════════════════════════════════════════════════════════ */}
-          <section className="pt-2 pb-8">
-            {/* Section title */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex items-center gap-3 mb-8"
-            >
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
-              <span className="text-xs font-mono text-accent-300/70 uppercase tracking-[0.25em] whitespace-nowrap">
-                Trusted &amp; Certified By
-              </span>
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
-            </motion.div>
-
-            <div className="space-y-10">
+          <section className="pt-2 pb-8 w-full max-w-5xl mx-auto">
+            <div className="space-y-12">
               {/* Tier 1 - The Experience Band */}
               <div>
-                <h3 className="text-[11px] font-mono font-bold text-accent-400/80 mb-5 tracking-[0.2em] text-center md:text-left">
-                  INDUSTRY EXPERIENCE
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6 justify-center max-w-4xl mx-auto md:mx-0">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="flex items-center gap-3 mb-6"
+                >
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
+                  <span className="text-[11px] font-mono font-bold text-accent-400/80 uppercase tracking-[0.2em] whitespace-nowrap">
+                    Trusted By
+                  </span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
+                </motion.div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6 justify-center">
                   {credentials.slice(0, 3).map((cred, i) => (
                     <motion.div
                       key={cred.name}
@@ -188,7 +202,7 @@ export default function Page() {
                       variants={credentialCardVariant}
                       initial="hidden"
                       animate="show"
-                      whileHover={{ scale: 1.08, y: -6 }}
+                      whileHover={{ scale: 1.05, y: -4 }}
                       className={`
                         glass rounded-2xl p-4 flex flex-col items-center text-center
                         cursor-default transition-all duration-500
@@ -228,15 +242,25 @@ export default function Page() {
 
               {/* Tactical Divider */}
               <div className="w-full flex items-center justify-center">
-                <div className="w-full max-w-4xl h-px border-t border-dashed border-accent-500/20 opacity-60" />
+                <div className="w-full h-px border-t border-dashed border-accent-500/20 opacity-60" />
               </div>
 
               {/* Tier 2 - The Credentials Band */}
-              <div>
-                <h3 className="text-[11px] font-mono font-bold text-accent-400/80 mb-5 tracking-[0.2em] text-center md:text-left">
-                  SYSTEM CERTIFICATIONS &amp; DEGREES
-                </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6 justify-center max-w-4xl mx-auto md:mx-0">
+              <div className="w-full overflow-hidden">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="flex items-center gap-3 mb-6"
+                >
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
+                  <span className="text-[11px] font-mono font-bold text-accent-400/80 uppercase tracking-[0.2em] whitespace-nowrap">
+                    Certified By
+                  </span>
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
+                </motion.div>
+
+                <div className="flex overflow-x-auto gap-4 lg:gap-6 pb-6 pt-2 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-accent-700/50 scrollbar-track-transparent">
                   {credentials.slice(3).map((cred, i) => (
                     <motion.div
                       key={cred.name}
@@ -244,8 +268,9 @@ export default function Page() {
                       variants={credentialCardVariant}
                       initial="hidden"
                       animate="show"
-                      whileHover={{ scale: 1.08, y: -6 }}
+                      whileHover={{ scale: 1.05, y: -4 }}
                       className={`
+                        min-w-[160px] md:min-w-[180px] snap-center shrink-0
                         glass rounded-2xl p-4 flex flex-col items-center text-center
                         cursor-default transition-all duration-500
                         ring-1 ${cred.ring} ${cred.shadow}
