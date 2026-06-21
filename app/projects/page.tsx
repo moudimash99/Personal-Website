@@ -137,25 +137,26 @@ export default function ProjectsPage() {
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-500/0 via-transparent to-teal-500/0 group-hover:from-teal-500/5 transition-all duration-700 pointer-events-none" />
 
                 <div className="relative z-10">
-                  {/* Header row: icon + title + SVG animation */}
+                  {/* Full-width animated SVG banner */}
+                  {missionGraphics[mission.id] && (
+                    <div className="w-full h-44 md:h-56 bg-black/40 rounded-xl border border-white/5 group-hover:border-teal-500/20 transition-all duration-500 overflow-hidden flex items-center justify-center p-4 mb-8 relative">
+                      {/* Subtle scanning line */}
+                      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent animate-[shimmer_3s_infinite]" />
+                      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/20 to-transparent" />
+                      {missionGraphics[mission.id]}
+                    </div>
+                  )}
+
+                  {/* Mission identity header */}
                   <header className="mb-8 border-b border-white/5 pb-6">
-                    <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
-                      {/* Left: identity */}
-                      <div className="flex items-center gap-4 flex-1">
-                        <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-teal-400">
-                          <mission.icon className="h-6 w-6" />
-                        </div>
-                        <div>
-                          <h3 className="text-2xl font-bold font-display text-white">{mission.title}</h3>
-                          <p className="text-sm font-mono text-teal-400/80 mt-1">{mission.meta}</p>
-                        </div>
+                    <div className="flex items-center gap-4">
+                      <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-teal-400">
+                        <mission.icon className="h-6 w-6" />
                       </div>
-                      {/* Right: animated SVG schematic */}
-                      {missionGraphics[mission.id] && (
-                        <div className="w-full lg:w-48 h-32 bg-black/30 rounded-xl border border-white/5 group-hover:border-teal-500/20 transition-colors duration-500 overflow-hidden flex items-center justify-center p-2 shrink-0">
-                          {missionGraphics[mission.id]}
-                        </div>
-                      )}
+                      <div>
+                        <h3 className="text-2xl font-bold font-display text-white">{mission.title}</h3>
+                        <p className="text-sm font-mono text-teal-400/80 mt-1">{mission.meta}</p>
+                      </div>
                     </div>
                     <p className="mt-6 text-foreground/80 leading-relaxed max-w-4xl">{mission.profile}</p>
                   </header>
