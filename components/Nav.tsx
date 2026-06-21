@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import Container from './Container'
 import { useEffect, useState } from 'react'
+import { profile } from '@/data/profile'
 
 function openIntro() {
   // no reload; just ask the overlay to open
@@ -23,10 +24,11 @@ export default function Nav() {
     <div className={`fixed top-0 inset-x-0 z-40 transition-colors ${scrolled ? 'backdrop-blur border-b border-border/60 supports-[backdrop-filter]:bg-background/75' : ''}`}>
       <Container>
         <div className="h-14 flex items-center justify-between">
-          <Link href="/" className="font-semibold tracking-tight">Machaka Ground Station</Link>
-          <nav className="flex items-center gap-5 text-sm">
-            <Link href="/projects" className="hover:text-accent-300">Projects</Link>
-            <Link href="/contact" className="hover:text-accent-300">Contact</Link>
+          <Link href="/" className="font-semibold tracking-tight">{profile.name}</Link>
+          <nav className="flex items-center gap-5 text-sm font-mono tracking-wide">
+            <Link href="/#credentials" className="text-muted hover:text-accent-300 transition-colors">CREDENTIALS</Link>
+            <Link href="/projects" className="text-muted hover:text-accent-300 transition-colors">PROJECTS</Link>
+            <Link href="/contact" className="text-muted hover:text-accent-300 transition-colors">CONTACT</Link>
           </nav>
         </div>
       </Container>

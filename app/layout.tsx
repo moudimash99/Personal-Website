@@ -1,14 +1,15 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Inter, Space_Grotesk, DM_Mono } from 'next/font/google'
+import { profile } from '@/data/profile'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const space = Space_Grotesk({ subsets: ['latin'], variable: '--font-spacegrotesk' })
 const dmmono = DM_Mono({ weight: ['300','400','500'], subsets: ['latin'], variable: '--font-dmmono' })
 
 export const metadata: Metadata = {
-  title: 'Machaka Ground Station',
-  description: 'Mission Control portfolio — Debrief → Projects → Contact',
+  title: `${profile.name} | ${profile.headline}`,
+  description: 'Systems engineering, cloud, and real-time data portfolio for aerospace and mission-critical platforms.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

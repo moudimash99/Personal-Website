@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Button from './Button'
 import Panel from './Panel'
+import { profile } from '@/data/profile'
 
 export default function IntroOverlay() {
   // ready = we've mounted and decided; visible = actually show the overlay
@@ -43,10 +44,16 @@ export default function IntroOverlay() {
       <div className="relative max-w-2xl mx-4">
         <Panel>
           <div className="p-6">
-            <p className="text-xs uppercase tracking-widest text-accent-300/80 font-mono">Welcome</p>
-            <h2 className="text-2xl md:text-3xl font-semibold mt-2 font-display">Machaka Ground Station</h2>
+            <div className="flex items-center gap-2 mb-3 text-[10px] font-mono uppercase tracking-widest text-accent-300">
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-teal-500"></span>
+              </span>
+              <span>SYS_BOOTSTRAP // SYSTEM CLEARANCE</span>
+            </div>
+            <h2 className="text-2xl md:text-3xl font-semibold mt-2 font-display text-white">{profile.name} control room</h2>
             <p className="text-sm text-muted mt-3">
-              This is my portfolio, presented like a <strong>mission control room</strong>. <em>Mission Debrief</em> is the overview; <em>Missions</em> & <em>Operations</em> are projects & sub-projects; metrics are the <em>telemetry</em>.
+              This portfolio is presented like a <strong>mission control room</strong>. <em>Mission Debrief</em> is the overview; <em>Missions</em> and <em>Operations</em> mirror projects and sub-projects; telemetry highlights the current systems focus.
             </p>
             <div className="flex gap-3 mt-5">
               <Button onClick={() => close(true)}>Enter Control Room</Button>

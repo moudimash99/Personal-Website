@@ -81,7 +81,7 @@ export default function ProjectsPage() {
       <main className="pt-24 relative z-30" style={{ isolation: 'isolate' }}>  {/* ✅ shell */}
         <Container>
           <section id="projects" className="scroll-mt-28 space-y-10 mt-16">
-            <SectionHeader icon={<Rocket className="h-5 w-5 text-accent-400" />} title="Projects" subtitle="Three missions; each includes focused Operations with telemetry." />
+            <SectionHeader icon={<Rocket className="h-5 w-5 text-accent-400" />} title="Projects" subtitle="Six missions; each includes focused Operations with telemetry." />
             <div className="space-y-12">
               {missions.map((m) => (<Mission key={m.id} mission={m} />))}
             </div>
