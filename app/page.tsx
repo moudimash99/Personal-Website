@@ -107,19 +107,19 @@ export default function Page() {
       <Nav />
       <IntroOverlay />
 
-      <main className="pt-24 relative z-30" style={{ isolation: 'isolate' }}>
+      <main className="pt-16 relative z-30" style={{ isolation: 'isolate' }}>
         <Container>
 
           {/* Hero Section */}
           <motion.section
             id="debrief"
-            className="scroll-mt-28 py-8 md:py-12"
+            className="scroll-mt-20 py-4 md:py-6"
             variants={heroContainer}
             initial="hidden"
             animate="show"
           >
             <div className="flex flex-col lg:flex-row items-start gap-8">
-              <div className="flex-1 space-y-5">
+              <div className="flex-1 space-y-3">
 
                 {/* Status Badge */}
                 <motion.div
@@ -142,12 +142,9 @@ export default function Page() {
                   <span className="text-teal-400 font-bold">data-intensive</span> systems.
                 </motion.h1>
 
-                {/* Intro */}
-                <motion.p variants={fadeUp} className="text-xl text-foreground/80 max-w-3xl">
+                {/* Intro — single concise line to save vertical space */}
+                <motion.p variants={fadeUp} className="text-lg text-foreground/75 max-w-3xl">
                   {profile.introLines[0]}
-                </motion.p>
-                <motion.p variants={fadeUp} className="text-lg text-foreground/70 max-w-3xl">
-                  {profile.introLines[1]}
                 </motion.p>
 
                 {/* Metrics */}
@@ -156,7 +153,7 @@ export default function Page() {
                 </motion.div>
 
                 {/* Buttons */}
-                <motion.div variants={fadeUp} className="flex gap-3 pt-1">
+                <motion.div variants={fadeUp} className="flex gap-3">
                   <Button href="/projects">
                     Proceed to Projects <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -171,13 +168,13 @@ export default function Page() {
           {/* ═══════════════════════════════════════════════════════════════
               CREDENTIALS — Big, Logo-first, Alive
               ═══════════════════════════════════════════════════════════════ */}
-          <section className="pt-6 pb-8">
+          <section className="pt-2 pb-8">
             {/* Section title */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="flex items-center gap-3 mb-8"
+              className="flex items-center gap-3 mb-5"
             >
               <div className="h-px flex-1 bg-gradient-to-r from-transparent via-accent-700/40 to-transparent" />
               <span className="text-xs font-mono text-accent-300/70 uppercase tracking-[0.25em] whitespace-nowrap">

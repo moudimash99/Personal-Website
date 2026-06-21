@@ -23,7 +23,7 @@ export default function Nav() {
   return (
     <div className={`fixed top-0 inset-x-0 z-40 transition-colors ${scrolled ? 'backdrop-blur border-b border-border/60 supports-[backdrop-filter]:bg-background/75' : ''}`}>
       <Container>
-        <div className="h-14 flex items-center justify-between">
+        <div className="h-11 flex items-center justify-between">
           <Link href="/" className="font-semibold tracking-tight">{profile.name}</Link>
           <nav className="flex items-center gap-5 text-sm font-mono tracking-wide">
             <Link href="/#credentials" className="text-muted hover:text-accent-300 transition-colors">CREDENTIALS</Link>
