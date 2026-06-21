@@ -48,27 +48,8 @@ export default function Page() {
     <>
       {/* PROTOTYPE SELECTOR */}
       <div className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md border-b border-white/10 z-50 py-3 px-6 flex justify-center items-center gap-6 overflow-x-auto text-[10px] font-mono">
-        <span className="text-white/50 tracking-widest uppercase shrink-0">Batch 1:</span>
-        <Link href="/" className="text-white font-bold tracking-widest hover:text-accent-400 shrink-0 border-b border-accent-500">BASE</Link>
-        <Link href="/v1" className="text-white/70 hover:text-white transition-colors shrink-0">v1</Link>
-        <Link href="/v2" className="text-white/70 hover:text-white transition-colors shrink-0">v2</Link>
-        <Link href="/v3" className="text-white/70 hover:text-white transition-colors shrink-0">v3</Link>
-        <Link href="/v4" className="text-white/70 hover:text-white transition-colors shrink-0">v4</Link>
-        <Link href="/v5" className="text-white/70 hover:text-white transition-colors shrink-0">v5</Link>
-        
-        <div className="w-px h-4 bg-white/20 shrink-0 mx-2" />
-        
-        <span className="text-white/50 tracking-widest uppercase shrink-0">Batch 2:</span>
-        <Link href="/v6" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v6</Link>
-        <Link href="/v7" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v7</Link>
-        <Link href="/v8" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v8</Link>
-        <Link href="/v9" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v9</Link>
-        <Link href="/v10" className="text-emerald-400/70 hover:text-emerald-400 transition-colors shrink-0">v10</Link>
-        <Link href="/v11" className="text-purple-400 hover:text-purple-300 transition-colors shrink-0">v11</Link>
-        
-        <div className="w-px h-4 bg-white/20 shrink-0 mx-2" />
-        
         <span className="text-white/50 tracking-widest uppercase shrink-0">Batch 3 (Vertical):</span>
+        <Link href="/" className="text-white font-bold tracking-widest hover:text-accent-400 shrink-0 border-b border-accent-500">BASE</Link>
         <Link href="/v12" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v12</Link>
         <Link href="/v13" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v13</Link>
         <Link href="/v14" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v14</Link>
@@ -77,7 +58,16 @@ export default function Page() {
         
         <div className="w-px h-4 bg-white/20 shrink-0 mx-2" />
         
-        <Link href="/v17" className="text-rose-400 font-bold tracking-widest hover:text-rose-300 transition-colors shrink-0 uppercase border-b border-rose-500 pb-1">v17: The Ultimate Vertical Hybrid</Link>
+        <span className="text-white/50 tracking-widest uppercase shrink-0">Batch 4 (Compact):</span>
+        <Link href="/v18" className="text-cyan-400/70 hover:text-cyan-400 transition-colors shrink-0">v18</Link>
+        <Link href="/v19" className="text-cyan-400/70 hover:text-cyan-400 transition-colors shrink-0">v19</Link>
+        <Link href="/v20" className="text-cyan-400/70 hover:text-cyan-400 transition-colors shrink-0">v20</Link>
+        <Link href="/v21" className="text-cyan-400/70 hover:text-cyan-400 transition-colors shrink-0">v21</Link>
+        <Link href="/v22" className="text-cyan-400/70 hover:text-cyan-400 transition-colors shrink-0">v22</Link>
+
+        <div className="w-px h-4 bg-white/20 shrink-0 mx-2" />
+        
+        <Link href="/v17" className="text-rose-400 font-bold tracking-widest hover:text-rose-300 transition-colors shrink-0 uppercase border-b border-rose-500 pb-1">v17</Link>
       </div>
 
       <CommandCenterBackdrop />
