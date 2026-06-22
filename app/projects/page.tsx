@@ -14,7 +14,7 @@ import { ReactNode } from 'react'
 /* ── SVG animations mapped by mission id ── */
 const missionGraphics: Record<string, ReactNode> = {
   'airbus-electric-center': (
-    <svg className="w-full h-full text-blue-400/30" viewBox="-40 -40 880 280" fill="none" preserveAspectRatio="xMidYMid slice">
+    <svg className="w-full h-full text-blue-400/30" viewBox="-40 -40 880 280" fill="none">
       <pattern id="dots-m1-1" width="20" height="20" patternUnits="userSpaceOnUse">
         <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.2" />
       </pattern>
@@ -52,7 +52,7 @@ const missionGraphics: Record<string, ReactNode> = {
     </svg>
   ),
   'green': (
-    <svg className="w-full h-full text-emerald-400/30" viewBox="-40 -40 880 280" fill="none" preserveAspectRatio="xMidYMid slice">
+    <svg className="w-full h-full text-emerald-400/30" viewBox="-40 -40 880 280" fill="none">
       <pattern id="dots-m2-a" width="20" height="20" patternUnits="userSpaceOnUse">
         <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.2" />
       </pattern>
@@ -145,7 +145,7 @@ const missionGraphics: Record<string, ReactNode> = {
     </svg>
   ),
   'airbus': (
-    <svg className="w-full h-full text-blue-400/30" viewBox="-40 -40 880 280" fill="none" preserveAspectRatio="xMidYMid slice">
+    <svg className="w-full h-full text-blue-400/30" viewBox="-40 -40 880 280" fill="none">
       <pattern id="dots-airbus" width="20" height="20" patternUnits="userSpaceOnUse">
         <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.2" />
       </pattern>
@@ -196,7 +196,7 @@ const missionGraphics: Record<string, ReactNode> = {
     </svg>
   ),
   'murex': (
-    <svg className="w-full h-full text-cyan-400/30" viewBox="-40 -40 880 280" fill="none" preserveAspectRatio="xMidYMid slice">
+    <svg className="w-full h-full text-cyan-400/30" viewBox="-40 -40 880 280" fill="none">
       <pattern id="dots-m4-b" width="20" height="20" patternUnits="userSpaceOnUse">
         <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.2" />
       </pattern>
@@ -232,7 +232,7 @@ const missionGraphics: Record<string, ReactNode> = {
     </svg>
   ),
   'zaka': (
-    <svg className="w-full h-full text-teal-400/30" viewBox="-80 -80 960 360" fill="none" preserveAspectRatio="xMidYMid slice">
+    <svg className="w-full h-full text-teal-400/30" viewBox="-80 -80 960 360" fill="none">
       <pattern id="dots-m5-1" width="20" height="20" patternUnits="userSpaceOnUse">
         <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.2" />
       </pattern>
@@ -271,7 +271,7 @@ const missionGraphics: Record<string, ReactNode> = {
     </svg>
   ),
   'aimtools': (
-    <svg className="w-full h-full text-teal-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
+    <svg className="w-full h-full text-teal-400/30" viewBox="0 0 800 200" fill="none">
       {/* Client Layer (Left) */}
       <g transform="translate(50, 50)">
         <rect x="0" y="0" width="80" height="100" rx="4" stroke="currentColor" strokeWidth="1.5" />
