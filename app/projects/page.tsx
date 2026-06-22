@@ -8,7 +8,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { missions } from '@/data/missions'
 import { motion } from 'framer-motion'
-import { CheckCircle2, Radio } from 'lucide-react'
+import { CheckCircle2, Radio, ArrowRight } from 'lucide-react'
 import { ReactNode } from 'react'
 
 /* ── SVG animations mapped by mission id ── */
@@ -383,6 +383,12 @@ export default function ProjectsPage() {
                       {/* Subtle scanning line */}
                       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent animate-[shimmer_3s_infinite] pointer-events-none z-10" />
                       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/20 to-transparent pointer-events-none z-10" />
+                      
+                      {/* Mobile swipe hint */}
+                      <div className="absolute right-3 bottom-3 md:hidden z-20 flex items-center gap-1.5 px-3 py-1.5 bg-[#020617]/80 backdrop-blur-md rounded-full border border-teal-500/30 shadow-[0_0_15px_rgba(20,184,166,0.2)] pointer-events-none">
+                        <span className="text-[10px] font-mono font-bold tracking-widest text-teal-400">SWIPE</span>
+                        <ArrowRight className="h-3.5 w-3.5 text-teal-400 animate-pulse" />
+                      </div>
                       
                       {/* Horizontal Scroll wrapper for mobile */}
                       <div className="w-full overflow-x-auto overflow-y-hidden no-scrollbar">
