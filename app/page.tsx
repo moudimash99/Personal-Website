@@ -33,7 +33,7 @@ export default function Page() {
       <motion.div style={{ y: yText }} className="relative z-10 w-full flex flex-col items-center justify-center min-h-screen px-6 pointer-events-none text-center pt-24">
         <motion.p 
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 3 }}
-          className="text-xs font-mono text-emerald-400/80 tracking-[0.5em] uppercase mb-8"
+          className="text-[10px] sm:text-xs font-mono text-emerald-400/80 tracking-widest md:tracking-[0.5em] uppercase mb-8"
         >
           {profile.name} // {profile.title}
         </motion.p>
@@ -42,7 +42,7 @@ export default function Page() {
           initial={{ opacity: 0, scale: 1.2, filter: 'blur(20px)' }}
           animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-          className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white leading-[0.9]"
+          className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white leading-[0.9]"
         >
           Architecting
           <br/>
@@ -53,7 +53,7 @@ export default function Page() {
         
         <motion.h2 
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 2 }}
-          className="mt-8 text-3xl md:text-5xl font-light text-slate-400"
+          className="mt-6 md:mt-8 text-xl sm:text-3xl md:text-5xl font-light text-slate-400"
         >
           for data-intensive systems.
         </motion.h2>

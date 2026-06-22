@@ -21,11 +21,11 @@ export default function Nav() {
   }, [])
 
   return (
-    <div className={`fixed top-0 inset-x-0 z-40 transition-colors ${scrolled ? 'backdrop-blur border-b border-border/60 supports-[backdrop-filter]:bg-background/75' : ''}`}>
+    <div className={`fixed top-0 inset-x-0 z-40 transition-all duration-300 ${scrolled ? 'bg-[#020617]/50 backdrop-blur-md border-b border-white/5' : ''}`}>
       <Container>
-        <div className="h-11 flex items-center justify-between">
-          <Link href="/" className="font-semibold tracking-tight">{profile.name}</Link>
-          <nav className="flex items-center gap-5 text-sm font-mono tracking-wide">
+        <div className="min-h-[2.75rem] py-3 md:py-0 md:h-11 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-0">
+          <Link href="/" className="text-white hover:text-teal-400 transition-colors font-semibold tracking-tight text-sm md:text-base">{profile.name}</Link>
+          <nav className="flex items-center gap-4 md:gap-5 text-[10px] sm:text-xs md:text-sm font-mono tracking-wide">
             <Link href="/" className="text-muted hover:text-accent-300 transition-colors">MAIN PAGE</Link>
             <Link href="/projects" className="text-muted hover:text-accent-300 transition-colors">PROJECTS</Link>
             <Link href="/contact" className="text-muted hover:text-accent-300 transition-colors">CONTACT</Link>
