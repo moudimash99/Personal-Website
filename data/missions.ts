@@ -1,4 +1,6 @@
 import { Rocket, Satellite, Activity, Plane, Cpu, BriefcaseBusiness } from 'lucide-react'
+import { SiPalantir, SiPython, SiPostgresql, SiKubernetes, SiTerraform, SiDocker, SiNextdotjs, SiReact, SiTailwindcss, SiElasticsearch, SiJenkins, SiPytorch, SiFastapi, SiTypescript, SiVercel, SiDotnet, SiAngular, SiNodedotjs, SiGit, SiJira, SiGithubactions, SiGrafana, SiPrometheus, SiRedis, SiApacheairflow, SiCplusplus, SiLinux, SiGnubash, SiKibana, SiLogstash, SiOpencv, SiNvidia, SiPostman, SiSwagger, SiApachespark, SiGooglesheets, SiGoogleappsscript } from 'react-icons/si'
+import { FaAws, FaMicrosoft, FaDatabase } from 'react-icons/fa'
 
 export const missions = [
   {
@@ -8,6 +10,13 @@ export const missions = [
     profile:
       'Driving Non-Conformance reduction and optimizing the Cost of Non-Quality (CoNQ) by architecting a centralized, data-driven quality tracking platform within the Skywise ecosystem.',
     icon: Plane,
+    techStack: [
+      { name: 'Palantir Foundry', icon: SiPalantir },
+      { name: 'Python', icon: SiPython },
+      { name: 'PySpark', icon: SiApachespark },
+      { name: 'SQL', icon: FaDatabase },
+      { name: 'Google Sheets', icon: SiGooglesheets }
+    ],
     operations: [
       {
         code: 'AEC1',
@@ -52,6 +61,19 @@ export const missions = [
     profile:
       'Owning the cloud, data-engineering, and monitoring layers that transform satellite imagery into on-demand map tiles and environmental KPIs via a single internal API.',
     icon: Satellite,
+    techStack: [
+      { name: 'Kubernetes', icon: SiKubernetes },
+      { name: 'Terraform', icon: SiTerraform },
+      { name: 'AWS', icon: FaAws },
+      { name: 'Docker', icon: SiDocker },
+      { name: 'Python', icon: SiPython },
+      { name: 'GitHub Actions', icon: SiGithubactions },
+      { name: 'Airflow', icon: SiApacheairflow },
+      { name: 'Grafana', icon: SiGrafana },
+      { name: 'Prometheus', icon: SiPrometheus },
+      { name: 'Redis', icon: SiRedis },
+      { name: 'FastAPI', icon: SiFastapi }
+    ],
     operations: [
       {
         code: 'G1',
@@ -96,6 +118,13 @@ export const missions = [
     profile:
       'Standardized global HR reporting workflows and defined the data-flow architecture and pipeline constraints for the OPTIMATE automated taxiing program.',
     icon: Rocket,
+    techStack: [
+      { name: 'Python', icon: SiPython },
+      { name: 'SQL', icon: FaDatabase },
+      { name: 'Apps Script', icon: SiGoogleappsscript },
+      { name: 'Google Sheets', icon: SiGooglesheets },
+      { name: 'Git', icon: SiGit }
+    ],
     operations: [
       {
         code: 'A1',
@@ -140,6 +169,16 @@ export const missions = [
     profile:
       'Conceived and led a modular log-analysis platform to surface failure patterns, improving system observability and accountability.',
     icon: Activity,
+    techStack: [
+      { name: 'Python', icon: SiPython },
+      { name: 'C++', icon: SiCplusplus },
+      { name: 'Elasticsearch', icon: SiElasticsearch },
+      { name: 'Logstash', icon: SiLogstash },
+      { name: 'Kibana', icon: SiKibana },
+      { name: 'Linux', icon: SiLinux },
+      { name: 'Bash', icon: SiGnubash },
+      { name: 'Jenkins', icon: SiJenkins }
+    ],
     operations: [
       {
         code: 'M1',
@@ -184,6 +223,15 @@ export const missions = [
     profile:
       'Built and optimized a multi-camera computer-vision pipeline on Nvidia DeepStream with GPU acceleration and CI/CD.',
     icon: Cpu,
+    techStack: [
+      { name: 'PyTorch', icon: SiPytorch },
+      { name: 'OpenCV', icon: SiOpencv },
+      { name: 'Nvidia DeepStream', icon: SiNvidia },
+      { name: 'C++', icon: SiCplusplus },
+      { name: 'Python', icon: SiPython },
+      { name: 'Docker', icon: SiDocker },
+      { name: 'FastAPI', icon: SiFastapi }
+    ],
     operations: [
       {
         code: 'Z1',
@@ -228,6 +276,15 @@ export const missions = [
     profile:
       'Delivered a web order-management platform with Amazon integration, C#/.NET backend, Angular frontend, and Azure hosting.',
     icon: BriefcaseBusiness,
+    techStack: [
+      { name: '.NET Core', icon: SiDotnet },
+      { name: 'Angular', icon: SiAngular },
+      { name: 'TypeScript', icon: SiTypescript },
+      { name: 'SQL Server', icon: FaDatabase },
+      { name: 'Azure', icon: FaMicrosoft },
+      { name: 'Swagger', icon: SiSwagger },
+      { name: 'Postman', icon: SiPostman }
+    ],
     operations: [
       {
         code: 'T1',

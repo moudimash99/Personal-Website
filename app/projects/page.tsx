@@ -400,6 +400,18 @@ export default function ProjectsPage() {
                       </div>
                     </div>
                     <p className="mt-6 text-foreground/80 leading-relaxed max-w-4xl">{mission.profile}</p>
+
+                    {/* Tech Stack */}
+                    {mission.techStack && (
+                      <div className="mt-6 flex flex-wrap gap-2.5">
+                        {mission.techStack.map((tech: any, idx: number) => (
+                          <div key={idx} className="flex items-center gap-2 px-3 py-1.5 bg-white/[0.03] border border-white/10 rounded-md text-[11px] font-mono text-slate-300 hover:bg-white/10 hover:border-teal-500/30 hover:text-teal-400 transition-all cursor-crosshair">
+                            <tech.icon className="h-4 w-4" />
+                            <span>{tech.name}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </header>
 
                   {/* Operations grid */}
