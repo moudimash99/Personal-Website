@@ -26,7 +26,7 @@ export default function Nav() {
         <div className="h-11 flex items-center justify-between">
           <Link href="/" className="font-semibold tracking-tight">{profile.name}</Link>
           <nav className="flex items-center gap-5 text-sm font-mono tracking-wide">
-            <Link href="/#credentials" className="text-muted hover:text-accent-300 transition-colors">CREDENTIALS</Link>
+            <Link href="/" className="text-muted hover:text-accent-300 transition-colors">MAIN PAGE</Link>
             <Link href="/projects" className="text-muted hover:text-accent-300 transition-colors">PROJECTS</Link>
             <Link href="/contact" className="text-muted hover:text-accent-300 transition-colors">CONTACT</Link>
           </nav>

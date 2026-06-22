@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 
 import Container from '@/components/Container'
 import Starfield from '@/components/Starfield'
@@ -13,106 +14,142 @@ import { ReactNode } from 'react'
 /* ── SVG animations mapped by mission id ── */
 const missionGraphics: Record<string, ReactNode> = {
   'airbus-electric-center': (
-    <svg className="w-full h-full text-blue-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
-      {/* Background grid */}
-      <pattern id="grid-aec" width="40" height="40" patternUnits="userSpaceOnUse">
-        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.2" />
+    <svg className="w-full h-full text-blue-400/30" viewBox="-40 -40 880 280" fill="none" preserveAspectRatio="xMidYMid slice">
+      <pattern id="dots-m1-1" width="20" height="20" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.2" />
       </pattern>
-      <rect width="800" height="200" fill="url(#grid-aec)" />
-      
-      {/* Central Radar */}
-      <g transform="translate(400, 100)">
-        <circle cx="0" cy="0" r="80" stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" />
-        <circle cx="0" cy="0" r="50" stroke="currentColor" strokeWidth="0.5" />
-        <motion.path d="M 0 0 L 0 -80 A 80 80 0 0 1 56 -56 Z" fill="currentColor" fillOpacity="0.1" 
-          animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }} />
-        <motion.line x1="0" y1="0" x2="0" y2="-80" stroke="#60a5fa" strokeWidth="2"
-          animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: "linear" }} />
-        
-        {/* Radar blips */}
-        <motion.circle cx="30" cy="-40" r="4" fill="#2dd4bf" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, delay: 0.5 }} />
-        <motion.circle cx="-50" cy="20" r="3" fill="#60a5fa" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, delay: 1.8 }} />
-        <motion.circle cx="10" cy="60" r="5" fill="#2dd4bf" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 4, repeat: Infinity, delay: 2.5 }} />
+      <rect x="-40" y="-40" width="880" height="280" fill="url(#dots-m1-1)" />
+
+      {[50, 100, 150].map((y, i) => (
+        <g key={i}>
+          <rect x="50" y={y-15} width="80" height="30" rx="4" stroke="currentColor" strokeWidth="1" />
+          <text x="55" y={y+2} fill="currentColor" className="text-[8px] font-mono">LEGACY_QMS_{i+1}</text>
+          <path d={`M 130 ${y} L 300 100`} stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.5" />
+          <motion.circle cx="130" cy={y} r="2" fill="#60a5fa" animate={{ cx: [130, 300], cy: [y, 100] }} transition={{ duration: 1.5, repeat: Infinity, delay: i*0.4 }} />
+        </g>
+      ))}
+
+      <g transform="translate(300, 40)">
+        <rect x="0" y="0" width="160" height="120" rx="8" stroke="#60a5fa" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
+        <rect x="20" y="20" width="120" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
+        <text x="25" y="32" fill="currentColor" className="text-[8px] font-mono">NC_MAPPING</text>
+        <rect x="20" y="50" width="120" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
+        <text x="25" y="62" fill="currentColor" className="text-[8px] font-mono">DATA_CLEANSING</text>
+        <rect x="20" y="80" width="120" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
+        <text x="25" y="92" fill="currentColor" className="text-[8px] font-mono">CONQ_CALCULATION</text>
+        <text x="0" y="-10" fill="#60a5fa" className="text-[10px] font-mono font-bold">ETL_WORKFLOW</text>
       </g>
 
-      {/* Left data feeds */}
-      <path d="M 100 100 L 250 100 L 320 100" stroke="currentColor" strokeWidth="1" strokeDasharray="5 5" />
-      <motion.circle cx="100" cy="100" r="3" fill="#60a5fa" animate={{ cx: [100, 320] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
-      <motion.circle cx="150" cy="100" r="3" fill="#60a5fa" animate={{ cx: [150, 320] }} transition={{ duration: 2, repeat: Infinity, ease: "linear" }} />
+      <path d="M 460 100 L 600 100" stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" />
+      <motion.rect x="460" y="98" width="10" height="4" fill="#2dd4bf" animate={{ x: [460, 600] }} transition={{ duration: 1.5, repeat: Infinity }} />
+      <motion.rect x="460" y="98" width="10" height="4" fill="#60a5fa" animate={{ x: [460, 600] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.75 }} />
 
-      <path d="M 100 150 L 200 150 L 250 120 L 320 120" stroke="currentColor" strokeWidth="1" />
-      <motion.circle cx="100" cy="150" r="3" fill="#2dd4bf" animate={{ cx: [100, 200, 250, 320], cy: [150, 150, 120, 120] }} transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }} />
-
-      {/* Right analysis output */}
-      <path d="M 480 100 L 550 100 L 600 60 L 700 60" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M 480 120 L 550 120 L 600 140 L 700 140" stroke="currentColor" strokeWidth="1.5" />
-      
-      {/* Bar charts on right */}
-      <motion.rect x="620" y="30" width="10" height="30" fill="#60a5fa" fillOpacity="0.5" animate={{ height: [30, 10, 30], y: [30, 50, 30] }} transition={{ duration: 2, repeat: Infinity }} />
-      <motion.rect x="640" y="20" width="10" height="40" fill="#2dd4bf" fillOpacity="0.5" animate={{ height: [40, 20, 40], y: [20, 40, 20] }} transition={{ duration: 2.5, repeat: Infinity }} />
-      <motion.rect x="660" y="40" width="10" height="20" fill="#60a5fa" fillOpacity="0.5" animate={{ height: [20, 40, 20], y: [40, 20, 40] }} transition={{ duration: 1.5, repeat: Infinity }} />
-      
-      <text x="100" y="80" fill="currentColor" className="text-[10px] font-mono tracking-widest">LEGACY_QMS</text>
-      <text x="620" y="160" fill="currentColor" className="text-[10px] font-mono tracking-widest">SKYWISE_ANALYTICS</text>
+      <g transform="translate(600, 60)">
+        <rect x="0" y="0" width="100" height="80" rx="4" stroke="currentColor" strokeWidth="1" />
+        <path d="M 0 20 L 100 20 M 0 40 L 100 40 M 0 60 L 100 60" stroke="currentColor" strokeWidth="0.5" />
+        <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono font-bold">SKYWISE_CORE</text>
+      </g>
     </svg>
   ),
   'green': (
-    <svg className="w-full h-full text-emerald-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
-      {/* Earth Horizon */}
-      <path d="M -100 250 Q 400 150 900 250" stroke="currentColor" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
-      <path d="M -100 270 Q 400 170 900 270" stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" />
-      
-      {/* Orbit paths */}
-      <path d="M -50 100 Q 400 -50 850 100" stroke="currentColor" strokeWidth="1" strokeDasharray="8 8" />
-      <path d="M 100 150 Q 400 0 700 150" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" />
+    <svg className="w-full h-full text-emerald-400/30" viewBox="-40 -40 880 280" fill="none" preserveAspectRatio="xMidYMid slice">
+      <pattern id="dots-m2-a" width="20" height="20" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.2" />
+      </pattern>
+      <rect x="-40" y="-40" width="880" height="280" fill="url(#dots-m2-a)" />
 
-      {/* Satellites */}
-      <motion.g animate={{ x: [-100, 900], y: [120, -70, 120] }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}>
-        <rect x="-10" y="-5" width="20" height="10" fill="currentColor" />
-        <rect x="-25" y="-3" width="12" height="6" fill="#34d399" />
-        <rect x="13" y="-3" width="12" height="6" fill="#34d399" />
-        <circle cx="0" cy="0" r="3" fill="#fff" />
-        {/* Downlink beam */}
-        <motion.path d="M 0 5 L -20 150 L 20 150 Z" fill="#34d399" fillOpacity="0.1" animate={{ opacity: [0.1, 0.3, 0.1] }} transition={{ duration: 2, repeat: Infinity }} />
-      </motion.g>
-
-      <motion.g animate={{ x: [900, -100], y: [170, 20, 170] }} transition={{ duration: 25, repeat: Infinity, ease: "linear" }}>
-        <rect x="-8" y="-4" width="16" height="8" fill="currentColor" />
-        <rect x="-20" y="-2" width="10" height="4" fill="#34d399" />
-        <rect x="10" y="-2" width="10" height="4" fill="#34d399" />
-      </motion.g>
-
-      {/* Ground Station processing nodes */}
-      <g transform="translate(200, 170)">
-        <rect x="0" y="0" width="40" height="30" rx="4" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="20" cy="15" r="5" fill="#34d399" className="animate-pulse" />
-        <text x="0" y="-10" fill="currentColor" className="text-[8px] font-mono">STAC_INGEST</text>
+      {/* Satellite Source */}
+      <g transform="translate(40, 60)">
+        <rect x="0" y="0" width="100" height="80" rx="4" stroke="#34d399" strokeWidth="1.5" fill="#020617" />
+        <circle cx="50" cy="30" r="15" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+        <motion.circle cx="50" cy="30" r="10" fill="#34d399" fillOpacity="0.4" animate={{ r: [8, 12, 8] }} transition={{ duration: 2, repeat: Infinity }} />
+        <text x="15" y="70" fill="#34d399" className="text-[10px] font-mono font-bold">STAC_CATALOG</text>
       </g>
 
-      <g transform="translate(400, 160)">
-        <rect x="0" y="0" width="60" height="40" rx="4" stroke="currentColor" strokeWidth="1.5" />
-        <motion.line x1="10" y1="20" x2="50" y2="20" stroke="#34d399" strokeWidth="2" strokeDasharray="4 4" animate={{ strokeDashoffset: [0, -16] }} transition={{ duration: 1, repeat: Infinity, ease: "linear" }} />
-        <text x="0" y="-10" fill="currentColor" className="text-[8px] font-mono">REDIS_TILE_CACHE</text>
+      {/* Data Ingestion Pipeline */}
+      <path d="M 140 100 L 250 100" stroke="#34d399" strokeWidth="1.5" strokeDasharray="3 3" />
+      <motion.circle cx="140" cy="100" r="3" fill="#34d399" animate={{ cx: [140, 250] }} transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }} />
+
+      {/* Kubernetes Cluster (Karpenter) */}
+      <g transform="translate(250, 40)">
+        {/* Cluster bounds */}
+        <rect x="0" y="0" width="300" height="120" rx="8" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" fill="currentColor" fillOpacity="0.05" />
+        <text x="10" y="20" fill="currentColor" className="text-[10px] font-mono font-bold">K8S_EKS_CLUSTER</text>
+
+        {/* Karpenter Auto-scaler Box */}
+        <rect x="10" y="40" width="80" height="60" rx="4" stroke="#34d399" strokeWidth="1.5" fill="rgba(52,211,153,0.1)" />
+        <text x="15" y="55" fill="#34d399" className="text-[8px] font-mono font-bold">KARPENTER</text>
+        <text x="15" y="65" fill="#34d399" className="text-[8px] font-mono">AUTOSCALER</text>
+        <motion.path d="M 15 80 L 35 70 L 55 90 L 75 60" stroke="#34d399" strokeWidth="1.5" fill="none" animate={{ strokeDashoffset: [20, 0] }} strokeDasharray="20" transition={{ duration: 1, repeat: Infinity, ease: "linear" }} />
+
+        {/* Dynamically scaling pods */}
+        <g transform="translate(120, 30)">
+          <text x="0" y="0" fill="currentColor" className="text-[8px] font-mono">EARTH_ENGINE_WORKERS</text>
+          {[0, 1, 2].map((i) => (
+            <motion.rect 
+              key={i}
+              x={i * 50} 
+              y="10" 
+              width="40" 
+              height="30" 
+              rx="2" 
+              stroke="#34d399" 
+              strokeWidth="1" 
+              fill="#020617"
+              initial={{ opacity: 0.3 }}
+              animate={{ opacity: [0.3, 1, 0.3] }}
+              transition={{ duration: 2, delay: i * 0.6, repeat: Infinity }}
+            />
+          ))}
+          {[0, 1, 2].map((i) => (
+            <motion.rect 
+              key={`inner-${i}`}
+              x={i * 50 + 5} 
+              y="15" 
+              width="30" 
+              height="4" 
+              rx="1" 
+              fill="currentColor"
+              fillOpacity="0.3"
+            />
+          ))}
+          {[0, 1, 2].map((i) => (
+            <motion.rect 
+              key={`inner2-${i}`}
+              x={i * 50 + 5} 
+              y="25" 
+              width="20" 
+              height="4" 
+              rx="1" 
+              fill="currentColor"
+              fillOpacity="0.3"
+            />
+          ))}
+        </g>
+        
+        {/* Lines from Karpenter to Pods */}
+        <path d="M 90 70 L 110 70 L 110 55 L 120 55" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
       </g>
 
-      <g transform="translate(600, 170)">
-        <rect x="0" y="0" width="40" height="30" rx="4" stroke="currentColor" strokeWidth="1.5" />
-        <rect x="10" y="10" width="8" height="8" fill="#34d399" />
-        <rect x="22" y="10" width="8" height="8" fill="currentColor" />
-        <text x="-10" y="-10" fill="currentColor" className="text-[8px] font-mono">PROMETHEUS</text>
-      </g>
+      {/* Output Pipeline */}
+      <path d="M 550 100 L 660 100" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 4" />
+      <motion.rect x="550" y="98" width="15" height="4" fill="#34d399" animate={{ x: [550, 660] }} transition={{ duration: 1.5, repeat: Infinity }} />
 
-      {/* Ground connections */}
-      <path d="M 240 185 L 400 180" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
-      <path d="M 460 180 L 600 185" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
+      {/* Output API */}
+      <g transform="translate(660, 60)">
+        <rect x="0" y="0" width="120" height="80" rx="4" stroke="#34d399" strokeWidth="1.5" fill="#020617" />
+        <rect x="15" y="25" width="90" height="10" rx="2" fill="currentColor" fillOpacity="0.2" />
+        <rect x="15" y="45" width="70" height="10" rx="2" fill="currentColor" fillOpacity="0.2" />
+        <text x="15" y="70" fill="#34d399" className="text-[10px] font-mono font-bold">TILE_SERVER_API</text>
+      </g>
     </svg>
   ),
   'airbus': (
-    <svg className="w-full h-full text-blue-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
+    <svg className="w-full h-full text-blue-400/30" viewBox="-40 -40 880 280" fill="none" preserveAspectRatio="xMidYMid slice">
       <pattern id="dots-airbus" width="20" height="20" patternUnits="userSpaceOnUse">
         <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.2" />
       </pattern>
-      <rect width="800" height="200" fill="url(#dots-airbus)" />
+      <rect x="-40" y="-40" width="880" height="280" fill="url(#dots-airbus)" />
 
       {/* Data Sources (Regions) */}
       {[50, 80, 110, 140, 170].map((y, i) => (
@@ -151,7 +188,7 @@ const missionGraphics: Record<string, ReactNode> = {
       <rect x="500" y="90" width="100" height="40" rx="4" stroke="currentColor" strokeWidth="1" />
       <text x="510" y="115" fill="currentColor" className="text-[8px] font-mono">HR_METRICS</text>
       <rect x="500" y="140" width="100" height="40" rx="4" stroke="currentColor" strokeWidth="1" />
-      <text x="510" y="165" fill="currentColor" className="text-[8px] font-mono">OPTIMATE_API</text>
+      <text x="510" y="165" fill="currentColor" className="text-[8px] font-mono">PREDICTIVE_MODEL</text>
 
       {/* KPI readouts */}
       <text x="650" y="80" fill="#2dd4bf" className="text-xl font-mono">90% <tspan fontSize="10" fill="currentColor">ACCURACY</tspan></text>
@@ -159,92 +196,78 @@ const missionGraphics: Record<string, ReactNode> = {
     </svg>
   ),
   'murex': (
-    <svg className="w-full h-full text-cyan-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <linearGradient id="grad-murex" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="transparent" />
-          <stop offset="50%" stopColor="#22d3ee" stopOpacity="0.5" />
-          <stop offset="100%" stopColor="transparent" />
-        </linearGradient>
-      </defs>
+    <svg className="w-full h-full text-cyan-400/30" viewBox="-40 -40 880 280" fill="none" preserveAspectRatio="xMidYMid slice">
+      <pattern id="dots-m4-b" width="20" height="20" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.2" />
+      </pattern>
+      <rect x="-40" y="-40" width="880" height="280" fill="url(#dots-m4-b)" />
 
-      {/* Grid */}
-      <path d="M 0 50 L 800 50 M 0 100 L 800 100 M 0 150 L 800 150" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.3" />
-      <path d="M 100 0 L 100 200 M 200 0 L 200 200 M 300 0 L 300 200 M 400 0 L 400 200 M 500 0 L 500 200 M 600 0 L 600 200 M 700 0 L 700 200" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" opacity="0.3" />
+      <g transform="translate(100, 30)">
+        <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono">LOG_VECTOR_SPACE</text>
+        
+        <g opacity="0.3">
+          {[...Array(6)].map((_, y) => <path key={`h-${y}`} d={`M 0 ${y*24} L 400 ${y*24}`} stroke="currentColor" strokeWidth="1" />)}
+          {[...Array(11)].map((_, x) => <path key={`v-${x}`} d={`M ${x*40} 0 L ${x*40} 120`} stroke="currentColor" strokeWidth="1" />)}
+        </g>
 
-      {/* Complex HFT Waveform */}
-      <path d="M 0 100 L 50 100 L 60 70 L 70 120 L 80 90 L 100 100 L 150 100 L 160 40 L 180 180 L 200 60 L 220 100 L 300 100 L 310 80 L 330 140 L 350 100 L 450 100 L 470 20 L 500 160 L 530 50 L 550 100 L 650 100 L 660 70 L 680 130 L 700 100 L 800 100" stroke="currentColor" strokeWidth="1" />
-      
-      {/* Animated glowing wave trace */}
-      <motion.path d="M 0 100 L 50 100 L 60 70 L 70 120 L 80 90 L 100 100 L 150 100 L 160 40 L 180 180 L 200 60 L 220 100 L 300 100 L 310 80 L 330 140 L 350 100 L 450 100 L 470 20 L 500 160 L 530 50 L 550 100 L 650 100 L 660 70 L 680 130 L 700 100 L 800 100" 
-        stroke="#22d3ee" strokeWidth="2" strokeDasharray="100 800"
-        animate={{ strokeDashoffset: [-800, 800] }} transition={{ duration: 6, repeat: Infinity, ease: "linear" }} />
+        <motion.rect x="0" y="0" width="40" height="120" fill="#22d3ee" fillOpacity="0.1" 
+          animate={{ x: [0, 360, 0] }} transition={{ duration: 6, repeat: Infinity, ease: "linear" }} />
+        
+        <g transform="translate(160, 48)">
+          <rect x="0" y="0" width="80" height="48" stroke="#ef4444" strokeWidth="2" fill="none" strokeDasharray="4 4" />
+          <motion.circle cx="20" cy="12" r="4" fill="#ef4444" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 1, repeat: Infinity }} />
+          <motion.circle cx="60" cy="12" r="4" fill="#ef4444" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 1.2, repeat: Infinity }} />
+          <motion.circle cx="40" cy="36" r="4" fill="#ef4444" animate={{ opacity: [1, 0.5, 1] }} transition={{ duration: 1.4, repeat: Infinity }} />
+          <path d="M 20 12 L 60 12 L 40 36 Z" stroke="#ef4444" strokeWidth="1" fill="none" opacity="0.5" />
+        </g>
+      </g>
 
-      {/* Scanning vertical beam */}
-      <motion.rect x="0" y="0" width="20" height="200" fill="url(#grad-murex)" 
-        animate={{ x: [-20, 800] }} transition={{ duration: 3, repeat: Infinity, ease: "linear" }} />
+      <path d="M 340 78 L 600 78" stroke="#ef4444" strokeWidth="1.5" />
+      <motion.circle cx="340" cy="78" r="4" fill="#ef4444" animate={{ cx: [340, 600] }} transition={{ duration: 1.5, repeat: Infinity }} />
 
-      {/* Anomaly markers */}
-      <circle cx="180" cy="180" r="6" stroke="#ef4444" strokeWidth="2" fill="none" className="animate-ping" />
-      <circle cx="470" cy="20" r="6" stroke="#ef4444" strokeWidth="2" fill="none" className="animate-ping" />
-      <text x="190" y="185" fill="#ef4444" className="text-[10px] font-mono">LATENCY_SPIKE</text>
-      <text x="480" y="25" fill="#ef4444" className="text-[10px] font-mono">ERR_OOM</text>
-
-      {/* Telemetry Readouts */}
-      <rect x="20" y="20" width="120" height="40" rx="4" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1" />
-      <text x="30" y="35" fill="currentColor" className="text-[8px] font-mono">THROUGHPUT</text>
-      <text x="30" y="50" fill="#22d3ee" className="text-[12px] font-mono">14.2k <tspan fontSize="8" fill="currentColor">msg/s</tspan></text>
-
-      <rect x="650" y="140" width="120" height="40" rx="4" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1" />
-      <text x="660" y="155" fill="currentColor" className="text-[8px] font-mono">SYSTEM_STATE</text>
-      <text x="660" y="170" fill="#22d3ee" className="text-[12px] font-mono">NOMINAL</text>
+      <g transform="translate(600, 58)">
+        <rect x="0" y="0" width="120" height="40" rx="4" stroke="#ef4444" strokeWidth="1.5" fill="#020617" />
+        <text x="15" y="23" fill="#ef4444" className="text-[10px] font-mono font-bold">PATTERN_ISOLATED</text>
+      </g>
     </svg>
   ),
   'zaka': (
-    <svg className="w-full h-full text-teal-400/30" viewBox="0 0 800 200" fill="none" preserveAspectRatio="xMidYMid slice">
-      {/* Background network lines */}
-      <path d="M 100 40 L 400 100 L 700 40 M 100 100 L 400 100 L 700 100 M 100 160 L 400 100 L 700 160" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.3" />
+    <svg className="w-full h-full text-teal-400/30" viewBox="-80 -80 960 360" fill="none" preserveAspectRatio="xMidYMid slice">
+      <pattern id="dots-m5-1" width="20" height="20" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.2" />
+      </pattern>
+      <rect x="-80" y="-80" width="960" height="360" fill="url(#dots-m5-1)" />
 
-      {/* Camera inputs (left) */}
-      {[40, 100, 160].map((y, i) => (
-        <g key={`cam-${i}`} transform={`translate(80, ${y})`}>
-          <rect x="0" y="-15" width="20" height="30" rx="2" stroke="currentColor" strokeWidth="1.5" />
-          <circle cx="20" cy="0" r="8" stroke="currentColor" strokeWidth="1.5" />
-          <circle cx="20" cy="0" r="3" fill="#2dd4bf" />
-          <motion.path d="M 28 0 L 100 0" stroke="#2dd4bf" strokeWidth="1" strokeDasharray="4 4" 
-            animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 0.5, repeat: Infinity, ease: "linear" }} />
-          <text x="-40" y="3" fill="currentColor" className="text-[8px] font-mono">CAM_0{i+1}</text>
+      {[40, 80, 120, 160].map((y, i) => (
+        <g key={`cam-${i}`}>
+          <rect x="50" y={y-10} width="40" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
+          <circle cx="60" cy={y} r="3" fill="#2dd4bf" />
+          <text x="70" y={y+3} fill="currentColor" className="text-[8px] font-mono">CAM</text>
+          <path d={`M 90 ${y} C 150 ${y}, 200 ${y < 100 ? 80 : 120}, 250 ${y < 100 ? 80 : 120}`} stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" fill="none" />
+          <motion.circle cx="90" cy={y} r="2" fill="#2dd4bf" animate={{ cx: [90, 250], cy: [y, y < 100 ? 80 : 120] }} transition={{ duration: 2, repeat: Infinity, delay: i*0.4 }} />
         </g>
       ))}
 
-      {/* GPU Inference Core (center) */}
-      <g transform="translate(350, 60)">
-        <rect x="0" y="0" width="100" height="80" rx="8" stroke="#5eead4" strokeWidth="2" fill="currentColor" fillOpacity="0.1" />
-        {/* Core grid */}
-        <path d="M 20 0 L 20 80 M 40 0 L 40 80 M 60 0 L 60 80 M 80 0 L 80 80" stroke="currentColor" strokeWidth="0.5" />
-        <path d="M 0 20 L 100 20 M 0 40 L 100 40 M 0 60 L 100 60" stroke="currentColor" strokeWidth="0.5" />
-        {/* Active cores */}
-        <motion.rect x="20" y="20" width="20" height="20" fill="#2dd4bf" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1, repeat: Infinity }} />
-        <motion.rect x="60" y="40" width="20" height="20" fill="#2dd4bf" animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.2 }} />
-        <motion.rect x="40" y="60" width="20" height="20" fill="#2dd4bf" animate={{ opacity: [0.2, 0.8, 0.2] }} transition={{ duration: 1.2, repeat: Infinity, delay: 0.5 }} />
+      <g transform="translate(250, 40)">
+        <rect x="0" y="0" width="160" height="120" rx="8" stroke="#5eead4" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
+        <text x="0" y="-10" fill="#5eead4" className="text-[10px] font-mono font-bold">DEEPSTREAM_GPU_NODE</text>
         
-        <text x="10" y="-10" fill="#5eead4" className="text-[10px] font-mono font-bold">DEEPSTREAM_GPU_NODE</text>
+        <path d="M 20 20 L 140 20 M 20 40 L 140 40 M 20 60 L 140 60 M 20 80 L 140 80 M 20 100 L 140 100" stroke="currentColor" strokeWidth="0.5" />
+        <path d="M 20 20 L 20 100 M 50 20 L 50 100 M 80 20 L 80 100 M 110 20 L 110 100 M 140 20 L 140 100" stroke="currentColor" strokeWidth="0.5" />
+        
+        <motion.rect x="20" y="20" width="30" height="20" fill="#2dd4bf" animate={{ opacity: [0.2, 0.8, 0.2] }} transition={{ duration: 1.2, repeat: Infinity }} />
+        <motion.rect x="80" y="40" width="30" height="20" fill="#2dd4bf" animate={{ opacity: [0.2, 0.8, 0.2] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.3 }} />
+        <motion.rect x="50" y="60" width="30" height="20" fill="#2dd4bf" animate={{ opacity: [0.2, 0.8, 0.2] }} transition={{ duration: 1.1, repeat: Infinity, delay: 0.7 }} />
+        <motion.rect x="110" y="80" width="30" height="20" fill="#2dd4bf" animate={{ opacity: [0.2, 0.8, 0.2] }} transition={{ duration: 1.4, repeat: Infinity, delay: 0.1 }} />
       </g>
 
-      {/* Output streams (right) */}
-      {[40, 100, 160].map((y, i) => (
-        <g key={`out-${i}`} transform={`translate(650, ${y})`}>
-          <rect x="0" y="-15" width="60" height="30" rx="2" stroke="currentColor" strokeWidth="1" />
-          <motion.rect x="5" y="-10" width="50" height="5" fill="#2dd4bf" fillOpacity="0.5" animate={{ width: [10, 50, 10] }} transition={{ duration: 2+i, repeat: Infinity }} />
-          <motion.rect x="5" y="0" width="30" height="5" fill="currentColor" fillOpacity="0.5" animate={{ width: [10, 30, 10] }} transition={{ duration: 1.5+i, repeat: Infinity, delay: 0.5 }} />
-          <motion.path d="M -200 0 L -10 0" stroke="#2dd4bf" strokeWidth="1" strokeDasharray="4 4" 
-            animate={{ strokeDashoffset: [0, -20] }} transition={{ duration: 0.5, repeat: Infinity, ease: "linear" }} />
-          <text x="70" y="3" fill="currentColor" className="text-[8px] font-mono">INFERENCE_OUT</text>
-        </g>
-      ))}
-      
-      {/* Metrics */}
-      <text x="350" y="170" fill="#2dd4bf" className="text-[10px] font-mono font-bold">FPS: 450+ | LATENCY: 12ms</text>
+      <path d="M 410 100 L 550 100" stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" />
+      <motion.rect x="410" y="98" width="20" height="4" fill="#2dd4bf" animate={{ x: [410, 550] }} transition={{ duration: 1.5, repeat: Infinity }} />
+
+      <g transform="translate(550, 80)">
+        <rect x="0" y="0" width="100" height="40" rx="4" stroke="currentColor" strokeWidth="1.5" />
+        <text x="10" y="23" fill="currentColor" className="text-[10px] font-mono">INFERENCE_OUT</text>
+      </g>
     </svg>
   ),
   'aimtools': (
@@ -308,11 +331,21 @@ const missionGraphics: Record<string, ReactNode> = {
   ),
 }
 
+const missionHeights: Record<string, string> = {
+  'airbus-electric-center': 'h-56 md:h-72',
+  'green': 'h-56 md:h-72',
+  'murex': 'h-56 md:h-72',
+  'zaka': 'h-60 md:h-80', // Zaka is especially tall due to the GPU block
+  // Default to standard base sizes for the others
+}
+
 export default function ProjectsPage() {
   return (
-    <>
-      <CommandCenterBackdrop />
+    <div className="min-h-screen bg-[#020617] text-white overflow-hidden relative">
+
+
       <Starfield />
+      <CommandCenterBackdrop />
       <Nav />
       <main className="pt-24 relative z-30" style={{ isolation: 'isolate' }}>
         <Container>
@@ -326,7 +359,7 @@ export default function ProjectsPage() {
           >
             <div className="flex items-center gap-3">
               <Radio className="h-6 w-6 text-teal-400" />
-              <h2 className="text-3xl font-semibold font-display tracking-wide text-white/90">Mission Archives</h2>
+              <h2 className="text-3xl font-semibold font-display tracking-wide text-white/90">Industrial Experience</h2>
             </div>
           </motion.div>
 
@@ -347,7 +380,7 @@ export default function ProjectsPage() {
                 <div className="relative z-10">
                   {/* Full-width animated SVG banner */}
                   {missionGraphics[mission.id] && (
-                    <div className="w-full h-44 md:h-56 bg-black/40 rounded-xl border border-white/5 group-hover:border-teal-500/20 transition-all duration-500 overflow-hidden flex items-center justify-center p-4 mb-8 relative">
+                    <div className={`w-full ${missionHeights[mission.id] || 'h-44 md:h-56'} bg-black/40 rounded-xl border border-white/5 group-hover:border-teal-500/20 transition-all duration-500 overflow-hidden flex items-center justify-center p-4 mb-8 relative`}>
                       {/* Subtle scanning line */}
                       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent animate-[shimmer_3s_infinite]" />
                       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/20 to-transparent" />
@@ -374,7 +407,7 @@ export default function ProjectsPage() {
                     {mission.operations.map((op, opIdx) => (
                       <div key={opIdx} className="bg-black/30 rounded-xl p-6 border border-white/5 hover:border-white/10 transition-colors">
                         <div className="mb-4">
-                          <div className="text-[10px] font-mono font-bold text-teal-400 mb-1.5 tracking-wider uppercase">OP: {op.code}</div>
+                          <div className="text-[10px] font-mono font-bold text-teal-400 mb-1.5 tracking-wider uppercase">{op.code}</div>
                           <h4 className="text-lg font-medium text-white/90 leading-tight">{op.name}</h4>
                         </div>
                         <p className="text-sm text-muted mb-5">{op.objective}</p>
@@ -408,6 +441,6 @@ export default function ProjectsPage() {
         </Container>
         <Footer />
       </main>
-    </>
+    </div>
   )
 }

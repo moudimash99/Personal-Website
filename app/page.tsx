@@ -1,193 +1,131 @@
 'use client'
 
-import { ArrowRight, Download } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import CommandCenterBackdrop from '@/components/CommandCenterBackdrop'
-import Container from '@/components/Container'
-import Nav from '@/components/Nav'
-import IntroOverlay from '@/components/IntroOverlay'
-import Button from '@/components/Button'
-import Footer from '@/components/Footer'
-import Metrics from '@/components/Metrics'
-import Starfield from '@/components/Starfield'
 import Link from 'next/link'
+import { ArrowRight, Download } from 'lucide-react'
+import Button from '@/components/Button'
+import { useRef } from 'react'
+import CommandCenterBackdrop from '@/components/CommandCenterBackdrop'
+import Starfield from '@/components/Starfield'
+import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
 import { profile, credentials } from './data/profile'
 
-// Animation variants
-const heroContainer = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.1 }
-  }
-}
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 90, damping: 14 } }
-}
-
-const credentialCardVariant = {
-  hidden: { opacity: 0, scale: 0.85, y: 30 },
-  show: (i: number) => ({
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      type: 'spring',
-      stiffness: 80,
-      damping: 12,
-      delay: 0.6 + i * 0.1
-    }
-  })
-}
-
 export default function Page() {
-  return (
-    <>
-      {/* PROTOTYPE SELECTOR */}
-      <div className="fixed top-0 left-0 w-full bg-black/80 backdrop-blur-md border-b border-white/10 z-50 py-3 px-6 flex justify-center items-center gap-6 overflow-x-auto text-[10px] font-mono">
-        <span className="text-white/50 tracking-widest uppercase shrink-0">Batch 3 (Vertical):</span>
-        <Link href="/" className="text-white font-bold tracking-widest hover:text-accent-400 shrink-0 border-b border-accent-500">BASE</Link>
-        <Link href="/v12" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v12</Link>
-        <Link href="/v13" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v13</Link>
-        <Link href="/v14" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v14</Link>
-        <Link href="/v15" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v15</Link>
-        <Link href="/v16" className="text-amber-400/70 hover:text-amber-400 transition-colors shrink-0">v16</Link>
-        
-        <div className="w-px h-4 bg-white/20 shrink-0 mx-2" />
-        
-        <span className="text-white/50 tracking-widest uppercase shrink-0">Batch 4 (Compact):</span>
-        <Link href="/v18" className="text-cyan-400/70 hover:text-cyan-400 transition-colors shrink-0">v18</Link>
-        <Link href="/v19" className="text-cyan-400/70 hover:text-cyan-400 transition-colors shrink-0">v19</Link>
-        <Link href="/v20" className="text-cyan-400/70 hover:text-cyan-400 transition-colors shrink-0">v20</Link>
-        <Link href="/v21" className="text-cyan-400/70 hover:text-cyan-400 transition-colors shrink-0">v21</Link>
-        <Link href="/v22" className="text-cyan-400/70 hover:text-cyan-400 transition-colors shrink-0">v22</Link>
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({ target: containerRef })
+  
+  // Aggressive parallax upward movement for text (from v13)
+  const yText = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"])
+  const letterSpacing = useTransform(scrollYProgress, [0, 1], ["0em", "0.5em"])
 
-        <div className="w-px h-4 bg-white/20 shrink-0 mx-2" />
-        
-        <Link href="/v17" className="text-rose-400 font-bold tracking-widest hover:text-rose-300 transition-colors shrink-0 uppercase border-b border-rose-500 pb-1">v17</Link>
+  return (
+    <div ref={containerRef} className="relative bg-[#020617] text-slate-200 overflow-hidden font-sans pb-16 min-h-screen">
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <CommandCenterBackdrop />
+        <Starfield />
       </div>
 
-      <CommandCenterBackdrop />
-      <Starfield />
       <Nav />
-      <IntroOverlay />
 
-      <main className="pt-16 relative z-30" style={{ isolation: 'isolate' }}>
-        <Container>
+      {/* TOP: Cinematic Parallax Header (from v13) + Missing Intro Lines */}
+      <motion.div style={{ y: yText }} className="relative z-10 w-full flex flex-col items-center justify-center min-h-screen px-6 pointer-events-none text-center pt-24">
+        <motion.p 
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 3 }}
+          className="text-xs font-mono text-emerald-400/80 tracking-[0.5em] uppercase mb-8"
+        >
+          {profile.name} // {profile.title}
+        </motion.p>
+        
+        <motion.h1 
+          initial={{ opacity: 0, scale: 1.2, filter: 'blur(20px)' }}
+          animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+          className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white leading-[0.9]"
+        >
+          Architecting
+          <br/>
+          <motion.span style={{ letterSpacing }} className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/30 inline-block">
+            resilience
+          </motion.span>
+        </motion.h1>
+        
+        <motion.h2 
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 2 }}
+          className="mt-8 text-3xl md:text-5xl font-light text-slate-400"
+        >
+          for data-intensive systems.
+        </motion.h2>
 
-          {/* Hero Section */}
-          <motion.section
-            id="debrief"
-            className="scroll-mt-20 py-4 md:py-6"
-            variants={heroContainer}
-            initial="hidden"
-            animate="show"
-          >
-            <div className="relative flex flex-col lg:flex-row items-start gap-8">
-              {/* Subtle ambient radial glow for the hero */}
-              <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-teal-500/10 rounded-full blur-[120px] pointer-events-none -z-10" />
+        {/* The Missing Intro Paragraphs - Fixed Contrast */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ delay: 2.5, duration: 2 }}
+          className="mt-12 max-w-3xl mx-auto space-y-6 text-base md:text-lg lg:text-xl text-slate-100 font-medium leading-relaxed px-4 drop-shadow-md"
+        >
+          <p>{profile.introLines[0]}</p>
+          <p className="text-emerald-300 italic">{profile.introLines[1]}</p>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3.5, duration: 2 }} className="mt-16 pointer-events-auto">
+          <div className="w-px h-16 bg-gradient-to-b from-emerald-500/50 to-transparent mx-auto" />
+          <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-emerald-500 mt-4 animate-pulse">Scroll to Initialize</p>
+        </motion.div>
+      </motion.div>
+
+      {/* BOTTOM: Pulsing 2-Row Grid (from v14) */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 mt-8 pb-32">
+        <h3 className="text-[10px] font-mono text-white/40 uppercase tracking-[0.4em] mb-12 text-center border-b border-white/10 pb-4">
+          Operations Validated By
+        </h3>
+        
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+          {credentials.map((cred, i) => (
+            <motion.div
+              key={cred.name}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: i * 0.1, duration: 0.8 }}
+              className="group relative bg-white/[0.03] backdrop-blur-md border border-white/10 p-6 md:p-8 rounded-2xl flex flex-col items-center text-center overflow-hidden hover:bg-white/[0.08] transition-all cursor-crosshair"
+            >
+              {/* Eruptive Hover Glow */}
+              <div 
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: `radial-gradient(circle at center, ${cred.glow} 0%, transparent 60%)` }}
+              />
+
+              <div className="w-14 h-14 relative opacity-50 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                <Image src={cred.logo} alt={cred.name} fill className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]" />
+              </div>
               
-              <div className="flex-1 space-y-3 relative z-10">
-
-                {/* Headline */}
-                <motion.h1
-                  variants={fadeUp}
-                  className="text-4xl md:text-6xl font-semibold leading-tight font-display tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-teal-200"
-                >
-                  {profile.headline} for{' '}
-                  <span className="text-teal-400 font-bold">data-intensive</span> systems.
-                </motion.h1>
-
-                {/* Intro */}
-                <motion.p variants={fadeUp} className="text-lg text-white/60 font-light max-w-3xl">
-                  {profile.introLines[0]}
-                </motion.p>
-                <motion.p variants={fadeUp} className="text-base text-white/50 font-light max-w-3xl">
-                  {profile.introLines[1]}
-                </motion.p>
-
-                {/* Metrics */}
-                <motion.div variants={fadeUp}>
-                  <Metrics />
-                </motion.div>
-
-                {/* Buttons */}
-                <motion.div variants={fadeUp} className="flex gap-3">
-                  <Button href="/projects">
-                    Proceed to Projects <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                  <Button href={profile.cvUrl} variant="outline" newTab>
-                    <Download className="mr-2 h-4 w-4" /> Download CV
-                  </Button>
-                </motion.div>
+              <div className="mt-6 z-10">
+                <h4 className="text-sm font-bold text-white tracking-wide">{cred.name}</h4>
+                <p className="text-[9px] text-emerald-400/80 uppercase tracking-widest mt-1">{cred.subtitle}</p>
               </div>
-            </div>
-          </motion.section>
+            </motion.div>
+          ))}
+        </div>
 
-          {/* ═══════════════════════════════════════════════════════════════
-              CREDENTIALS — Big, Logo-first, Alive
-              ═══════════════════════════════════════════════════════════════ */}
-          <section className="pt-8 pb-16 w-full max-w-5xl mx-auto">
-            <div className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="flex justify-center md:justify-start"
-              >
-                <h3 className="text-[10px] font-mono font-medium text-white/40 uppercase tracking-[0.25em]">
-                  Trusted &amp; Certified By
-                </h3>
-              </motion.div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                {credentials.map((cred: any, i: number) => (
-                  <motion.div
-                    key={cred.name}
-                    custom={i}
-                    variants={credentialCardVariant}
-                    initial="hidden"
-                    animate="show"
-                    whileHover={{ scale: 1.05, y: -4 }}
-                    className="glass rounded-2xl p-4 flex flex-col items-center justify-center text-center cursor-default transition-all duration-500 min-h-[140px] group relative overflow-hidden"
-                  >
-                    <motion.div
-                      className="absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-20 rounded-full blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none"
-                      style={{ background: cred.glow }}
-                      animate={{ scale: [1, 1.3, 1] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                    />
-                    <motion.div
-                      className="relative z-10 w-12 h-12 md:w-14 md:h-14 rounded-xl overflow-hidden ring-1 ring-white/5 mb-3 shadow-lg shrink-0"
-                      animate={{ y: [0, -3, 0] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
-                    >
-                      <Image src={cred.logo} alt={`${cred.name} logo`} fill sizes="60px" className="object-cover" />
-                    </motion.div>
-                    <h3 className="relative z-10 font-display font-bold text-[12px] md:text-[13px] text-white/90 group-hover:text-white transition-colors duration-300 leading-tight">
-                      {cred.name}
-                    </h3>
-                    <p className="relative z-10 text-[9px] md:text-[10px] text-white/50 mt-1 leading-snug">
-                      {cred.subtitle}
-                    </p>
-                    <motion.div
-                      className="absolute top-2.5 right-2.5 h-1.5 w-1.5 rounded-full"
-                      style={{ background: cred.glow }}
-                      animate={{ opacity: [0.3, 0.8, 0.3], scale: [0.8, 1.2, 0.8] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut', delay: cred.float }}
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-        </Container>
-        <Footer />
-      </main>
-    </>
+        {/* Buttons (Moved to bottom) */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ delay: 0.3, duration: 1 }}
+          className="flex flex-wrap justify-center gap-4 mt-16 pointer-events-auto"
+        >
+          <Button href="/projects">
+            Proceed to Projects <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+          <Button href={profile.cvUrl} variant="outline" newTab>
+            <Download className="mr-2 h-4 w-4" /> Download CV
+          </Button>
+        </motion.div>
+      </div>
+      <Footer />
+    </div>
   )
 }

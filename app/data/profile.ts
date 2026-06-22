@@ -1,5 +1,5 @@
 export const profile = {
-  name: "MOUDI MASHNOUK",
+  name: "MACHAKA Mohammad",
   title: "SYSTEMS ENGINEER",
   headline: "Architecting resilience",
   cvUrl: "/cv.pdf",
