@@ -380,11 +380,17 @@ export default function ProjectsPage() {
                 <div className="relative z-10">
                   {/* Full-width animated SVG banner */}
                   {missionGraphics[mission.id] && (
-                    <div className={`w-full ${missionHeights[mission.id] || 'h-44 md:h-56'} bg-black/40 rounded-xl border border-white/5 group-hover:border-teal-500/20 transition-all duration-500 overflow-hidden flex items-center justify-center p-4 mb-8 relative`}>
+                    <div className={`w-full ${missionHeights[mission.id] || 'h-44 md:h-56'} bg-black/40 rounded-xl border border-white/5 group-hover:border-teal-500/20 transition-all duration-500 overflow-hidden relative mb-8`}>
                       {/* Subtle scanning line */}
-                      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent animate-[shimmer_3s_infinite]" />
-                      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/20 to-transparent" />
-                      {missionGraphics[mission.id]}
+                      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent animate-[shimmer_3s_infinite] pointer-events-none z-10" />
+                      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-teal-400/20 to-transparent pointer-events-none z-10" />
+                      
+                      {/* Horizontal Scroll wrapper for mobile */}
+                      <div className="w-full h-full overflow-x-auto overflow-y-hidden no-scrollbar flex items-center p-4">
+                        <div className="w-[800px] min-w-[800px] md:w-full md:min-w-0 h-full flex-shrink-0 mx-auto">
+                          {missionGraphics[mission.id]}
+                        </div>
+                      </div>
                     </div>
                   )}
 
