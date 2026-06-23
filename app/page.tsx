@@ -71,14 +71,14 @@ export default function Page() {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3.5, duration: 2 }} className="mt-16 pointer-events-auto">
           <div className="w-px h-16 bg-gradient-to-b from-emerald-500/50 to-transparent mx-auto" />
-          <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-emerald-500 mt-4 animate-pulse">Scroll to Initialize</p>
+          <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-emerald-500 mt-4 animate-pulse">Scroll to Continue</p>
         </motion.div>
       </motion.div>
 
       {/* BOTTOM: Pulsing 2-Row Grid (from v14) */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-6 mt-8 pb-32">
         <h3 className="text-[10px] font-mono text-white/40 uppercase tracking-[0.4em] mb-12 text-center border-b border-white/10 pb-4">
-          Operations Validated By
+          Trusted By
         </h3>
         
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
