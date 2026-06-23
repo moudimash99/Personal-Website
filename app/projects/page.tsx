@@ -430,7 +430,6 @@ export default function ProjectsPage() {
                     {mission.operations.map((op, opIdx) => (
                       <div key={opIdx} className="bg-black/30 rounded-xl p-6 border border-white/5 hover:border-white/10 transition-colors">
                         <div className="mb-4">
-                          <div className="text-[10px] font-mono font-bold text-teal-400 mb-1.5 tracking-wider uppercase">{op.code}</div>
                           <h4 className="text-lg font-medium text-white/90 leading-tight">{op.name}</h4>
                         </div>
                         <p className="text-sm text-muted mb-5">{op.objective}</p>
