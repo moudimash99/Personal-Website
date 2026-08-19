@@ -6,7 +6,7 @@ export const missions = [
   {
     id: 'airbus-electric-center',
     title: 'Mission I — Airbus Electric Center',
-    meta: 'Systems Engineering & Quality Intern • Apr 2026 – Present • Toulouse',
+    meta: 'Systems & Quality Engineering • May 2026 – Present • Toulouse',
     profile:
       'Driving Non-Conformance reduction and optimizing the Cost of Non-Quality (CoNQ) by architecting a centralized, data-driven quality tracking platform within the Skywise ecosystem.',
     icon: Plane,
@@ -57,7 +57,7 @@ export const missions = [
   {
     id: 'green',
     title: 'Mission II — Green Praxis',
-    meta: 'Cloud & Data Engineer • Jan 2025 – Present • Aix-en-Provence',
+    meta: 'Cloud & Data Engineer • Jan 2025 – Aug 2025 • Aix-en-Provence',
     profile:
       'Owning the cloud, data-engineering, and monitoring layers that transform satellite imagery into on-demand map tiles and environmental KPIs via a single internal API.',
     icon: Satellite,
@@ -219,7 +219,7 @@ export const missions = [
   {
     id: 'zaka',
     title: 'Mission V — ZAKA',
-    meta: 'AI Pipeline Developer • Feb 2021 – Apr 2021 • Beirut',
+    meta: 'AI Pipeline Developer • Oct 2020 – Sep 2021 • Beirut',
     profile:
       'Built and optimized a multi-camera computer-vision pipeline on Nvidia DeepStream with GPU acceleration and CI/CD.',
     icon: Cpu,
@@ -271,8 +271,8 @@ export const missions = [
   },
   {
     id: 'aimtools',
-    title: 'Mission VI — AimTools',
-    meta: 'Full-Stack Developer • Jun 2020 – Feb 2021 • Beirut',
+    title: 'Mission VI — UrbanSeller',
+    meta: 'Freelance Full-Stack Developer • Jun 2020 – Feb 2021 • Beirut',
     profile:
       'Delivered a web order-management platform with Amazon integration, C#/.NET backend, Angular frontend, and Azure hosting.',
     icon: BriefcaseBusiness,
