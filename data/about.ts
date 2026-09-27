@@ -17,8 +17,9 @@ export type AboutTile = {
 }
 
 export const hero = {
-  title: 'Software Architect & Systems Engineer',
+  title: 'Outside of work',
   outsideWork: 'A mix of building things, playing things, and finding new hobbies that somehow turn into engineering projects.',
+  explainer: 'This page is the non-professional me: the hobbies, games and two cats that fill the rest of my time. Open any card to see more.',
 }
 
 export const commonThread = {

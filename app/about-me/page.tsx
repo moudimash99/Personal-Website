@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Plus, X, ArrowRight } from 'lucide-react'
@@ -128,7 +127,6 @@ export default function AboutMePage() {
       <Nav />
       <main className="pt-24 relative">
         <Container>
-          <p className="font-mono text-xs text-muted mb-6">~/about-me <span className="text-accent-400">— the human element</span></p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-4 md:gap-5">
             {/* Hero */}
@@ -137,11 +135,8 @@ export default function AboutMePage() {
               <h1 className="relative font-display font-bold uppercase tracking-tight leading-[0.95] text-4xl sm:text-5xl text-foreground">
                 {hero.title}.
               </h1>
-              <p className="relative mt-6 font-mono text-[10px] uppercase tracking-widest text-accent-300">Outside of work</p>
-              <p className="relative mt-1.5 text-base leading-relaxed text-muted max-w-xl">{hero.outsideWork}</p>
-              <Link href="/career-ops" className="relative mt-5 inline-flex w-fit items-center gap-1.5 font-mono text-xs text-accent-300 hover:text-accent-100 transition-colors">
-                ~/career-ops <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+              <p className="relative mt-4 font-hand text-2xl leading-snug text-accent-300 max-w-xl">{hero.outsideWork}</p>
+              <p className="relative mt-4 text-sm leading-relaxed text-muted max-w-xl">{hero.explainer}</p>
             </div>
 
             {aboutTiles.map(tile => (

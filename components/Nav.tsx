@@ -6,10 +6,10 @@ import { useEffect, useState } from 'react'
 import { profile } from '@/data/profile'
 
 const links = [
-  { href: '/about-me', label: '~/about-me' },
-  { href: '/skunkworks', label: '~/skunkworks' },
-  { href: '/career-ops', label: '~/career-ops' },
-  { href: '/contact', label: '~/contact' },
+  { href: '/about-me', label: 'About Me' },
+  { href: '/skunkworks', label: 'Skunkworks' },
+  { href: '/experience', label: 'Experience' },
+  { href: '/contact', label: 'Contact' },
 ]
 
 export default function Nav() {
@@ -27,7 +27,7 @@ export default function Nav() {
       <Container>
         <div className="h-12 flex items-center gap-3 sm:gap-4">
           <Link href="/" aria-label={profile.name} className="font-display font-bold text-lg tracking-tight text-foreground hover:text-accent-300 transition-colors">MM</Link>
-          <nav className="flex items-center h-full overflow-x-auto no-scrollbar text-[11px] sm:text-sm font-mono">
+          <nav className="flex items-center h-full overflow-x-auto no-scrollbar text-xs sm:text-sm font-medium">
             {links.map(({ href, label }) => {
               const active = pathname?.startsWith(href)
               return (

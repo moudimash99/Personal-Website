@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import Image from 'next/image'
+import { Github, Lock } from 'lucide-react'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { skunkworks, SkunkworksStatus } from '@/data/skunkworks'
@@ -234,9 +235,14 @@ export default function SkunkworksPage() {
       <main className="pt-24 relative">
         <div className="mx-auto max-w-4xl px-4">
           <header className="mb-10">
-            <p className="font-mono text-xs text-muted">~/skunkworks <span className="text-accent-400">— technical ledger</span></p>
-            <h1 className="mt-4 font-display font-bold uppercase tracking-tight leading-[0.95] text-4xl sm:text-5xl text-foreground">Skunkworks.</h1>
-            <p className="mt-3 max-w-2xl text-muted">Side projects where I get to be the whole team: hardware, firmware, pipelines, and the occasional cat.</p>
+            <h1 className="font-display font-bold uppercase tracking-tight leading-[0.95] text-4xl sm:text-5xl text-foreground">Skunkworks.</h1>
+            <p className="mt-4 max-w-2xl text-muted">
+              The things I build for myself, outside of work: hardware, automation and small tools that solve my own problems.
+              Each card covers what sparked the project, how it is built, and an example of it running.
+            </p>
+            <p className="mt-2 max-w-2xl text-sm text-muted/70">
+              <span className="text-foreground/80">Skunkworks</span> is engineering slang for a small team building things off the books.
+            </p>
             <p className="mt-4 font-mono text-xs text-accent-300">
               {skunkworks.length} projects · {skunkworks.filter(p => p.status.tone === 'active').length} active
             </p>
@@ -258,11 +264,30 @@ export default function SkunkworksPage() {
                 </header>
 
                 {/* Stack */}
-                <ul className="mt-3 flex flex-wrap gap-2 pb-5 border-b border-border" aria-label="Tech stack">
+                <ul className="mt-3 flex flex-wrap gap-2" aria-label="Tech stack">
                   {project.stack.map(tech => (
                     <li key={tech} className="rounded-full border border-accent-400/30 bg-accent-500/10 px-2.5 py-0.5 font-mono text-[11px] uppercase text-accent-100">{tech}</li>
                   ))}
                 </ul>
+
+                {project.repos && (
+                  <ul className="mt-4 flex flex-wrap gap-2" aria-label="Source code">
+                    {project.repos.map(r => (
+                      <li key={r.name}>
+                        {r.private ? (
+                          <span title="Private repository" className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1 font-mono text-[11px] text-muted/70">
+                            <Lock className="h-3.5 w-3.5" aria-hidden />{r.name}<span className="text-muted/50">· {r.label} · private</span>
+                          </span>
+                        ) : (
+                          <a href={`https://github.com/moudimash99/${r.name}`} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border border-accent-500/40 bg-accent-500/10 px-2.5 py-1 font-mono text-[11px] text-accent-100 hover:border-accent-400 hover:bg-accent-500/20 transition-colors">
+                            <Github className="h-3.5 w-3.5" aria-hidden />{r.name}<span className="text-accent-300/70">· {r.label}</span>
+                          </a>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <div className="mt-5 border-b border-border" />
 
                 {/* Body */}
                 <div className="mt-6 grid gap-6 md:grid-cols-2 md:gap-8">

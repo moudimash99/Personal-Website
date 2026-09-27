@@ -10,7 +10,7 @@ export default function Footer() {
 
   // Decide footer CTAs based on current route
   const isHome = pathname === '/' || pathname === ''
-  const isCareer = pathname?.startsWith('/career-ops') || pathname?.startsWith('/projects')
+  const isCareer = pathname?.startsWith('/experience') || pathname?.startsWith('/projects')
   const isAbout = pathname?.startsWith('/about-me')
   const isSkunkworks = pathname?.startsWith('/skunkworks')
   const isContact = pathname?.startsWith('/contact')
@@ -27,14 +27,14 @@ export default function Footer() {
           <div className="flex flex-wrap gap-2">
             {isHome && (
               <>
-                <Button variant="outline" href="/career-ops">Career Ops</Button>
+                <Button variant="outline" href="/experience">Experience</Button>
                 <Button href="/contact">Contact</Button>
               </>
             )}
 
             {isAbout && (
               <>
-                <Button variant="outline" href="/career-ops">Career Ops</Button>
+                <Button variant="outline" href="/experience">Experience</Button>
                 <Button href="/skunkworks">Continue to Skunkworks</Button>
               </>
             )}
@@ -55,7 +55,7 @@ export default function Footer() {
 
             {isContact && (
               <>
-                <Button variant="outline" href="/career-ops">Career Ops</Button>
+                <Button variant="outline" href="/experience">Experience</Button>
                 <Button href="/">Back to Debrief</Button>
               </>
             )}

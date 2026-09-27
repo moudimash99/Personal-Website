@@ -117,8 +117,8 @@ export default function Page() {
           transition={{ delay: 0.3, duration: 1 }}
           className="flex flex-wrap justify-center gap-4 mt-16 pointer-events-auto"
         >
-          <Button href="/career-ops">
-            Proceed to Career Ops <ArrowRight className="ml-2 h-4 w-4" />
+          <Button href="/experience">
+            View Experience <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
           <Button href={profile.cvUrl} variant="outline" newTab>
             <Download className="mr-2 h-4 w-4" /> Download CV
