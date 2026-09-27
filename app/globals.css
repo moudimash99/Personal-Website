@@ -61,3 +61,7 @@ html, body {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
+/* Animated data flow along schematic edges */
+.flow { stroke-dasharray: 4 6; animation: flow-dash 0.9s linear infinite; }
+@keyframes flow-dash { to { stroke-dashoffset: -20; } }
+@media (prefers-reduced-motion: reduce) { .flow { animation: none; } }

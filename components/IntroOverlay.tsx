@@ -51,7 +51,7 @@ export default function IntroOverlay() {
               </span>
               <span>SYS_BOOTSTRAP // SYSTEM CLEARANCE</span>
             </div>
-            <h2 className="text-2xl md:text-3xl font-semibold mt-2 font-display text-white">{profile.name} control room</h2>
+            <h2 className="text-2xl md:text-3xl font-mono mt-2 text-muted">{profile.name} control room</h2>
             <p className="text-sm text-muted mt-3">
               This portfolio is presented like a <strong>mission control room</strong>. <em>Mission Debrief</em> is the overview; <em>Missions</em> and <em>Operations</em> mirror projects and sub-projects; telemetry highlights the current systems focus.
             </p>

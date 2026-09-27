@@ -10,7 +10,7 @@ export default function Showcase() {
           <h1 className="text-4xl font-bold tracking-tight mb-2">Architectural SVGs (Final Polish)</h1>
           <p className="text-slate-400 font-mono text-sm">M1, M4, and M5 are locked. M2 integrates satellite/tiles into the flat 2D schematic style.</p>
         </div>
-        <Link href="/projects" className="text-teal-400 font-mono text-sm hover:underline">[ Return to Projects ]</Link>
+        <Link href="/career-ops" className="text-teal-400 font-mono text-sm hover:underline">[ Return to Career Ops ]</Link>
       </div>
       
       {/* ========================================= M1: AIRBUS ELECTRIC CENTER ========================================= */}

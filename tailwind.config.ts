@@ -28,7 +28,8 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-inter)'],
         display: ['var(--font-spacegrotesk)'],
-        mono: ['var(--font-jetbrains)']
+        mono: ['var(--font-jetbrains)'],
+        hand: ['var(--font-caveat)']
       },
       borderRadius: { '2xl': '1rem', '3xl': '1.25rem' },
       boxShadow: {

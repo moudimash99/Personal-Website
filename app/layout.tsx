@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import { Inter, Space_Grotesk, JetBrains_Mono } from 'next/font/google'
+import { Inter, Space_Grotesk, JetBrains_Mono, Caveat } from 'next/font/google'
 import { profile } from '@/data/profile'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const space = Space_Grotesk({ subsets: ['latin'], variable: '--font-spacegrotesk' })
 const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains' })
+const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' })
 
 export const metadata: Metadata = {
   title: `${profile.name} | ${profile.headline}`,
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={[inter.variable, space.variable, jetbrains.variable].join(' ')}>
+    <html lang="en" className={[inter.variable, space.variable, jetbrains.variable, caveat.variable].join(' ')}>
       <body className="min-h-screen bg-base text-foreground antialiased">
         <div className="pointer-events-none fixed inset-0 -z-10">
           {/* <div className="absolute inset-0 bg-grid opacity-20" />

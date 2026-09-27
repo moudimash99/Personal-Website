@@ -33,7 +33,7 @@ export default function Page() {
       <motion.div style={{ y: yText }} className="relative z-10 w-full flex flex-col items-center justify-center min-h-screen px-6 pointer-events-none text-center pt-24">
         <motion.p 
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 3 }}
-          className="text-[10px] sm:text-xs font-mono text-emerald-400/80 tracking-widest md:tracking-[0.5em] uppercase mb-8"
+          className="text-[10px] sm:text-xs font-mono text-muted tracking-widest md:tracking-[0.5em] uppercase mb-8"
         >
           {profile.name} // {profile.title}
         </motion.p>
@@ -117,8 +117,8 @@ export default function Page() {
           transition={{ delay: 0.3, duration: 1 }}
           className="flex flex-wrap justify-center gap-4 mt-16 pointer-events-auto"
         >
-          <Button href="/projects">
-            Proceed to Projects <ArrowRight className="ml-2 h-4 w-4" />
+          <Button href="/career-ops">
+            Proceed to Career Ops <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
           <Button href={profile.cvUrl} variant="outline" newTab>
             <Download className="mr-2 h-4 w-4" /> Download CV
