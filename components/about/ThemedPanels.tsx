@@ -294,7 +294,7 @@ function Staff({ tile, name, title, detail, focus }: { tile: AboutTile, name: st
         role="img"
         aria-label={name}
         className="mx-auto h-16 w-16 rounded-full border-[3px] border-[#f5b942] bg-no-repeat"
-        style={{ backgroundImage: `url(${tile.image})`, backgroundSize: '500% auto', backgroundPosition: focus }}
+        style={{ backgroundImage: `url(${tile.image})`, backgroundSize: '600% auto', backgroundPosition: focus }}
       />
       <p className="mt-2 font-display text-lg font-bold text-foreground">{name}</p>
       <p className="text-[13px] text-accent-300">{title}</p>
@@ -321,8 +321,8 @@ function OrgChart({ tile }: { tile: AboutTile }) {
       <div className="flex w-full justify-between px-[25%]"><Line className="h-5 w-[2px]" /><Line className="h-5 w-[2px]" /></div>
       <Pop i={1} className="w-full">
         <div className="flex gap-4">
-          <Staff tile={tile} name="Simba" title={testing.replace(/s$/, '')} detail={fact(tile, 'Simba')} focus="69% 51%" />
-          <Staff tile={tile} name="Nala" title={distraction.replace(/s$/, '')} detail={fact(tile, 'Nala')} focus="34% 55%" />
+          <Staff tile={tile} name="Simba" title={testing.replace(/s$/, '')} detail={fact(tile, 'Simba')} focus="71% 33%" />
+          <Staff tile={tile} name="Nala" title={distraction.replace(/s$/, '')} detail={fact(tile, 'Nala')} focus="46% 32%" />
         </div>
       </Pop>
       <Line className="h-6 w-[2px]" />

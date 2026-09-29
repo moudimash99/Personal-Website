@@ -47,9 +47,20 @@ export default function ContactPage() {
                   </div>
                 </div>
               </Panel>
-              <Panel><div className="p-5"><h3 className="text-lg font-semibold pb-2 font-display">Quick Contact</h3>
-                <a href="mailto:machaka.mohammad@gmail.com?subject=Hello%20Mohammad%20—%20Mission%20Debrief"><Button className="w-full">Email Me <Mail className="ml-2 h-4 w-4" /></Button></a>
-              </div></Panel>
+              <Panel>
+                <div className="p-5 flex flex-col justify-between h-full">
+                  <div>
+                    <h3 className="text-lg font-semibold pb-2 font-display">Schedule a Call</h3>
+                    <p className="text-xs text-muted mb-4">Book a 30-minute 1-on-1 intro or mission debrief on my calendar.</p>
+                  </div>
+                  <div className="space-y-2.5">
+                    <Button href="/book" className="w-full">Book 30 Mins</Button>
+                    <a href="mailto:machaka.mohammad@gmail.com?subject=Hello%20Mohammad%20—%20Mission%20Debrief">
+                      <Button variant="outline" className="w-full">Email Me <Mail className="ml-2 h-4 w-4" /></Button>
+                    </a>
+                  </div>
+                </div>
+              </Panel>
             </div>
           </section>
         </Container>

@@ -1,19 +1,18 @@
 'use client'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Container from './Container'
 import Button from './Button'
 import { profile } from '@/data/profile'
+import { sitePages } from '@/data/site'
 
 export default function Footer() {
   const pathname = usePathname()
 
-  // Decide footer CTAs based on current route
-  const isHome = pathname === '/' || pathname === ''
-  const isCareer = pathname?.startsWith('/experience') || pathname?.startsWith('/projects')
-  const isAbout = pathname?.startsWith('/about-me')
-  const isSkunkworks = pathname?.startsWith('/skunkworks')
-  const isContact = pathname?.startsWith('/contact')
+  // Walk the pages in nav order: back to the previous page, on to the next one.
+  const path = pathname?.startsWith('/projects') ? '/experience' : pathname
+  const index = sitePages.findIndex(({ href }) => path?.startsWith(href))
+  const prev = index > 0 ? sitePages[index - 1] : { href: '/', label: 'Home' }
+  const next = sitePages[index + 1] ?? { href: '/', label: 'Home' }
 
   return (
     <footer className="border-t border-border/60 mt-16">
@@ -25,40 +24,8 @@ export default function Footer() {
           </p>
 
           <div className="flex flex-wrap gap-2">
-            {isHome && (
-              <>
-                <Button variant="outline" href="/experience">Experience</Button>
-                <Button href="/contact">Contact</Button>
-              </>
-            )}
-
-            {isAbout && (
-              <>
-                <Button variant="outline" href="/experience">Experience</Button>
-                <Button href="/skunkworks">Continue to Skunkworks</Button>
-              </>
-            )}
-
-            {isSkunkworks && (
-              <>
-                <Button variant="outline" href="/about-me">About Me</Button>
-                <Button href="/contact">Contact</Button>
-              </>
-            )}
-
-            {isCareer && (
-              <>
-                <Button variant="outline" href="/">Back to Debrief</Button>
-                <Button href="/contact">Continue to Contact</Button>
-              </>
-            )}
-
-            {isContact && (
-              <>
-                <Button variant="outline" href="/experience">Experience</Button>
-                <Button href="/">Back to Debrief</Button>
-              </>
-            )}
+            {index >= 0 && <Button variant="outline" href={prev.href}>{prev.label}</Button>}
+            <Button href={next.href}>{index === -1 ? `Start with ${next.label}` : next.href === '/' ? 'Back to Home' : `Continue to ${next.label}`}</Button>
           </div>
         </div>
       </Container>

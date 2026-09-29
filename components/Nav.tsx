@@ -4,13 +4,7 @@ import { usePathname } from 'next/navigation'
 import Container from './Container'
 import { useEffect, useState } from 'react'
 import { profile } from '@/data/profile'
-
-const links = [
-  { href: '/about-me', label: 'About Me' },
-  { href: '/skunkworks', label: 'Skunkworks' },
-  { href: '/experience', label: 'Experience' },
-  { href: '/contact', label: 'Contact' },
-]
+import { sitePages } from '@/data/site'
 
 export default function Nav() {
   const pathname = usePathname()
@@ -28,13 +22,14 @@ export default function Nav() {
         <div className="h-12 flex items-center gap-3 sm:gap-4">
           <Link href="/" aria-label={profile.name} className="font-display font-bold text-lg tracking-tight text-foreground hover:text-accent-300 transition-colors">MM</Link>
           <nav className="flex items-center h-full overflow-x-auto no-scrollbar text-xs sm:text-sm font-medium">
-            {links.map(({ href, label }) => {
+            {sitePages.map(({ href, label, blurb }) => {
               const active = pathname?.startsWith(href)
               return (
                 <div key={href} className="flex items-center h-full">
                   <span aria-hidden className="h-4 w-px bg-border mr-3 sm:mr-4" />
                   <Link
                     href={href}
+                    title={blurb}
                     aria-current={active ? 'page' : undefined}
                     className={`relative h-full flex items-center whitespace-nowrap mr-3 sm:mr-4 transition-colors ${active ? 'text-foreground' : 'text-muted hover:text-accent-300'}`}
                   >

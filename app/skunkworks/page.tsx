@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import Image from 'next/image'
+import CopyLink from '@/components/CopyLink'
 import { Github, Lock } from 'lucide-react'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
@@ -250,7 +251,7 @@ export default function SkunkworksPage() {
 
           <div className="space-y-6">
             {skunkworks.map(project => (
-              <article key={project.id} className="overflow-hidden rounded-3xl border border-border bg-surface shadow-card">
+              <article key={project.id} id={project.id} className="deep-link overflow-hidden rounded-3xl border border-border bg-surface shadow-card">
                 <div className="relative aspect-[16/8] sm:aspect-[16/5] border-b border-border">
                   <Image src={project.banner} alt="" fill unoptimized className="object-cover" />
                 </div>
@@ -258,9 +259,12 @@ export default function SkunkworksPage() {
                 {/* Header */}
                 <header className="flex flex-wrap items-start justify-between gap-3">
                   <h2 className="font-display font-bold uppercase tracking-tight text-2xl md:text-3xl text-foreground">{project.title}</h2>
-                  <span className={`shrink-0 rounded-md border px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider ${statusStyles[project.status.tone]}`}>
-                    {project.status.label}
-                  </span>
+                  <div className="flex shrink-0 items-center gap-2">
+                    <span className={`rounded-md border px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider ${statusStyles[project.status.tone]}`}>
+                      {project.status.label}
+                    </span>
+                    <CopyLink anchor={project.id} label="Copy link to this project" />
+                  </div>
                 </header>
 
                 {/* Stack */}

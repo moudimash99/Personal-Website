@@ -8,6 +8,7 @@ export const profile = {
   linkedinLabel: 'Mohammad Machaka',
   linkedinUrl: 'https://linkedin.com/in/mohammad-machaka-a63685172',
   cvUrl: '/cv.pdf',
+  calUrl: 'https://calendly.com/machaka-mohammad/30min',
   introLines: [
     'Systems-minded software and cloud engineer transitioning into Systems Engineering through the ISAE-SUPAERO Mastère Spécialisé SEN (2025-2026), with AWS Certified Solutions Architect Associate (SAA-C03) credentials.',
     'I design and evolve data-intensive, real-time platforms with clear interfaces, measurable SLOs, and strong observability, bridging MBSE thinking with hands-on delivery across AWS, Kubernetes, Terraform, and C++, Python, and TypeScript stacks.',

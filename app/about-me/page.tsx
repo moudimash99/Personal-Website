@@ -9,6 +9,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { aboutTiles, AboutTile, hero, commonThread } from '@/data/about'
 import ThemedBody from '@/components/about/ThemedPanels'
+import CopyLink from '@/components/CopyLink'
 
 /* Grid placement per tile (hero is rendered separately) */
 const span: Record<string, string> = {
@@ -99,7 +100,8 @@ function DetailPanel({ tile, onClose }: { tile: AboutTile, onClose: () => void }
           transition={{ delay: 0.12 }}
           className="p-6 md:p-8"
         >
-          <h2 id={`dlg-${tile.id}`} className="pr-12 font-display font-bold uppercase tracking-tight text-3xl text-foreground">{tile.title}</h2>
+          <CopyLink anchor={tile.id} label="Copy link to this card" className="absolute top-5 right-16 z-10" />
+          <h2 id={`dlg-${tile.id}`} className="pr-28 font-display font-bold uppercase tracking-tight text-3xl text-foreground">{tile.title}</h2>
           <p className="mt-1 font-hand text-2xl leading-tight text-accent-300">{tile.tagline}</p>
 
           <div className="mt-8">
@@ -114,12 +116,21 @@ function DetailPanel({ tile, onClose }: { tile: AboutTile, onClose: () => void }
 export default function AboutMePage() {
   const [openId, setOpenId] = useState<string | null>(null)
   const open = aboutTiles.find(t => t.id === openId)
-  const close = useCallback(() => setOpenId(null), [])
+  // The open card lives in the URL (/about-me#tennis) so it can be shared; ?open=tennis still works for older links.
+  const show = useCallback((id: string | null) => {
+    setOpenId(id)
+    history.replaceState(null, '', id ? `#${id}` : window.location.pathname)
+  }, [])
+  const close = useCallback(() => show(null), [show])
 
-  // Deep link: /about-me?open=tennis opens that card on load.
   useEffect(() => {
-    const id = new URLSearchParams(window.location.search).get('open')
-    if (id && aboutTiles.some(t => t.id === id)) setOpenId(id)
+    const fromUrl = () => {
+      const id = window.location.hash.slice(1) || new URLSearchParams(window.location.search).get('open')
+      setOpenId(id && aboutTiles.some(t => t.id === id) ? id : null)
+    }
+    fromUrl()
+    window.addEventListener('hashchange', fromUrl)
+    return () => window.removeEventListener('hashchange', fromUrl)
   }, [])
 
   return (
@@ -140,7 +151,7 @@ export default function AboutMePage() {
             </div>
 
             {aboutTiles.map(tile => (
-              <Tile key={tile.id} tile={tile} onOpen={() => setOpenId(tile.id)} />
+              <Tile key={tile.id} tile={tile} onOpen={() => show(tile.id)} />
             ))}
 
             {/* The common thread */}

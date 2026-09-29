@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Inter, Space_Grotesk, JetBrains_Mono, Caveat } from 'next/font/google'
 import { profile } from '@/data/profile'
+import RefBeacon from '@/components/RefBeacon'
+import HashScroll from '@/components/HashScroll'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const space = Space_Grotesk({ subsets: ['latin'], variable: '--font-spacegrotesk' })
@@ -24,6 +26,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
         <div className="grain" />
         {children}
+        <RefBeacon />
+        <HashScroll />
       </body>
     </html>
   )

@@ -11,6 +11,7 @@ import Starfield from '@/components/Starfield'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { profile, credentials } from './data/profile'
+import { sitePages } from '@/data/site'
 
 export default function Page() {
   const containerRef = useRef(null)
@@ -105,6 +106,37 @@ export default function Page() {
                 <h4 className="text-sm font-bold text-white tracking-wide">{cred.name}</h4>
                 <p className="text-[9px] text-emerald-400/80 uppercase tracking-widest mt-1">{cred.subtitle}</p>
               </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Site guide: what each page holds, in nav order */}
+        <h3 className="text-[10px] font-mono text-white/40 uppercase tracking-[0.4em] mt-24 mb-12 text-center border-b border-white/10 pb-4">
+          What&apos;s on this site
+        </h3>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          {sitePages.map((page, i) => (
+            <motion.div
+              key={page.href}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: i * 0.1, duration: 0.8 }}
+            >
+              <Link
+                href={page.href}
+                className="group flex h-full gap-4 bg-white/[0.03] backdrop-blur-md border border-white/10 p-6 rounded-2xl hover:bg-white/[0.08] hover:border-emerald-500/40 transition-all"
+              >
+                <span className="font-mono text-xs text-emerald-400/80 pt-1">0{i + 1}</span>
+                <div className="flex-1">
+                  <h4 className="flex items-center text-base font-bold text-white tracking-wide">
+                    {page.label}
+                    <ArrowRight className="ml-2 h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-emerald-400" />
+                  </h4>
+                  <p className="mt-1 text-sm text-slate-400 leading-relaxed">{page.blurb}</p>
+                </div>
+              </Link>
             </motion.div>
           ))}
         </div>

@@ -21,14 +21,14 @@ export const skunkworks: SkunkworksProject[] = [
     status: { label: 'Active Development', tone: 'active' },
     stack: ['Node.js', 'Multi-Agent', 'agy + Claude Sonnet', 'Playwright MCP'],
     repos: [{ name: 'career-ops', label: 'my fork' }],
-    catalyst: 'Job hunting is the same application form, filled in by hand, dozens of times a week.',
+    catalyst: 'Filling out identical job application forms dozens of times a week by hand is inefficient and error-prone.',
     architecture:
-      'Built on my fork of the open-source career-ops. An orchestrator hands each job to a fresh AI agent session with one self-contained instruction sheet. The agent claims the posting, writes the CV and cover letter from one packed context, and fills in the real form in a browser it drives itself. When the primary agent (agy) runs out of quota, Claude Sonnet takes over the same job mid-night and hands back once agy resets. A claim lock and a recording guard make sure nothing is applied to twice or logged as sent when it was not.',
+      'Built on a custom fork of career-ops. An orchestrator assigns job leads to isolated AI agent sessions with standardized instructions. The agent parses the posting, synthesizes a tailored CV and cover letter from structured profile context, and completes form submissions via browser automation. If the primary model hits rate limits, a fallback agent seamlessly resumes the session. Claim locks and transaction guards ensure zero duplicate submissions.',
   },
   {
     id: 'cat-feeders',
     title: 'Selective Cat Feeders',
-    banner: '/images/skunkworks/cat-feeders.svg',
+    banner: '/images/skunkworks/cat-feeders.webp',
     status: { label: 'Active Deployment', tone: 'active' },
     stack: ['C++', 'ESP32', 'Load Cells', 'CV Pipeline'],
     repos: [
@@ -36,9 +36,9 @@ export const skunkworks: SkunkworksProject[] = [
       { name: 'Cat-Camera', label: 'CV pipeline', private: true },
       { name: 'Cat-Weight', label: 'growth charts' },
     ],
-    catalyst: 'Preventing pet food theft: one cat finishing both bowls while the other goes hungry.',
+    catalyst: 'Two Maine Coons with different dietary needs—where one kept clearing both bowls before the other could eat.',
     architecture:
-      'Load cells track bowl weight in real time, an ESP32 microcontroller drives the feeder, and a tailored computer-vision pipeline fed by a Tapo camera recognizes which cat is at the bowl before it opens.',
+      'Precision load cells monitor bowl weight continuously, while an ESP32 microcontroller controls servo-driven food bay doors. A low-latency computer-vision pipeline running on a local Tapo camera feed identifies which cat is approaching and only unlatches the corresponding bowl.',
   },
   {
     id: 'okkazeo-scraper',
@@ -47,9 +47,9 @@ export const skunkworks: SkunkworksProject[] = [
     status: { label: 'Active Script', tone: 'active' },
     stack: ['Python', 'Selenium', 'SQLite', 'LLM Review'],
     repos: [{ name: 'BoardGameFinder', label: 'deal finder', private: true }],
-    catalyst: 'Hunting for board game expansion bundles without manually refreshing the marketplace.',
+    catalyst: 'Tracking down rare board game bundles and expansions across second-hand listings without manual daily refreshes.',
     architecture:
-      'A daily pipeline picks games from the BGG charts, scrapes their Okkazeo second-hand listings into a price-history database, and scores each one against the game’s normalised median price. Bundles and special editions, which arithmetic can’t price, go to an LLM for review, and the deals land in a Gmail report.',
+      'A daily automated pipeline cross-references BoardGameGeek top lists against second-hand listings on Okkazeo, recording historical pricing into SQLite. Listings are benchmarked against normalized market medians, while complex bundles and custom editions are passed to an LLM evaluator to score deal viability before sending an email digest.',
   },
   {
     id: 'boardxplorer',
@@ -58,9 +58,9 @@ export const skunkworks: SkunkworksProject[] = [
     status: { label: 'Self-Hosted', tone: 'active' },
     stack: ['Python', 'Django', 'BGG API', 'Docker'],
     repos: [{ name: 'BoardXplorer', label: 'web app', private: true }],
-    catalyst: 'Staring at a full shelf with friends over and still not knowing which game fits tonight’s group and time.',
+    catalyst: 'Overcoming decision paralysis when picking the right game for a specific group size and time slot from a large collection.',
     architecture:
-      'A Django app that pulls a BoardGameGeek collection and ranks it for the player count and time on hand. Each game’s quality blends a log-scaled BGG rank with its rating, then gets multiplied by a playability gate built from BGG’s community player-count votes. A cache plus a circuit breaker with escalating cooldowns keeps it within BGG’s rate limits.',
+      'A Django application that syncs a user’s BoardGameGeek library and ranks titles dynamically. The ranking algorithm balances logarithmic BGG rankings, community consensus on optimal player counts, and session duration constraints. Implements caching and circuit breakers with exponential backoff to respect BGG API rate limits.',
   },
   {
     id: 'unmatched-matchmaker',
@@ -72,8 +72,8 @@ export const skunkworks: SkunkworksProject[] = [
       { name: 'unmatched_matcher', label: 'matchmaker' },
       { name: 'Unmatched-Tournament', label: 'tournament app' },
     ],
-    catalyst: 'Picking an Unmatched matchup from the heroes we own that is both fun to play and not a one-sided stomp.',
+    catalyst: 'Picking balanced, competitive matchups from an owned set of Unmatched fighters rather than lopsided counter-picks.',
     architecture:
-      'A Flask app over community win-rate data. The matchup engine pre-computes which fighters are fair against each other (40–60% win rate), scores every pairing on how well both fighters fit the requested play style and range, and blends fit with fairness. Modes shift that balance toward discovery or strict fairness.',
+      'A Flask microservice built on tournament and community match logs. It isolates balanced pairings (40–60% empirical win rates) and weights fighter archetypes against desired playstyles (attrition, melee, ranged, mobility). Allows switching between high-fairness and exploration-focused match suggestions.',
   },
 ]

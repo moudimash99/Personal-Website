@@ -65,3 +65,11 @@ html, body {
 .flow { stroke-dasharray: 4 6; animation: flow-dash 0.9s linear infinite; }
 @keyframes flow-dash { to { stroke-dashoffset: -20; } }
 @media (prefers-reduced-motion: reduce) { .flow { animation: none; } }
+
+/* Deep links (/experience#murex, /skunkworks#cat-feeders): clear the fixed nav and flash the card that was linked */
+.deep-link { scroll-margin-top: 5rem; }
+[data-linked] { animation: linked-flash 2.4s ease-out 1; }
+@keyframes linked-flash {
+  0%, 35% { box-shadow: 0 0 0 2px rgba(45, 212, 191, .8), 0 0 40px rgba(45, 212, 191, .25); }
+  100% { box-shadow: 0 0 0 2px rgba(45, 212, 191, 0), 0 0 40px rgba(45, 212, 191, 0); }
+}

@@ -10,6 +10,8 @@ import { missions } from '@/data/missions'
 import { motion } from 'framer-motion'
 import { CheckCircle2, Radio, ArrowRight } from 'lucide-react'
 import { ReactNode } from 'react'
+import CopyLink from '@/components/CopyLink'
+import { operationAnchor } from '@/lib/deepLinks'
 
 /* ── SVG animations mapped by mission id ── */
 const missionGraphics: Record<string, ReactNode> = {
@@ -367,11 +369,12 @@ export default function ProjectsPage() {
             {missions.map((mission, idx) => (
               <motion.div
                 key={mission.id}
+                id={mission.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: idx * 0.08, duration: 0.5 }}
-                className="glass p-8 md:p-10 relative overflow-hidden group hover:shadow-[0_0_30px_rgba(20,184,166,0.1)] transition-all duration-500"
+                className="deep-link glass p-8 md:p-10 relative overflow-hidden group hover:shadow-[0_0_30px_rgba(20,184,166,0.1)] transition-all duration-500"
               >
                 {/* Hover glow */}
                 <div className="absolute inset-0 bg-gradient-to-br from-teal-500/0 via-transparent to-teal-500/0 group-hover:from-teal-500/5 transition-all duration-700 pointer-events-none" />
@@ -402,13 +405,14 @@ export default function ProjectsPage() {
                   {/* Mission identity header */}
                   <header className="mb-8 border-b border-white/5 pb-6">
                     <div className="flex items-center gap-4">
-                      <div className="p-3 bg-white/5 rounded-xl border border-white/10 text-teal-400">
+                      <div className="shrink-0 p-3 bg-white/5 rounded-xl border border-white/10 text-teal-400">
                         <mission.icon className="h-6 w-6" />
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold font-display text-white">{mission.title}</h3>
                         <p className="text-sm font-mono text-teal-400/80 mt-1">{mission.meta}</p>
                       </div>
+                      <CopyLink anchor={mission.id} label="Copy link to this role" className="ml-auto self-start" />
                     </div>
                     <p className="mt-6 text-foreground/80 leading-relaxed max-w-4xl">{mission.profile}</p>
 
@@ -428,9 +432,10 @@ export default function ProjectsPage() {
                   {/* Operations grid */}
                   <div className="grid md:grid-cols-2 gap-8">
                     {mission.operations.map((op, opIdx) => (
-                      <div key={opIdx} className="bg-black/30 rounded-xl p-6 border border-white/5 hover:border-white/10 transition-colors">
-                        <div className="mb-4">
+                      <div key={opIdx} id={operationAnchor(mission.id, op.name)} className="deep-link bg-black/30 rounded-xl p-6 border border-white/5 hover:border-white/10 transition-colors">
+                        <div className="mb-4 flex items-start justify-between gap-3">
                           <h4 className="text-lg font-medium text-white/90 leading-tight">{op.name}</h4>
+                          <CopyLink anchor={operationAnchor(mission.id, op.name)} label="Copy link to this project" className="shrink-0" />
                         </div>
                         <p className="text-sm text-muted mb-5">{op.objective}</p>
 
