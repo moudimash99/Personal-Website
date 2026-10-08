@@ -146,7 +146,7 @@ export default async function LinksAdmin({ searchParams }: { searchParams: { key
                     {[...events].reverse().map((e, i) => (
                       <tr key={i} className={`border-t border-white/5 ${e.bot ? 'opacity-50' : ''}`}>
                         <td className="py-1 pr-4 whitespace-nowrap">{fmt(e.t)}</td>
-                        <td className="pr-4">{e.type === 'open' ? (e.bot ? 'open (bot/preview)' : 'open') : `view ${e.path}`}</td>
+                        <td className="pr-4">{e.type === 'open' ? `${e.bot ? 'open (bot/preview)' : 'open'}${e.path ? ` → ${e.path}` : ''}` : `view ${e.path}`}</td>
                         <td className="pr-4 font-mono">{e.visitor}</td>
                         <td className="pr-4 whitespace-nowrap">{deviceOf(e)}{e.viewport ? ` · ${e.viewport}` : ''}</td>
                         <td className="truncate max-w-[28rem]" title={e.ua}>{e.ua || '—'}{e.lang ? ` · ${e.lang}` : ''}</td>
