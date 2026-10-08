@@ -18,14 +18,14 @@ export type AboutTile = {
 
 export const hero = {
   title: 'Outside of work',
-  outsideWork: 'A mix of building things, learning new crafts, and letting curiosity take the lead.',
-  explainer: 'When I step away from work, I usually end up at a workbench or across a game table. Here are the hobbies, side obsessions, and two cats that fill the rest of my time.',
+  outsideWork: 'Usually making something, playing something, or spending time with the cats.',
+  explainer: 'I like having things to do away from a screen, although some of my hobbies bring me straight back to one. Here’s a little of what I get up to outside work.',
 }
 
 export const commonThread = {
-  intro: 'I like taking things apart, understanding how they work, and then making them my own.',
-  whetherIts: 'A drone, a keyboard, a 3D print, a board game, or a feeder for two very demanding cats.',
-  pattern: ['Curiosity', 'Tinkering', 'Overengineering', 'Somehow It Works'],
+  intro: 'I enjoy figuring things out, trying them myself, and making small changes until they feel right.',
+  whetherIts: 'That might mean building a keyboard, printing a useful part, learning a board game, or working on a feeder for Simba and Nala.',
+  pattern: ['Get curious', 'Give it a try', 'Make a few changes', 'Try again'],
 }
 
 export const aboutTiles: AboutTile[] = [
@@ -34,7 +34,7 @@ export const aboutTiles: AboutTile[] = [
     image: '/images/about/fabrication.svg',
     caption: 'fresh off the A1',
     title: '3D Printing & Making',
-    tagline: 'Designed on screen, holding it in physical form a few hours later.',
+    tagline: 'Useful little fixes, board game inserts, and the occasional bigger project.',
     facts: [
       { label: 'Current workhorse', value: 'Bambu Lab A1' },
       { label: 'Former workhorse', value: 'Longer LK4 Pro 🥴' },
@@ -44,16 +44,16 @@ export const aboutTiles: AboutTile[] = [
         label: 'What I print',
         items: [
           'Board game organizers & inserts',
-          'Functional home & workshop brackets',
+          'Brackets for the home and workshop',
           'Custom drone & camera mounts',
           'Miniature models for May to paint',
-          'Bespoke hardware replacement parts',
+          'Replacement parts that are hard to find',
         ],
       },
     ],
     notes: [
-      { label: 'Favorite part', text: 'Taking an idea from CAD measurements to a functional, tangible part on the same afternoon.' },
-      { label: 'Next big build', text: 'A fully 3D-printed jet engine cutaway model.' },
+      { label: 'Favorite part', text: 'Drawing a part, printing it, and seeing it fit where it’s supposed to. Especially when it solves a small everyday annoyance.' },
+      { label: 'Next big build', text: 'A 3D-printed jet engine cutaway model.' },
     ],
   },
   {
@@ -61,7 +61,7 @@ export const aboutTiles: AboutTile[] = [
     image: '/images/about/tennis.svg',
     caption: 'TOEC Purpan',
     title: 'Tennis',
-    tagline: 'Footwork, clean timing, and the endless pursuit of repeatable mechanics.',
+    tagline: 'Still learning, and always happy to get on court.',
     facts: [
       { label: 'Level', value: 'Beginner' },
       { label: 'Home court', value: 'TOEC Tennis Purpan' },
@@ -71,22 +71,22 @@ export const aboutTiles: AboutTile[] = [
       { label: 'Player inspirations', items: ['Carlos Alcaraz — explosive court coverage', 'Rafael Nadal — relentless topspin & discipline'] },
     ],
     notes: [
-      { label: 'Current goal', text: 'Building consistent depth from the baseline and trusting the one-handed backhand under pressure.' },
+      { label: 'Current goal', text: 'Keeping my shots consistent and getting more comfortable with a two-handed backhand.' },
     ],
-    cta: 'Always happy to play a local match.',
+    cta: 'Up for a hit if you’re around Toulouse.',
   },
   {
     id: 'fpv',
     image: '/images/about/fpv.svg',
     caption: 'the fleet',
     title: 'Micro FPV',
-    tagline: 'Sub-250g acrobatics, soldering irons, and flying by video feed.',
+    tagline: 'Small drones, a view through the goggles, and plenty of tinkering.',
     facts: [
       { label: 'The fleet', value: '2× Meteor65 + 1× custom 250 g build' },
     ],
     notes: [
-      { label: 'Current challenge', text: 'Smooth proximity lines and committing to vertical building dives.' },
-      { label: 'Favorite part', text: 'It’s pure real-time physics and muscle memory—where split-second stick adjustments make or break a line.' },
+      { label: 'Current challenge', text: 'Getting smoother when flying close to obstacles and more confident with dives.' },
+      { label: 'Favorite part', text: 'The feeling of flying through the goggles, and how much difference a tiny movement of the sticks can make.' },
     ],
   },
   {
@@ -94,7 +94,7 @@ export const aboutTiles: AboutTile[] = [
     image: '/images/about/keyboards.svg',
     caption: 'Lily58 + Sofle',
     title: 'Mechanical Keyboards',
-    tagline: 'Split ergo boards, custom ZMK layers, and clean soldering.',
+    tagline: 'Building keyboards and making the layout work for me.',
     facts: [
       { label: 'The rotation', value: 'Lily58 + custom Sofle' },
       { label: 'Firmware', value: 'ZMK' },
@@ -104,7 +104,7 @@ export const aboutTiles: AboutTile[] = [
       { label: 'Switches', items: ['Holy Pandas', 'Cherry MX Browns', 'Cherry MX Reds', 'Cherry MX Blues'] },
     ],
     notes: [
-      { label: 'Why split keyboards', text: 'Better wrist posture and thumb clusters that put Enter, Backspace, and layers where fingers naturally rest.' },
+      { label: 'Why split keyboards', text: 'I can position each half comfortably and put keys like Enter and Backspace within easy reach of my thumbs. Then comes all the experimenting with layers.' },
     ],
   },
   {
@@ -112,7 +112,7 @@ export const aboutTiles: AboutTile[] = [
     image: '/images/about/tabletop.svg',
     caption: 'game night',
     title: 'Tabletop Games',
-    tagline: 'Heavy strategy, asymmetric factions, and tight economic engines.',
+    tagline: 'A good game, good company, and a plan that probably won’t survive the next turn.',
     facts: [
       { label: 'Current obsession', value: 'Galactic Cruise' },
     ],
@@ -120,7 +120,7 @@ export const aboutTiles: AboutTile[] = [
       { label: 'All-time favorites', items: ['War of the Ring', 'Spirit Island', 'Ark Nova', 'Root', 'Pandemic Legacy: Season 1'] },
     ],
     notes: [
-      { label: 'Favorite part', text: 'Designing multi-turn engine builds and having to adapt on the fly when the board state shifts.' },
+      { label: 'Favorite part', text: 'Working out a plan, watching what everyone else is doing, and deciding when to change course. I especially enjoy games that give you plenty to think about.' },
     ],
     cta: 'Always happy to talk board games.',
   },
@@ -129,7 +129,7 @@ export const aboutTiles: AboutTile[] = [
     image: '/images/about/cats.webp',
     caption: 'Simba & Nala',
     title: 'The Cats',
-    tagline: 'Simba & Nala: two Maine Coons with plenty to say.',
+    tagline: 'Simba and Nala, our Maine Coon siblings.',
     facts: [
       { label: 'Breed', value: 'Maine Coon' },
       { label: 'Born', value: 'August 2025' },
@@ -140,7 +140,7 @@ export const aboutTiles: AboutTile[] = [
       { label: 'Official job titles', items: ['Desk Supervisors', 'Cable Quality Inspectors', 'Hardware Stress Testers'] },
     ],
     notes: [
-      { label: 'Engineering impact', text: 'The direct inspiration behind custom selective RFID/CV feeders and pet-proofing 3D prints.' },
+      { label: 'Projects they inspired', text: 'They’ve given me a reason to work on feeders that recognise each cat, along with a few 3D prints to make things more cat-proof.' },
     ],
   },
 ]
