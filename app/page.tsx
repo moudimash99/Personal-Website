@@ -150,7 +150,7 @@ export default function Page() {
           className="flex flex-wrap justify-center gap-4 mt-16 pointer-events-auto"
         >
           <Button href="/experience">
-            View Experience <ArrowRight className="ml-2 h-4 w-4" />
+            Start with my experience <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
           <Button href={profile.cvUrl} variant="outline" newTab>
             <Download className="mr-2 h-4 w-4" /> Download CV

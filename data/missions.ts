@@ -8,7 +8,7 @@ export const missions = [
     title: 'Mission I — Airbus Operations (Electric Center)',
     meta: 'Systems Engineering & Quality Intern • Apr 2026 – Nov 2026 • Toulouse',
     profile:
-      'Supporting Non-Conformance (NC) reduction and Cost of Non-Quality (CoNQ) optimization by centralizing quality data in Skywise, categorizing recurring defects, and structuring weekly multi-functional team corrective action reviews.',
+      'Reducing Non-Conformances (NC) and the Cost of Non-Quality (CoNQ): centralizing quality data in Skywise, grouping recurring defects, and using what they cost to decide which ones to go after first.',
     icon: Plane,
     techStack: [
       { name: 'Palantir Foundry', icon: SiPalantir },
@@ -37,20 +37,20 @@ export const missions = [
       },
       {
         code: 'AEC2',
-        name: 'MFT governance & 3-level CoNQ model',
-        objective: 'Standardize corrective action tracking and model multi-level cost of non-quality drivers.',
+        name: 'Cost of Non-Quality model',
+        objective: 'Put a cost on every defect, so the team knows where to look first.',
         did: [
-          'Designed the standardized framework for weekly Multi-Functional Team (MFT) reviews between quality leads and shop-floor operators.',
-          'Structured problem ownership, action item deadlines, and continuous improvement verification loops.',
-          'Developed a three-level Cost of Non-Quality (CoNQ) model pairing high-level KPIs with root-cause quality-loss drivers.',
+          'Built a three-level Cost of Non-Quality (CoNQ) model that goes from the top-level KPI down to the defects driving it.',
+          'Used the cost of each defect family to show where the biggest losses are and which defects to target first.',
+          'Gave the team a clear order of priority for corrective actions, instead of treating every defect the same.',
         ],
         telemetry: [
-          { label: 'Cadence', value: 'weekly MFT reviews' },
           { label: 'Framework', value: '3-level CoNQ model' },
-          { label: 'Traceability', value: 'defect to resolution' },
+          { label: 'Output', value: 'defects ranked by cost' },
+          { label: 'Used for', value: 'deciding where to act first' },
         ],
-        before: 'Slow ad-hoc escalation without closed-loop tracking',
-        after: 'Standardized MFT reviews & structured CoNQ metrics',
+        before: 'Defects handled one by one, with no view of what they cost',
+        after: 'A clear view of which defects cost the most',
       },
     ],
   },

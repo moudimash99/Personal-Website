@@ -10,7 +10,6 @@ import { missions } from '@/data/missions'
 import { motion } from 'framer-motion'
 import { CheckCircle2, Radio, ArrowRight } from 'lucide-react'
 import { ReactNode } from 'react'
-import CopyLink from '@/components/CopyLink'
 import { operationAnchor } from '@/lib/deepLinks'
 
 /* ── SVG animations mapped by mission id ── */
@@ -412,7 +411,6 @@ export default function ProjectsPage() {
                         <h3 className="text-2xl font-bold font-display text-white">{mission.title}</h3>
                         <p className="text-sm font-mono text-teal-400/80 mt-1">{mission.meta}</p>
                       </div>
-                      <CopyLink anchor={mission.id} label="Copy link to this role" className="ml-auto self-start" />
                     </div>
                     <p className="mt-6 text-foreground/80 leading-relaxed max-w-4xl">{mission.profile}</p>
 
@@ -433,10 +431,7 @@ export default function ProjectsPage() {
                   <div className="grid md:grid-cols-2 gap-8">
                     {mission.operations.map((op, opIdx) => (
                       <div key={opIdx} id={operationAnchor(mission.id, op.name)} className="deep-link bg-black/30 rounded-xl p-6 border border-white/5 hover:border-white/10 transition-colors">
-                        <div className="mb-4 flex items-start justify-between gap-3">
-                          <h4 className="text-lg font-medium text-white/90 leading-tight">{op.name}</h4>
-                          <CopyLink anchor={operationAnchor(mission.id, op.name)} label="Copy link to this project" className="shrink-0" />
-                        </div>
+                        <h4 className="mb-4 text-lg font-medium text-white/90 leading-tight">{op.name}</h4>
                         <p className="text-sm text-muted mb-5">{op.objective}</p>
 
                         <ul className="space-y-3 mb-6">

@@ -12,8 +12,8 @@ export const sitePages = [
   },
   {
     href: '/about-me',
-    label: 'About Me',
-    blurb: 'Life outside work: FPV drones, keyboards, tennis, board games, 3D printing and Simba & Nala.',
+    label: 'Beyond Work',
+    blurb: 'What I do for fun: 3D printing, tennis, FPV drones, keyboards, board games, and my two cats.',
   },
   {
     href: '/contact',

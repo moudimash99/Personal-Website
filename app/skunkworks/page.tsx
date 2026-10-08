@@ -1,15 +1,14 @@
 import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 import Image from 'next/image'
-import CopyLink from '@/components/CopyLink'
-import { Github, Lock } from 'lucide-react'
+import { ArrowUpRight, Github, Globe, Lock } from 'lucide-react'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { skunkworks, SkunkworksStatus } from '@/data/skunkworks'
 
 export const metadata: Metadata = {
   title: 'Skunkworks | MACHAKA Mohammad',
-  description: 'The engineering element: side projects in hardware, automation, and applied ML.',
+  description: 'Things I build for myself outside of work: hardware, automation and small tools.',
 }
 
 const statusStyles: Record<SkunkworksStatus, string> = {
@@ -88,37 +87,37 @@ const Pill = ({ tone, children }: { tone: 'ok' | 'warn' | 'no' | 'accent', child
   return <span className={`shrink-0 rounded-md border px-2 py-0.5 font-mono text-[10px] uppercase ${tones[tone]}`}>{children}</span>
 }
 
-/* Free Motion: the orchestrator, the two agent tiers, and what one fresh session does. */
+/* Free Motion: one agent per job, the fallback model, and what each agent does. */
 const NIGHT: ('agy' | 'sonnet')[] = ['agy', 'agy', 'agy', 'agy', 'agy', 'agy', 'agy', 'agy', 'sonnet', 'sonnet', 'sonnet', 'sonnet', 'agy', 'agy']
 
 const FreeMotionExample = () => (
   <Example
-    tag="one night · illustrative"
-    note="Every job runs in a fresh agent session reading one self-contained sheet, so one bad posting can't derail the rest of the night."
+    tag="one night of applications · illustrative"
+    note="Each job gets its own fresh agent, so one broken posting can't spoil the rest of the night."
   >
     <Box>
       <div className="flex items-center justify-between gap-2">
-        <span className="font-mono text-[11px] text-foreground">Orchestrator · run.sh</span>
-        <span className="font-mono text-[10px] text-muted">1 sheet per job</span>
+        <span className="font-mono text-[11px] text-foreground">{NIGHT.length} jobs tonight</span>
+        <span className="font-mono text-[10px] text-muted">one agent per job</span>
       </div>
-      <div className="mt-3 flex gap-1" aria-label="Jobs of the night, colored by the agent that drove them">
+      <div className="mt-3 flex gap-1" aria-label="Jobs of the night, colored by the agent that handled them">
         {NIGHT.map((d, i) => (
           <span key={i} className={`h-4 flex-1 rounded-[4px] ${d === 'agy' ? 'bg-accent-400' : 'bg-warn'}`} />
         ))}
       </div>
       <div className="mt-2 grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 font-mono text-[10px]">
-        <span className="text-muted"><span className="text-accent-300">■</span> tier 1 · agy agent</span><span className="text-muted">primary</span>
-        <span className="text-muted"><span className="text-warn">■</span> tier 2 · Claude Sonnet</span><span className="text-muted">takes over at quota</span>
+        <span className="text-muted"><span className="text-accent-300">■</span> agy agent</span><span className="text-muted">does most of the work</span>
+        <span className="text-muted"><span className="text-warn">■</span> Claude Sonnet</span><span className="text-muted">steps in when agy runs out</span>
       </div>
-      <p className="mt-2 text-[12px] text-muted">agy hits its quota mid-job: Sonnet reruns <em>that same job</em>, drives until agy's reset time, then hands back.</p>
+      <p className="mt-2 text-[12px] text-muted">When agy hits its quota in the middle of a job, Sonnet redoes that job and carries on until agy is available again.</p>
     </Box>
-    <Step>inside one session</Step>
+    <Step>what each agent does</Step>
     <Box className="space-y-2">
       {[
-        ['Claim', 'lock the posting first, so it is never applied to twice'],
-        ['Write', 'CV + letter from one packed context (~50k tokens, not 1–3.5M)'],
-        ['Apply', 'fill the real form in a browser it drives itself'],
-        ['Record', 'guard accepts only tonight’s URLs and real successes'],
+        ['Claim', 'marks the job as taken, so it is never applied to twice'],
+        ['Write', 'builds the CV and cover letter from my prepared profile sections'],
+        ['Apply', 'opens the real form in a browser and fills it in'],
+        ['Record', 'logs the result, but only if the application really went through'],
       ].map(([k, v]) => (
         <div key={k} className="grid grid-cols-[3.5rem_1fr] gap-2 text-[12px]">
           <span className="font-mono text-[10px] uppercase text-accent-300 pt-px">{k}</span>
@@ -142,9 +141,9 @@ const OkkazeoExample = () => (
       </div>
       <p className="mt-0.5 text-[12px] text-muted">just unboxed · original edition · ships</p>
     </Box>
-    <Step>compare to the game's normalised median</Step>
+    <Step>compare to what the game usually sells for</Step>
     <Box className="flex items-center justify-between">
-      <span className="text-[12px] text-muted">baseline price</span>
+      <span className="text-[12px] text-muted">usual price</span>
       <span className="font-display text-xl font-bold text-muted line-through decoration-2">€106</span>
     </Box>
     <Step>email alert</Step>
@@ -237,12 +236,19 @@ export default function SkunkworksPage() {
         <div className="mx-auto max-w-4xl px-4">
           <header className="mb-10">
             <h1 className="font-display font-bold uppercase tracking-tight leading-[0.95] text-4xl sm:text-5xl text-foreground">Skunkworks.</h1>
-            <p className="mt-4 max-w-2xl text-muted">
-              The things I build for myself, outside of work: hardware, automation and small tools that solve my own problems.
-              Each card covers what sparked the project, how it is built, and an example of it running.
-            </p>
-            <p className="mt-2 max-w-2xl text-sm text-muted/70">
-              <span className="text-foreground/80">Skunkworks</span> is engineering slang for a small team building things off the books.
+            <dl className="mt-5 max-w-2xl border-l-2 border-accent-500/50 pl-4">
+              <dt className="flex flex-wrap items-baseline gap-x-2">
+                <span className="font-display text-lg font-semibold text-foreground">skunkworks</span>
+                <span className="font-mono text-xs text-muted">/ˈskʌŋk.wɜːks/</span>
+                <span className="text-sm italic text-muted">noun</span>
+              </dt>
+              <dd className="mt-1 text-sm leading-relaxed text-muted">
+                A small team inside a company that is left alone to build something new, away from the usual rules.
+              </dd>
+            </dl>
+            <p className="mt-5 max-w-2xl text-muted">
+              Mine is a team of one. These are the things I build for myself outside of work: hardware, automation and small tools that fix my own problems.
+              Each card says what started the project, what it is for, how it is built, and shows an example of it running.
             </p>
             <p className="mt-4 font-mono text-xs text-accent-300">
               {skunkworks.length} projects · {skunkworks.filter(p => p.status.tone === 'active').length} active
@@ -259,12 +265,9 @@ export default function SkunkworksPage() {
                 {/* Header */}
                 <header className="flex flex-wrap items-start justify-between gap-3">
                   <h2 className="font-display font-bold uppercase tracking-tight text-2xl md:text-3xl text-foreground">{project.title}</h2>
-                  <div className="flex shrink-0 items-center gap-2">
-                    <span className={`rounded-md border px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider ${statusStyles[project.status.tone]}`}>
-                      {project.status.label}
-                    </span>
-                    <CopyLink anchor={project.id} label="Copy link to this project" />
-                  </div>
+                  <span className={`shrink-0 rounded-md border px-2.5 py-1 font-mono text-[11px] uppercase tracking-wider ${statusStyles[project.status.tone]}`}>
+                    {project.status.label}
+                  </span>
                 </header>
 
                 {/* Stack */}
@@ -274,9 +277,16 @@ export default function SkunkworksPage() {
                   ))}
                 </ul>
 
-                {project.repos && (
-                  <ul className="mt-4 flex flex-wrap gap-2" aria-label="Source code">
-                    {project.repos.map(r => (
+                {(project.sites || project.repos) && (
+                  <ul className="mt-4 flex flex-wrap gap-2" aria-label="Live sites and source code">
+                    {project.sites?.map(s => (
+                      <li key={s.url}>
+                        <a href={s.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border border-accent-400 bg-accent-500/20 px-2.5 py-1 font-mono text-[11px] text-accent-100 hover:bg-accent-500/30 transition-colors">
+                          <Globe className="h-3.5 w-3.5" aria-hidden />{s.url.replace('https://', '')}<span className="text-accent-300/70">· {s.label}</span><ArrowUpRight className="h-3 w-3" aria-hidden />
+                        </a>
+                      </li>
+                    ))}
+                    {project.repos?.map(r => (
                       <li key={r.name}>
                         {r.private ? (
                           <span title="Private repository" className="inline-flex items-center gap-1.5 rounded-lg border border-border px-2.5 py-1 font-mono text-[11px] text-muted/70">
@@ -299,6 +309,10 @@ export default function SkunkworksPage() {
                     <div>
                       <h3 className="font-display font-semibold text-foreground mb-1">The Catalyst</h3>
                       <p className="text-muted">{project.catalyst}</p>
+                    </div>
+                    <div>
+                      <h3 className="font-display font-semibold text-foreground mb-1">The Goal</h3>
+                      <p className="text-muted">{project.goal}</p>
                     </div>
                     <div>
                       <h3 className="font-display font-semibold text-foreground mb-1">Architecture</h3>

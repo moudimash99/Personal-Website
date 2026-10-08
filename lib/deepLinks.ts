@@ -23,7 +23,7 @@ export function deepLinks(): DeepLink[] {
       }
     }
     if (page.href === '/skunkworks') for (const p of skunkworks) links.push({ href: `/skunkworks#${p.id}`, label: `Skunkworks › ${p.title}` })
-    if (page.href === '/about-me') for (const t of aboutTiles) links.push({ href: `/about-me#${t.id}`, label: `About Me › ${t.title}` })
+    if (page.href === '/about-me') for (const t of aboutTiles) links.push({ href: `/about-me#${t.id}`, label: `${page.label} › ${t.title}` })
   }
   return links
 }

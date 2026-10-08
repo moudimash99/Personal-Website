@@ -29,7 +29,9 @@ function Pop({ i, children, className = '' }: { i: number, children: ReactNode, 
 
 function Cta({ tile, className = '' }: { tile: AboutTile, className?: string }) {
   if (!tile.cta) return null
-  return <p className={`mt-6 text-right font-hand text-3xl text-accent-300 -rotate-2 ${className}`}>{tile.cta} →</p>
+  const cls = `mt-6 text-right font-hand text-3xl text-accent-300 -rotate-2 ${className}`
+  if (!tile.ctaHref) return <p className={cls}>{tile.cta} →</p>
+  return <p className={cls}><a href={tile.ctaHref} className="underline decoration-accent-500/50 underline-offset-4 hover:text-accent-100 hover:decoration-accent-300 transition-colors">{tile.cta} →</a></p>
 }
 
 /* ── Tabletop: scrapbook ─────────────────────────────────────────────── */
@@ -85,7 +87,7 @@ function Scrapbook({ tile }: { tile: AboutTile }) {
 /* ── Tennis: the court and a scoreboard ──────────────────────────────── */
 
 function Court({ tile }: { tile: AboutTile }) {
-  const inspirations = list(tile, 'Player inspirations')
+  const players = list(tile, 'Favorite players')
   return (
     <>
       <Pop i={0}>
@@ -96,16 +98,16 @@ function Court({ tile }: { tile: AboutTile }) {
             <span aria-hidden className="absolute inset-x-0 top-[18%] h-[2px] bg-white/80" />
             <span aria-hidden className="absolute inset-x-0 bottom-[18%] h-[2px] bg-white/80" />
             <div className="relative p-5 pt-14 pb-14 pr-8">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-white/70">Home court</p>
-              <p className="font-display text-xl font-bold text-white">{fact(tile, 'Home court')}</p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-white/70">Where I train</p>
+              <p className="font-display text-xl font-bold text-white">{fact(tile, 'Where I train')}</p>
               <p className="mt-4 font-mono text-[10px] uppercase tracking-widest text-white/70">Racket</p>
               <p className="font-display text-lg font-bold text-white">{fact(tile, 'Racket')}</p>
             </div>
             <div className="relative p-5 pt-14 pb-14 pl-8">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-white/70">In my corner</p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-white/70">Favorite players</p>
               <ul className="mt-1 space-y-2">
-                {inspirations.map(p => {
-                  const [name, why] = p.split(' — ')
+                {players.map(p => {
+                  const [name, why] = p.split(': ')
                   return <li key={p}><span className="block font-display font-bold text-white">{name}</span><span className="text-sm text-white/80">{why}</span></li>
                 })}
               </ul>
@@ -153,10 +155,7 @@ function Goggles({ tile }: { tile: AboutTile }) {
         </div>
       </Pop>
       <Pop i={1} className="mt-5">
-        <div className="flex gap-3 rounded-xl border border-[#ff5a4e]/50 bg-[#ff5a4e]/10 px-4 py-3">
-          <span className="font-mono text-[11px] font-bold uppercase text-[#ff8a80] animate-pulse">⚠ Warning</span>
-          <p className="text-sm text-foreground/90">{note(tile, 'Favorite part')}</p>
-        </div>
+        <p className="font-hand text-2xl leading-snug text-muted">“{note(tile, 'Why I love it')}”</p>
       </Pop>
     </>
   )
@@ -254,8 +253,8 @@ function Slicer({ tile }: { tile: AboutTile }) {
         <div className="overflow-hidden rounded-2xl border border-[#2a3338] bg-[#161b1f] shadow-[0_14px_28px_rgba(0,0,0,0.5)]">
           <div className="flex flex-wrap items-center gap-2 border-b border-[#2a3338] px-4 py-2.5 font-mono text-[11px]">
             <span className="text-[#8fa3a8]">Printer</span>
-            <span className="rounded-md border border-accent-500/50 bg-accent-500/15 px-2 py-0.5 text-accent-100">{fact(tile, 'Current workhorse')} ▾</span>
-            <span className="text-[#8fa3a8] line-through decoration-[#ef6f51]">{fact(tile, 'Former workhorse')}</span>
+            <span className="rounded-md border border-accent-500/50 bg-accent-500/15 px-2 py-0.5 text-accent-100">{fact(tile, 'Current printer')} · current ▾</span>
+            <span className="text-[#8fa3a8]"><span className="line-through decoration-[#ef6f51]">{fact(tile, 'Decommissioned')}</span> · decommissioned</span>
           </div>
           <div className="p-4">
             <div className="relative rounded-lg bg-[#2b2f33] p-3 [background-image:radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1.5px)] [background-size:12px_12px]">
@@ -277,9 +276,6 @@ function Slicer({ tile }: { tile: AboutTile }) {
           <p className="mt-1 text-foreground">{note(tile, 'Next big build')}</p>
           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-surface"><div className="h-full w-1/4 animate-pulse rounded-full bg-accent-400" /></div>
         </div>
-      </Pop>
-      <Pop i={2} className="mt-4">
-        <p className="font-hand text-2xl leading-snug text-muted">“{note(tile, 'Favorite part')}”</p>
       </Pop>
     </>
   )

@@ -1,5 +1,5 @@
 'use client'
-import { Mail, Linkedin, Github, FileText } from 'lucide-react'
+import { Mail, Linkedin, Github, FileText, Calendar } from 'lucide-react'
 import Container from '@/components/Container'
 import SectionHeader from '@/components/SectionHeader'
 import Panel from '@/components/Panel'
@@ -18,7 +18,7 @@ export default function ContactPage() {
       <main className="pt-24 relative z-30" style={{ isolation: 'isolate' }}>  
         <Container>
           <section id="contact" className="scroll-mt-28 mt-16 pb-32">
-            <SectionHeader icon={<Mail className="h-5 w-5 text-accent-400" />} title="Ground Center Communication" subtitle="If you’d like a quick debrief or want to talk through a mission in detail, I’m easy to reach." />
+            <SectionHeader icon={<Mail className="h-5 w-5 text-accent-400" />} title="Get in touch" subtitle="Email, call, or book a time. Whichever is easiest for you." />
             <div className="mt-4 grid md:grid-cols-3 gap-5">
               <Panel><div className="p-5"><h3 className="text-lg font-semibold pb-2 font-display">Direct</h3><div className="text-sm space-y-2">
                 <p><span className="text-muted">Email:</span> <a className="text-accent-100 hover:underline" href="mailto:machaka.mohammad@gmail.com">machaka.mohammad@gmail.com</a></p>
@@ -50,14 +50,12 @@ export default function ContactPage() {
               <Panel>
                 <div className="p-5 flex flex-col justify-between h-full">
                   <div>
-                    <h3 className="text-lg font-semibold pb-2 font-display">Schedule a Call</h3>
-                    <p className="text-xs text-muted mb-4">Book a 30-minute 1-on-1 intro or mission debrief on my calendar.</p>
+                    <h3 className="text-lg font-semibold pb-2 font-display">Schedule a call</h3>
+                    <p className="text-sm text-muted mb-4">Have a role or a project in mind? Book 30 minutes and tell me about it. I&apos;m always glad to hear what people are building.</p>
                   </div>
-                  <div className="space-y-2.5">
-                    <Button href="/book" className="w-full">Book 30 Mins</Button>
-                    <a href="mailto:machaka.mohammad@gmail.com?subject=Hello%20Mohammad%20—%20Mission%20Debrief">
-                      <Button variant="outline" className="w-full">Email Me <Mail className="ml-2 h-4 w-4" /></Button>
-                    </a>
+                  <div className="flex flex-col gap-2.5">
+                    <Button href="/book" className="w-full"><Calendar className="mr-2 h-4 w-4" /> Book a call</Button>
+                    <Button href="mailto:machaka.mohammad@gmail.com?subject=Hello%20Mohammad" variant="outline" className="w-full"><Mail className="mr-2 h-4 w-4" /> Send an email</Button>
                   </div>
                 </div>
               </Panel>

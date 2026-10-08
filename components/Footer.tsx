@@ -24,7 +24,7 @@ export default function Footer() {
           </p>
 
           <div className="flex flex-wrap gap-2">
-            {index >= 0 && <Button variant="outline" href={prev.href}>{prev.label}</Button>}
+            {index >= 0 && <Button variant="outline" href={prev.href}>Back to {prev.label}</Button>}
             <Button href={next.href}>{index === -1 ? `Start with ${next.label}` : next.href === '/' ? 'Back to Home' : `Continue to ${next.label}`}</Button>
           </div>
         </div>

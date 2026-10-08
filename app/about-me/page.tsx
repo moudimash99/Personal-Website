@@ -9,7 +9,6 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { aboutTiles, AboutTile, hero, commonThread } from '@/data/about'
 import ThemedBody from '@/components/about/ThemedPanels'
-import CopyLink from '@/components/CopyLink'
 
 /* Grid placement per tile (hero is rendered separately) */
 const span: Record<string, string> = {
@@ -100,8 +99,7 @@ function DetailPanel({ tile, onClose }: { tile: AboutTile, onClose: () => void }
           transition={{ delay: 0.12 }}
           className="p-6 md:p-8"
         >
-          <CopyLink anchor={tile.id} label="Copy link to this card" className="absolute top-5 right-16 z-10" />
-          <h2 id={`dlg-${tile.id}`} className="pr-28 font-display font-bold uppercase tracking-tight text-3xl text-foreground">{tile.title}</h2>
+          <h2 id={`dlg-${tile.id}`} className="pr-12font-display font-bold uppercase tracking-tight text-3xl text-foreground">{tile.title}</h2>
           <p className="mt-1 font-hand text-2xl leading-tight text-accent-300">{tile.tagline}</p>
 
           <div className="mt-8">
@@ -159,7 +157,7 @@ export default function AboutMePage() {
               <div className="absolute -bottom-24 right-0 h-64 w-96 rounded-full bg-accent-500/10 blur-3xl" />
               <h2 className="relative font-display font-bold uppercase tracking-tight text-2xl md:text-[1.7rem] text-foreground">The Common Thread</h2>
               <p className="relative mt-2 max-w-2xl text-muted">
-                {commonThread.intro} <span className="text-foreground/90">Whether it’s {commonThread.whetherIts.charAt(0).toLowerCase() + commonThread.whetherIts.slice(1)}</span>
+                {commonThread.intro} <span className="text-foreground/90">{commonThread.examples}</span>
               </p>
               <ol className="relative mt-6 flex flex-wrap items-center gap-2 font-mono text-xs sm:text-sm" aria-label="The pattern">
                 {commonThread.pattern.map((step, i) => (
