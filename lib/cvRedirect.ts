@@ -9,8 +9,12 @@ const SECTION_TARGETS: Record<string, string> = Object.fromEntries([
 ])
 
 // Any well-formed code is tracked, registered or not: codes can be handed out first and described later.
+// Relative Location: behind the nginx proxy req.url is http://localhost:3000, so an absolute URL built from it
+// would send visitors to their own machine.
+const redirectTo = (target: string) => new NextResponse(null, { status: 302, headers: { Location: target } })
+
 export async function trackedRedirect(req: NextRequest, rawCode: string, section?: string) {
-  if (!isValidCode(rawCode)) return NextResponse.redirect(new URL('/', req.url), 302)
+  if (!isValidCode(rawCode)) return redirectTo('/')
   const code = rawCode.toLowerCase()
   const sectionTarget = section ? SECTION_TARGETS[section.toLowerCase()] : undefined
   const link = sectionTarget ? undefined : await getLink(code)
@@ -26,7 +30,7 @@ export async function trackedRedirect(req: NextRequest, rawCode: string, section
   // Only same-site paths (including #anchors like /experience#murex); anything else lands on the home page.
   const wanted = sectionTarget ?? link?.target
   const target = wanted?.startsWith('/') && !wanted.startsWith('//') ? wanted : '/'
-  const res = NextResponse.redirect(new URL(target, req.url), 302)
+  const res = redirectTo(target)
   res.headers.set('Cache-Control', 'no-store')
   res.headers.set('X-Robots-Tag', 'noindex')
   res.cookies.set(REF_COOKIE, code, { maxAge: 60 * 60 * 24 * 60, sameSite: 'lax', path: '/' })
