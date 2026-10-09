@@ -1,3 +1,5 @@
+// Not named profile.ts on purpose: the Docker build runs in /app, where "@/data/profile" (/app/data/profile) is
+// first tried as a root-relative path and would land on /app/app/data/profile instead of the root data file.
 export const profile = {
   name: "MACHAKA Mohammad",
   title: "SYSTEMS ENGINEER",

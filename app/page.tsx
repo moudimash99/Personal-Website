@@ -10,7 +10,7 @@ import CommandCenterBackdrop from '@/components/CommandCenterBackdrop'
 import Starfield from '@/components/Starfield'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
-import { profile, credentials } from './data/profile'
+import { profile, credentials } from './data/home'
 import { sitePages } from '@/data/site'
 
 export default function Page() {
