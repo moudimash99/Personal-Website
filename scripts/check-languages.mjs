@@ -9,7 +9,7 @@ const cases = [
   ['/skunkworks', 'Mangeoires sélectives pour chats', 'Selective Cat Feeders'],
   ['/contact', 'Me contacter', 'Get in touch'],
   ['/book', 'Réserver un échange.', 'Book a call.'],
-  ['/projects/showcase', 'Schémas d’architecture (finition)', 'Architectural SVGs (Final Polish)'],
+  ['/projects/showcase', 'Schémas d’architecture SVG (dernières retouches)', 'Architectural SVGs (Final Polish)'],
 ]
 
 for (const [path, french, english] of cases) {
@@ -28,6 +28,7 @@ for (const [path, french, english] of cases) {
     }
     if (path === '/skunkworks') {
       assert.ok(html.includes('id="cat-feeders"'), 'project anchor preserved')
+      if (locale === 'fr') assert.ok(!/skunkworks/i.test(html.replace(/(id|href|src)="[^"]*"/g, '')), 'no "Skunkworks" on the French page')
       assert.ok(html.includes(locale === 'fr' ? 'Une caméra Tapo surveille le coin repas' : 'A Tapo camera watches the feeding spot'), 'project details translated')
     }
     if (path === '/contact') assert.ok(html.includes('href="/cv.pdf"'), 'CV download preserved')

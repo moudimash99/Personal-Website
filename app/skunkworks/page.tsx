@@ -11,7 +11,7 @@ import { getLocale, translateForRequest as t } from '@/lib/locale'
 export function generateMetadata(): Metadata {
   const english = getLocale() === 'en'
   return {
-    title: 'Skunkworks | MACHAKA Mohammad',
+    title: `${english ? 'Skunkworks' : 'Projets personnels'} | MACHAKA Mohammad`,
     description: english ? 'Things I build for myself outside of work: hardware, automation and small tools.' : 'Ce que je construis pour moi en dehors du travail : matériel, automatisation et petits outils.',
   }
 }
@@ -234,14 +234,16 @@ const artifacts: Record<string, ReactNode> = {
 }
 
 export default function SkunkworksPage() {
+  // "Skunkworks" is English slang with no French equivalent: the French page is simply "Projets personnels"
+  const english = getLocale() === 'en'
   return (
     <div className="min-h-screen">
       <Nav />
       <main className="pt-24 relative">
         <div className="mx-auto max-w-4xl px-4">
           <header className="mb-10">
-            <h1 className="font-display font-bold uppercase tracking-tight leading-[0.95] text-4xl sm:text-5xl text-foreground">Skunkworks.</h1>
-            <dl className="mt-5 max-w-2xl border-l-2 border-accent-500/50 pl-4">
+            <h1 className="font-display font-bold uppercase tracking-tight leading-[0.95] text-4xl sm:text-5xl text-foreground"><Text>{"Skunkworks."}</Text></h1>
+            {english && <dl className="mt-5 max-w-2xl border-l-2 border-accent-500/50 pl-4">
               <dt className="flex flex-wrap items-baseline gap-x-2">
                 <span className="font-display text-lg font-semibold text-foreground">skunkworks</span>
                 <span className="font-mono text-xs text-muted">/ˈskʌŋk.wɜːks/</span>
@@ -250,7 +252,7 @@ export default function SkunkworksPage() {
               <dd className="mt-1 text-sm leading-relaxed text-muted">
                 <Text>{"A small team inside a company that is left alone to build something new, away from the usual rules."}</Text>
               </dd>
-            </dl>
+            </dl>}
             <p className="mt-5 max-w-2xl text-muted">
               <Text>{"Mine is a team of one. These are the things I build for myself outside of work: hardware, automation and small tools that fix my own problems."}</Text>{' '}
               <Text>{"Each card says what started the project, what it is for, how it is built, and shows an example of it running."}</Text>
