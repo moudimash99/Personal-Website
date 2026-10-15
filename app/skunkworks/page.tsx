@@ -142,14 +142,14 @@ const OkkazeoExample = () => (
     <Box>
       <div className="flex items-baseline justify-between gap-2">
         <span className="font-display font-semibold text-foreground"><Text>{"Le Havre"}</Text></span>
-        <span className="font-display text-2xl font-bold text-foreground">€40</span>
+        <span className="font-display text-2xl font-bold text-foreground"><Text>{"€40"}</Text></span>
       </div>
       <p className="mt-0.5 text-[12px] text-muted"><Text>{"just unboxed · original edition · ships"}</Text></p>
     </Box>
     <Step><Text>{"compare to what the game usually sells for"}</Text></Step>
     <Box className="flex items-center justify-between">
       <span className="text-[12px] text-muted"><Text>{"usual price"}</Text></span>
-      <span className="font-display text-xl font-bold text-muted line-through decoration-2">€106</span>
+      <span className="font-display text-xl font-bold text-muted line-through decoration-2"><Text>{"€106"}</Text></span>
     </Box>
     <Step><Text>{"email alert"}</Text></Step>
     <Box className="flex items-center justify-between gap-2">
@@ -215,7 +215,7 @@ const MatchmakerExample = () => (
         <div className="absolute inset-y-0 left-[40%] w-[20%] rounded-full bg-accent-500/50" />
         <div className="absolute -top-1 bottom-[-4px] left-[51%] w-1 rounded bg-warn" />
       </div>
-      <div className="mt-1.5 flex justify-between font-mono text-[10px] text-muted"><span>0%</span><span className="text-accent-300"><Text>{"fair 40–60%"}</Text></span><span>100%</span></div>
+      <div className="mt-1.5 flex justify-between font-mono text-[10px] text-muted"><span><Text>{"0%"}</Text></span><span className="text-accent-300"><Text>{"fair 40–60%"}</Text></span><span><Text>{"100%"}</Text></span></div>
     </Box>
     <Step><Text>{"suggest it"}</Text></Step>
     <Box className="flex items-center justify-between gap-2">

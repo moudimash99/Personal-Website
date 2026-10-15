@@ -11,7 +11,7 @@ import { getLocale, translateForRequest as t } from '@/lib/locale'
 export function generateMetadata(): Metadata {
   const english = getLocale() === 'en'
   return {
-    title: `${english ? 'Book a call' : 'Réserver un appel'} | MACHAKA Mohammad`,
+    title: `${english ? 'Book a call' : 'Réserver un échange'} | MACHAKA Mohammad`,
     description: english ? 'Book a 30-minute call with Mohammad Machaka.' : 'Réservez un appel de 30 minutes avec Mohammad Machaka.',
   }
 }

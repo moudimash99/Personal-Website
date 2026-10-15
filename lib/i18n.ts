@@ -10,7 +10,7 @@ export function translate(text: string, locale: Locale): string {
   const translated = Object.prototype.hasOwnProperty.call(dictionary, trimmed) ? dictionary[trimmed] : undefined
   if (translated !== undefined) return text.replace(trimmed, translated)
   // Navigation labels in the footer are assembled from page names.
-  for (const [prefix, replacement] of [['Start with ', 'Commencer par '], ['Continue to ', 'Continuer vers '], ['Back to ', 'Retour vers ']]) {
+  for (const [prefix, replacement] of [['Start with ', 'Commencer par '], ['Continue to ', 'Continuer vers '], ['Back to ', 'Retour à ']]) {
     if (trimmed.startsWith(prefix)) return replacement + translate(trimmed.slice(prefix.length), locale)
   }
   return text
