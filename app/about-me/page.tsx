@@ -1,4 +1,5 @@
 'use client'
+import { Text, useTranslation } from '@/components/LanguageProvider'
 
 import { useCallback, useEffect, useState } from 'react'
 import Image from 'next/image'
@@ -35,14 +36,14 @@ function Tile({ tile, onOpen }: { tile: AboutTile, onOpen: () => void }) {
         <Plus className="h-4 w-4" />
       </span>
 
-      {wide ? (
+      <Text>{wide ? (
         <>
           <Image src={tile.image} alt="" fill unoptimized className="object-cover object-right transition-transform duration-700 group-hover:scale-105" />
           <div className="absolute inset-0 bg-gradient-to-r from-surface via-surface/70 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-surface via-surface/80 to-transparent" />
           <div className="relative mt-auto p-6 md:p-7 max-w-md">
-            <h2 className="font-display font-bold uppercase tracking-tight leading-[1.05] text-2xl md:text-[1.7rem] text-foreground">{tile.title}</h2>
-            <p className="mt-1.5 text-sm text-muted">{tile.tagline}</p>
+            <h2 className="font-display font-bold uppercase tracking-tight leading-[1.05] text-2xl md:text-[1.7rem] text-foreground"><Text>{tile.title}</Text></h2>
+            <p className="mt-1.5 text-sm text-muted"><Text>{tile.tagline}</Text></p>
           </div>
         </>
       ) : (
@@ -51,16 +52,17 @@ function Tile({ tile, onOpen }: { tile: AboutTile, onOpen: () => void }) {
             <Image src={tile.image} alt="" fill unoptimized className="object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
           <div className="p-5 md:p-6">
-            <h2 className="font-display font-bold uppercase tracking-tight leading-[1.05] text-xl md:text-2xl text-foreground">{tile.title}</h2>
-            <p className="mt-1 text-sm text-muted">{tile.tagline}</p>
+            <h2 className="font-display font-bold uppercase tracking-tight leading-[1.05] text-xl md:text-2xl text-foreground"><Text>{tile.title}</Text></h2>
+            <p className="mt-1 text-sm text-muted"><Text>{tile.tagline}</Text></p>
           </div>
         </>
-      )}
+      )}</Text>
     </motion.button>
   )
 }
 
 function DetailPanel({ tile, onClose }: { tile: AboutTile, onClose: () => void }) {
+  const t = useTranslation()
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
     window.addEventListener('keydown', onKey)
@@ -88,7 +90,7 @@ function DetailPanel({ tile, onClose }: { tile: AboutTile, onClose: () => void }
       >
         <button
           onClick={onClose}
-          aria-label="Close"
+          aria-label={t('Close')}
           className="absolute top-4 right-4 z-10 grid h-9 w-9 place-items-center rounded-full border border-border bg-surface2 text-muted hover:text-accent-300 hover:border-accent-400 transition-colors"
         >
           <X className="h-4 w-4" />
@@ -99,8 +101,8 @@ function DetailPanel({ tile, onClose }: { tile: AboutTile, onClose: () => void }
           transition={{ delay: 0.12 }}
           className="p-6 md:p-8"
         >
-          <h2 id={`dlg-${tile.id}`} className="pr-12font-display font-bold uppercase tracking-tight text-3xl text-foreground">{tile.title}</h2>
-          <p className="mt-1 font-hand text-2xl leading-tight text-accent-300">{tile.tagline}</p>
+          <h2 id={`dlg-${tile.id}`} className="pr-12font-display font-bold uppercase tracking-tight text-3xl text-foreground"><Text>{tile.title}</Text></h2>
+          <p className="mt-1 font-hand text-2xl leading-tight text-accent-300"><Text>{tile.tagline}</Text></p>
 
           <div className="mt-8">
             <ThemedBody tile={tile} />
@@ -142,10 +144,10 @@ export default function AboutMePage() {
             <div className={`${tileBase} sm:col-span-2 lg:col-span-7 min-h-[18rem] p-6 md:p-8 flex flex-col justify-end`}>
               <div className="absolute -top-20 -left-20 h-64 w-64 rounded-full bg-accent-500/15 blur-3xl" />
               <h1 className="relative font-display font-bold uppercase tracking-tight leading-[0.95] text-4xl sm:text-5xl text-foreground">
-                {hero.title}.
+                <Text>{hero.title}</Text>.
               </h1>
-              <p className="relative mt-4 font-hand text-2xl leading-snug text-accent-300 max-w-xl">{hero.outsideWork}</p>
-              <p className="relative mt-4 text-sm leading-relaxed text-muted max-w-xl">{hero.explainer}</p>
+              <p className="relative mt-4 font-hand text-2xl leading-snug text-accent-300 max-w-xl"><Text>{hero.outsideWork}</Text></p>
+              <p className="relative mt-4 text-sm leading-relaxed text-muted max-w-xl"><Text>{hero.explainer}</Text></p>
             </div>
 
             {aboutTiles.map(tile => (
@@ -155,14 +157,14 @@ export default function AboutMePage() {
             {/* The common thread */}
             <section className={`${tileBase} sm:col-span-2 lg:col-span-12 p-6 md:p-8`}>
               <div className="absolute -bottom-24 right-0 h-64 w-96 rounded-full bg-accent-500/10 blur-3xl" />
-              <h2 className="relative font-display font-bold uppercase tracking-tight text-2xl md:text-[1.7rem] text-foreground">The Common Thread</h2>
+              <h2 className="relative font-display font-bold uppercase tracking-tight text-2xl md:text-[1.7rem] text-foreground"><Text>{"The Common Thread"}</Text></h2>
               <p className="relative mt-2 max-w-2xl text-muted">
-                {commonThread.intro} <span className="text-foreground/90">{commonThread.examples}</span>
+                <Text>{commonThread.intro}</Text> <span className="text-foreground/90"><Text>{commonThread.examples}</Text></span>
               </p>
               <ol className="relative mt-6 flex flex-wrap items-center gap-2 font-mono text-xs sm:text-sm" aria-label="The pattern">
                 {commonThread.pattern.map((step, i) => (
                   <li key={step} className="flex items-center gap-2">
-                    <span className={`rounded-full border px-3.5 py-1.5 ${i === commonThread.pattern.length - 1 ? 'border-accent-400 bg-accent-500/20 text-accent-100' : 'border-border bg-surface2 text-foreground'}`}>{step}</span>
+                    <span className={`rounded-full border px-3.5 py-1.5 ${i === commonThread.pattern.length - 1 ? 'border-accent-400 bg-accent-500/20 text-accent-100' : 'border-border bg-surface2 text-foreground'}`}><Text>{step}</Text></span>
                     {i < commonThread.pattern.length - 1 && <ArrowRight className="h-4 w-4 text-accent-400" aria-hidden />}
                   </li>
                 ))}

@@ -1,4 +1,5 @@
 'use client'
+import { Text } from '@/components/LanguageProvider'
 import Link from 'next/link'
 
 import Container from '@/components/Container'
@@ -24,7 +25,7 @@ const missionGraphics: Record<string, ReactNode> = {
       {[50, 100, 150].map((y, i) => (
         <g key={i}>
           <rect x="50" y={y-15} width="80" height="30" rx="4" stroke="currentColor" strokeWidth="1" />
-          <text x="55" y={y+2} fill="currentColor" className="text-[8px] font-mono">LEGACY_QMS_{i+1}</text>
+          <text x="55" y={y+2} fill="currentColor" className="text-[8px] font-mono"><Text>{"LEGACY_QMS_"}</Text>{i+1}</text>
           <path d={`M 130 ${y} L 300 100`} stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.5" />
           <motion.circle cx="130" cy={y} r="2" fill="#60a5fa" animate={{ cx: [130, 300], cy: [y, 100] }} transition={{ duration: 1.5, repeat: Infinity, delay: i*0.4 }} />
         </g>
@@ -33,12 +34,12 @@ const missionGraphics: Record<string, ReactNode> = {
       <g transform="translate(300, 40)">
         <rect x="0" y="0" width="160" height="120" rx="8" stroke="#60a5fa" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
         <rect x="20" y="20" width="120" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
-        <text x="25" y="32" fill="currentColor" className="text-[8px] font-mono">NC_MAPPING</text>
+        <text x="25" y="32" fill="currentColor" className="text-[8px] font-mono"><Text>{"NC_MAPPING"}</Text></text>
         <rect x="20" y="50" width="120" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
-        <text x="25" y="62" fill="currentColor" className="text-[8px] font-mono">DATA_CLEANSING</text>
+        <text x="25" y="62" fill="currentColor" className="text-[8px] font-mono"><Text>{"DATA_CLEANSING"}</Text></text>
         <rect x="20" y="80" width="120" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
-        <text x="25" y="92" fill="currentColor" className="text-[8px] font-mono">CONQ_CALCULATION</text>
-        <text x="0" y="-10" fill="#60a5fa" className="text-[10px] font-mono font-bold">ETL_WORKFLOW</text>
+        <text x="25" y="92" fill="currentColor" className="text-[8px] font-mono"><Text>{"CONQ_CALCULATION"}</Text></text>
+        <text x="0" y="-10" fill="#60a5fa" className="text-[10px] font-mono font-bold"><Text>{"ETL_WORKFLOW"}</Text></text>
       </g>
 
       <path d="M 460 100 L 600 100" stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" />
@@ -48,7 +49,7 @@ const missionGraphics: Record<string, ReactNode> = {
       <g transform="translate(600, 60)">
         <rect x="0" y="0" width="100" height="80" rx="4" stroke="currentColor" strokeWidth="1" />
         <path d="M 0 20 L 100 20 M 0 40 L 100 40 M 0 60 L 100 60" stroke="currentColor" strokeWidth="0.5" />
-        <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono font-bold">SKYWISE_CORE</text>
+        <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono font-bold"><Text>{"SKYWISE_CORE"}</Text></text>
       </g>
     </svg>
   ),
@@ -64,7 +65,7 @@ const missionGraphics: Record<string, ReactNode> = {
         <rect x="0" y="0" width="100" height="80" rx="4" stroke="#34d399" strokeWidth="1.5" fill="#020617" />
         <circle cx="50" cy="30" r="15" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
         <motion.circle cx="50" cy="30" r="10" fill="#34d399" fillOpacity="0.4" animate={{ r: [8, 12, 8] }} transition={{ duration: 2, repeat: Infinity }} />
-        <text x="15" y="70" fill="#34d399" className="text-[10px] font-mono font-bold">STAC_CATALOG</text>
+        <text x="15" y="70" fill="#34d399" className="text-[10px] font-mono font-bold"><Text>{"STAC_CATALOG"}</Text></text>
       </g>
 
       {/* Data Ingestion Pipeline */}
@@ -75,17 +76,17 @@ const missionGraphics: Record<string, ReactNode> = {
       <g transform="translate(250, 40)">
         {/* Cluster bounds */}
         <rect x="0" y="0" width="300" height="120" rx="8" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" fill="currentColor" fillOpacity="0.05" />
-        <text x="10" y="20" fill="currentColor" className="text-[10px] font-mono font-bold">K8S_EKS_CLUSTER</text>
+        <text x="10" y="20" fill="currentColor" className="text-[10px] font-mono font-bold"><Text>{"K8S_EKS_CLUSTER"}</Text></text>
 
         {/* Karpenter Auto-scaler Box */}
         <rect x="10" y="40" width="80" height="60" rx="4" stroke="#34d399" strokeWidth="1.5" fill="rgba(52,211,153,0.1)" />
-        <text x="15" y="55" fill="#34d399" className="text-[8px] font-mono font-bold">KARPENTER</text>
-        <text x="15" y="65" fill="#34d399" className="text-[8px] font-mono">AUTOSCALER</text>
+        <text x="15" y="55" fill="#34d399" className="text-[8px] font-mono font-bold"><Text>{"KARPENTER"}</Text></text>
+        <text x="15" y="65" fill="#34d399" className="text-[8px] font-mono"><Text>{"AUTOSCALER"}</Text></text>
         <motion.path d="M 15 80 L 35 70 L 55 90 L 75 60" stroke="#34d399" strokeWidth="1.5" fill="none" animate={{ strokeDashoffset: [20, 0] }} strokeDasharray="20" transition={{ duration: 1, repeat: Infinity, ease: "linear" }} />
 
         {/* Dynamically scaling pods */}
         <g transform="translate(120, 30)">
-          <text x="0" y="0" fill="currentColor" className="text-[8px] font-mono">EARTH_ENGINE_WORKERS</text>
+          <text x="0" y="0" fill="currentColor" className="text-[8px] font-mono"><Text>{"EARTH_ENGINE_WORKERS"}</Text></text>
           {[0, 1, 2].map((i) => (
             <motion.rect 
               key={i}
@@ -141,7 +142,7 @@ const missionGraphics: Record<string, ReactNode> = {
         <rect x="0" y="0" width="120" height="80" rx="4" stroke="#34d399" strokeWidth="1.5" fill="#020617" />
         <rect x="15" y="25" width="90" height="10" rx="2" fill="currentColor" fillOpacity="0.2" />
         <rect x="15" y="45" width="70" height="10" rx="2" fill="currentColor" fillOpacity="0.2" />
-        <text x="15" y="70" fill="#34d399" className="text-[10px] font-mono font-bold">TILE_SERVER_API</text>
+        <text x="15" y="70" fill="#34d399" className="text-[10px] font-mono font-bold"><Text>{"TILE_SERVER_API"}</Text></text>
       </g>
     </svg>
   ),
@@ -156,7 +157,7 @@ const missionGraphics: Record<string, ReactNode> = {
       {[50, 80, 110, 140, 170].map((y, i) => (
         <g key={i}>
           <rect x="50" y={y-10} width="60" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
-          <text x="55" y={y+2} fill="currentColor" className="text-[8px] font-mono">REGION_{i+1}</text>
+          <text x="55" y={y+2} fill="currentColor" className="text-[8px] font-mono"><Text>{"REGION_"}</Text>{i+1}</text>
           <path d={`M 110 ${y} L 250 110`} stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.5" />
           <motion.circle cx="110" cy={y} r="2" fill="#60a5fa" animate={{ cx: [110, 250], cy: [y, 110] }} transition={{ duration: 1.5 + i*0.2, repeat: Infinity, delay: i*0.3 }} />
         </g>
@@ -170,7 +171,7 @@ const missionGraphics: Record<string, ReactNode> = {
         <path d="M 20 70 L 100 70" stroke="currentColor" strokeWidth="1" />
         <motion.rect x="20" y="25" width="20" height="10" fill="#2dd4bf" animate={{ x: [20, 80, 20] }} transition={{ duration: 3, repeat: Infinity }} />
         <motion.rect x="40" y="45" width="40" height="10" fill="#60a5fa" animate={{ x: [40, 60, 40] }} transition={{ duration: 2.5, repeat: Infinity }} />
-        <text x="10" y="-10" fill="#60a5fa" className="text-[10px] font-mono font-bold">DATA_CONSOLIDATION</text>
+        <text x="10" y="-10" fill="#60a5fa" className="text-[10px] font-mono font-bold"><Text>{"DATA_CONSOLIDATION"}</Text></text>
       </g>
 
       {/* Output Pipelines */}
@@ -185,15 +186,15 @@ const missionGraphics: Record<string, ReactNode> = {
 
       {/* Dashboard Endpoints */}
       <rect x="500" y="40" width="100" height="40" rx="4" stroke="currentColor" strokeWidth="1" />
-      <text x="510" y="65" fill="currentColor" className="text-[8px] font-mono">EXEC_DASH</text>
+      <text x="510" y="65" fill="currentColor" className="text-[8px] font-mono"><Text>{"EXEC_DASH"}</Text></text>
       <rect x="500" y="90" width="100" height="40" rx="4" stroke="currentColor" strokeWidth="1" />
-      <text x="510" y="115" fill="currentColor" className="text-[8px] font-mono">HR_METRICS</text>
+      <text x="510" y="115" fill="currentColor" className="text-[8px] font-mono"><Text>{"HR_METRICS"}</Text></text>
       <rect x="500" y="140" width="100" height="40" rx="4" stroke="currentColor" strokeWidth="1" />
-      <text x="510" y="165" fill="currentColor" className="text-[8px] font-mono">PREDICTIVE_MODEL</text>
+      <text x="510" y="165" fill="currentColor" className="text-[8px] font-mono"><Text>{"PREDICTIVE_MODEL"}</Text></text>
 
       {/* KPI readouts */}
-      <text x="650" y="80" fill="#2dd4bf" className="text-xl font-mono">90% <tspan fontSize="10" fill="currentColor">ACCURACY</tspan></text>
-      <text x="650" y="130" fill="#60a5fa" className="text-xl font-mono">80% <tspan fontSize="10" fill="currentColor">FASTER</tspan></text>
+      <text x="650" y="80" fill="#2dd4bf" className="text-xl font-mono">90% <tspan fontSize="10" fill="currentColor"><Text>{"ACCURACY"}</Text></tspan></text>
+      <text x="650" y="130" fill="#60a5fa" className="text-xl font-mono">80% <tspan fontSize="10" fill="currentColor"><Text>{"FASTER"}</Text></tspan></text>
     </svg>
   ),
   'murex': (
@@ -204,7 +205,7 @@ const missionGraphics: Record<string, ReactNode> = {
       <rect x="-40" y="-40" width="880" height="280" fill="url(#dots-m4-b)" />
 
       <g transform="translate(100, 30)">
-        <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono">LOG_VECTOR_SPACE</text>
+        <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono"><Text>{"LOG_VECTOR_SPACE"}</Text></text>
         
         <g opacity="0.3">
           {[...Array(6)].map((_, y) => <path key={`h-${y}`} d={`M 0 ${y*24} L 400 ${y*24}`} stroke="currentColor" strokeWidth="1" />)}
@@ -228,7 +229,7 @@ const missionGraphics: Record<string, ReactNode> = {
 
       <g transform="translate(600, 58)">
         <rect x="0" y="0" width="120" height="40" rx="4" stroke="#ef4444" strokeWidth="1.5" fill="#020617" />
-        <text x="15" y="23" fill="#ef4444" className="text-[10px] font-mono font-bold">PATTERN_ISOLATED</text>
+        <text x="15" y="23" fill="#ef4444" className="text-[10px] font-mono font-bold"><Text>{"PATTERN_ISOLATED"}</Text></text>
       </g>
     </svg>
   ),
@@ -243,7 +244,7 @@ const missionGraphics: Record<string, ReactNode> = {
         <g key={`cam-${i}`}>
           <rect x="50" y={y-10} width="40" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
           <circle cx="60" cy={y} r="3" fill="#2dd4bf" />
-          <text x="70" y={y+3} fill="currentColor" className="text-[8px] font-mono">CAM</text>
+          <text x="70" y={y+3} fill="currentColor" className="text-[8px] font-mono"><Text>{"CAM"}</Text></text>
           <path d={`M 90 ${y} C 150 ${y}, 200 ${y < 100 ? 80 : 120}, 250 ${y < 100 ? 80 : 120}`} stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" fill="none" />
           <motion.circle cx="90" cy={y} r="2" fill="#2dd4bf" animate={{ cx: [90, 250], cy: [y, y < 100 ? 80 : 120] }} transition={{ duration: 2, repeat: Infinity, delay: i*0.4 }} />
         </g>
@@ -251,7 +252,7 @@ const missionGraphics: Record<string, ReactNode> = {
 
       <g transform="translate(250, 40)">
         <rect x="0" y="0" width="160" height="120" rx="8" stroke="#5eead4" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
-        <text x="0" y="-10" fill="#5eead4" className="text-[10px] font-mono font-bold">DEEPSTREAM_GPU_NODE</text>
+        <text x="0" y="-10" fill="#5eead4" className="text-[10px] font-mono font-bold"><Text>{"DEEPSTREAM_GPU_NODE"}</Text></text>
         
         <path d="M 20 20 L 140 20 M 20 40 L 140 40 M 20 60 L 140 60 M 20 80 L 140 80 M 20 100 L 140 100" stroke="currentColor" strokeWidth="0.5" />
         <path d="M 20 20 L 20 100 M 50 20 L 50 100 M 80 20 L 80 100 M 110 20 L 110 100 M 140 20 L 140 100" stroke="currentColor" strokeWidth="0.5" />
@@ -267,7 +268,7 @@ const missionGraphics: Record<string, ReactNode> = {
 
       <g transform="translate(550, 80)">
         <rect x="0" y="0" width="100" height="40" rx="4" stroke="currentColor" strokeWidth="1.5" />
-        <text x="10" y="23" fill="currentColor" className="text-[10px] font-mono">INFERENCE_OUT</text>
+        <text x="10" y="23" fill="currentColor" className="text-[10px] font-mono"><Text>{"INFERENCE_OUT"}</Text></text>
       </g>
     </svg>
   ),
@@ -278,28 +279,28 @@ const missionGraphics: Record<string, ReactNode> = {
         <rect x="0" y="0" width="80" height="100" rx="4" stroke="currentColor" strokeWidth="1.5" />
         <rect x="10" y="10" width="60" height="40" rx="2" stroke="currentColor" strokeWidth="1" />
         <path d="M 10 60 L 70 60 M 10 70 L 50 70 M 10 80 L 60 80" stroke="currentColor" strokeWidth="1" />
-        <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono font-bold">ANGULAR_SPA</text>
+        <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono font-bold"><Text>{"ANGULAR_SPA"}</Text></text>
       </g>
 
       {/* Network */}
       <path d="M 130 100 L 250 100" stroke="currentColor" strokeWidth="2" strokeDasharray="5 5" />
       <motion.circle cx="150" cy="100" r="4" fill="#5eead4" animate={{ cx: [130, 250] }} transition={{ duration: 1.5, repeat: Infinity }} />
       <motion.circle cx="180" cy="100" r="4" fill="#5eead4" animate={{ cx: [130, 250] }} transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }} />
-      <text x="170" y="90" fill="currentColor" className="text-[8px] font-mono">HTTPS</text>
+      <text x="170" y="90" fill="currentColor" className="text-[8px] font-mono"><Text>{"HTTPS"}</Text></text>
 
       {/* API Gateway / .NET Core (Center) */}
       <g transform="translate(250, 40)">
         <rect x="0" y="0" width="120" height="120" rx="8" stroke="#5eead4" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
         <rect x="20" y="20" width="80" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
-        <text x="25" y="32" fill="currentColor" className="text-[8px] font-mono">AUTH / ROUTING</text>
+        <text x="25" y="32" fill="currentColor" className="text-[8px] font-mono"><Text>{"AUTH / ROUTING"}</Text></text>
         
         <rect x="20" y="50" width="80" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
-        <text x="25" y="62" fill="currentColor" className="text-[8px] font-mono">ORDER_SERVICE</text>
+        <text x="25" y="62" fill="currentColor" className="text-[8px] font-mono"><Text>{"ORDER_SERVICE"}</Text></text>
 
         <rect x="20" y="80" width="80" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
-        <text x="25" y="92" fill="currentColor" className="text-[8px] font-mono">INVENTORY_SYNC</text>
+        <text x="25" y="92" fill="currentColor" className="text-[8px] font-mono"><Text>{"INVENTORY_SYNC"}</Text></text>
 
-        <text x="0" y="-10" fill="#5eead4" className="text-[10px] font-mono font-bold">.NET_CORE_API</text>
+        <text x="0" y="-10" fill="#5eead4" className="text-[10px] font-mono font-bold"><Text>{".NET_CORE_API"}</Text></text>
       </g>
 
       {/* Backend network */}
@@ -314,7 +315,7 @@ const missionGraphics: Record<string, ReactNode> = {
         <path d="M 0 20 C 0 10 60 10 60 20 L 60 60 C 60 70 0 70 0 60 Z" stroke="currentColor" strokeWidth="1.5" fill="currentColor" fillOpacity="0.1" />
         <path d="M 0 20 C 0 30 60 30 60 20" stroke="currentColor" strokeWidth="1.5" fill="none" />
         <path d="M 0 40 C 0 50 60 50 60 40" stroke="currentColor" strokeWidth="1.5" fill="none" />
-        <text x="0" y="-5" fill="currentColor" className="text-[8px] font-mono">AZURE_SQL</text>
+        <text x="0" y="-5" fill="currentColor" className="text-[8px] font-mono"><Text>{"AZURE_SQL"}</Text></text>
 
         {/* Storage / queues */}
         <rect x="0" y="90" width="60" height="30" rx="4" stroke="currentColor" strokeWidth="1.5" />
@@ -322,12 +323,12 @@ const missionGraphics: Record<string, ReactNode> = {
         <line x1="30" y1="100" x2="50" y2="100" stroke="currentColor" strokeWidth="1" />
         <line x1="30" y1="105" x2="45" y2="105" stroke="currentColor" strokeWidth="1" />
         <line x1="30" y1="110" x2="50" y2="110" stroke="currentColor" strokeWidth="1" />
-        <text x="0" y="135" fill="currentColor" className="text-[8px] font-mono">BLOB_STORAGE</text>
+        <text x="0" y="135" fill="currentColor" className="text-[8px] font-mono"><Text>{"BLOB_STORAGE"}</Text></text>
       </g>
       
       {/* Azure Logo / Cloud icon abstraction */}
       <path d="M 680 100 C 680 80 720 80 720 100 C 740 100 740 130 720 130 L 670 130 C 650 130 650 100 680 100 Z" stroke="#5eead4" strokeWidth="2" fill="none" />
-      <text x="680" y="150" fill="#5eead4" className="text-[12px] font-mono font-bold">AZURE_CLOUD</text>
+      <text x="680" y="150" fill="#5eead4" className="text-[12px] font-mono font-bold"><Text>{"AZURE_CLOUD"}</Text></text>
     </svg>
   ),
 }
@@ -359,7 +360,7 @@ export default function ProjectsPage() {
           >
             <div className="flex items-center gap-3">
               <Radio className="h-6 w-6 text-teal-400" />
-              <h2 className="text-3xl font-semibold font-display tracking-wide text-white/90">Industrial Experience</h2>
+              <h2 className="text-3xl font-semibold font-display tracking-wide text-white/90"><Text>{"Industrial Experience"}</Text></h2>
             </div>
           </motion.div>
 
@@ -388,14 +389,14 @@ export default function ProjectsPage() {
                       
                       {/* Mobile swipe hint */}
                       <div className="absolute right-3 bottom-3 md:hidden z-20 flex items-center gap-1.5 px-3 py-1.5 bg-[#020617]/80 backdrop-blur-md rounded-full border border-teal-500/30 shadow-[0_0_15px_rgba(20,184,166,0.2)] pointer-events-none">
-                        <span className="text-[10px] font-mono font-bold tracking-widest text-teal-400">SWIPE</span>
+                        <span className="text-[10px] font-mono font-bold tracking-widest text-teal-400"><Text>{"SWIPE"}</Text></span>
                         <ArrowRight className="h-3.5 w-3.5 text-teal-400 animate-pulse" />
                       </div>
                       
                       {/* Horizontal Scroll wrapper for mobile */}
                       <div className="w-full overflow-x-auto overflow-y-hidden no-scrollbar">
                         <div className={`w-[800px] min-w-[800px] md:w-full md:min-w-0 ${missionHeights[mission.id] || 'aspect-[3/1]'} flex-shrink-0 mx-auto px-4`}>
-                          {missionGraphics[mission.id]}
+                          <Text>{missionGraphics[mission.id]}</Text>
                         </div>
                       </div>
                     </div>
@@ -408,11 +409,11 @@ export default function ProjectsPage() {
                         <mission.icon className="h-6 w-6" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold font-display text-white">{mission.title}</h3>
-                        <p className="text-sm font-mono text-teal-400/80 mt-1">{mission.meta}</p>
+                        <h3 className="text-2xl font-bold font-display text-white"><Text>{mission.title}</Text></h3>
+                        <p className="text-sm font-mono text-teal-400/80 mt-1"><Text>{mission.meta}</Text></p>
                       </div>
                     </div>
-                    <p className="mt-6 text-foreground/80 leading-relaxed max-w-4xl">{mission.profile}</p>
+                    <p className="mt-6 text-foreground/80 leading-relaxed max-w-4xl"><Text>{mission.profile}</Text></p>
 
                     {/* Tech Stack */}
                     {mission.techStack && (
@@ -420,7 +421,7 @@ export default function ProjectsPage() {
                         {mission.techStack.map((tech: any, idx: number) => (
                           <div key={idx} className="flex items-center gap-2 px-3 py-1.5 bg-white/[0.03] border border-white/10 rounded-md text-[11px] font-mono text-slate-300 hover:bg-white/10 hover:border-teal-500/30 hover:text-teal-400 transition-all cursor-crosshair">
                             <tech.icon className="h-4 w-4" />
-                            <span>{tech.name}</span>
+                            <span><Text>{tech.name}</Text></span>
                           </div>
                         ))}
                       </div>
@@ -431,14 +432,14 @@ export default function ProjectsPage() {
                   <div className="grid md:grid-cols-2 gap-8">
                     {mission.operations.map((op, opIdx) => (
                       <div key={opIdx} id={operationAnchor(mission.id, op.name)} className="deep-link bg-black/30 rounded-xl p-6 border border-white/5 hover:border-white/10 transition-colors">
-                        <h4 className="mb-4 text-lg font-medium text-white/90 leading-tight">{op.name}</h4>
-                        <p className="text-sm text-muted mb-5">{op.objective}</p>
+                        <h4 className="mb-4 text-lg font-medium text-white/90 leading-tight"><Text>{op.name}</Text></h4>
+                        <p className="text-sm text-muted mb-5"><Text>{op.objective}</Text></p>
 
                         <ul className="space-y-3 mb-6">
                           {op.did.map((item, i) => (
                             <li key={i} className="text-sm text-foreground/75 flex items-start gap-2">
                               <CheckCircle2 className="h-4 w-4 text-teal-500/70 mt-0.5 shrink-0" />
-                              <span>{item}</span>
+                              <span><Text>{item}</Text></span>
                             </li>
                           ))}
                         </ul>
@@ -447,7 +448,7 @@ export default function ProjectsPage() {
                           <div className="flex flex-wrap gap-2.5">
                             {op.telemetry.map((t, tIdx) => (
                               <div key={tIdx} className="text-[11px] font-mono bg-white/[0.03] px-2.5 py-1.5 rounded-md border border-teal-400/20 flex items-center gap-1.5">
-                                <span className="text-teal-400/70">{t.label}:</span> <span className="text-slate-200 font-medium">{t.value}</span>
+                                <span className="text-teal-400/70"><Text>{t.label}</Text>:</span> <span className="text-slate-200 font-medium"><Text>{t.value}</Text></span>
                               </div>
                             ))}
                           </div>

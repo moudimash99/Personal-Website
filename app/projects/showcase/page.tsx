@@ -1,4 +1,5 @@
 'use client'
+import { Text } from '@/components/LanguageProvider'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 
@@ -7,18 +8,18 @@ export default function Showcase() {
     <div className="min-h-screen bg-[#020617] text-white p-8 md:p-16 space-y-32 font-sans overflow-x-hidden">
       <div className="flex justify-between items-baseline border-b border-white/10 pb-8">
         <div>
-          <h1 className="text-4xl font-bold tracking-tight mb-2">Architectural SVGs (Final Polish)</h1>
-          <p className="text-slate-400 font-mono text-sm">M1, M4, and M5 are locked. M2 integrates satellite/tiles into the flat 2D schematic style.</p>
+          <h1 className="text-4xl font-bold tracking-tight mb-2"><Text>{"Architectural SVGs (Final Polish)"}</Text></h1>
+          <p className="text-slate-400 font-mono text-sm"><Text>{"M1, M4, and M5 are locked. M2 integrates satellite/tiles into the flat 2D schematic style."}</Text></p>
         </div>
-        <Link href="/experience" className="text-teal-400 font-mono text-sm hover:underline">[ Return to Experience ]</Link>
+        <Link href="/experience" className="text-teal-400 font-mono text-sm hover:underline"><Text>{"[ Return to Experience ]"}</Text></Link>
       </div>
       
       {/* ========================================= M1: AIRBUS ELECTRIC CENTER ========================================= */}
       <div>
-        <h2 className="text-3xl font-bold mb-12 font-display text-blue-400 border-l-4 border-blue-400 pl-4">M1: Airbus Electric Center (Approved)</h2>
+        <h2 className="text-3xl font-bold mb-12 font-display text-blue-400 border-l-4 border-blue-400 pl-4"><Text>{"M1: Airbus Electric Center (Approved)"}</Text></h2>
         <div className="space-y-16">
           <div className="space-y-4">
-            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase">Option A: The ETL Pipeline</h3>
+            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase"><Text>{"Option A: The ETL Pipeline"}</Text></h3>
             <div className="w-full bg-black/40 border border-white/5 rounded-xl overflow-hidden shadow-2xl relative">
               <svg viewBox="0 0 800 200" className="w-full h-full text-blue-400/30" preserveAspectRatio="xMidYMid slice">
                 <pattern id="dots-m1-1" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -29,7 +30,7 @@ export default function Showcase() {
                 {[50, 100, 150].map((y, i) => (
                   <g key={i}>
                     <rect x="50" y={y-15} width="80" height="30" rx="4" stroke="currentColor" strokeWidth="1" />
-                    <text x="55" y={y+2} fill="currentColor" className="text-[8px] font-mono">LEGACY_QMS_{i+1}</text>
+                    <text x="55" y={y+2} fill="currentColor" className="text-[8px] font-mono"><Text>{"LEGACY_QMS_"}</Text>{i+1}</text>
                     <path d={`M 130 ${y} L 300 100`} stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.5" />
                     <motion.circle cx="130" cy={y} r="2" fill="#60a5fa" animate={{ cx: [130, 300], cy: [y, 100] }} transition={{ duration: 1.5, repeat: Infinity, delay: i*0.4 }} />
                   </g>
@@ -38,12 +39,12 @@ export default function Showcase() {
                 <g transform="translate(300, 40)">
                   <rect x="0" y="0" width="160" height="120" rx="8" stroke="#60a5fa" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
                   <rect x="20" y="20" width="120" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
-                  <text x="25" y="32" fill="currentColor" className="text-[8px] font-mono">NC_MAPPING</text>
+                  <text x="25" y="32" fill="currentColor" className="text-[8px] font-mono"><Text>{"NC_MAPPING"}</Text></text>
                   <rect x="20" y="50" width="120" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
-                  <text x="25" y="62" fill="currentColor" className="text-[8px] font-mono">DATA_CLEANSING</text>
+                  <text x="25" y="62" fill="currentColor" className="text-[8px] font-mono"><Text>{"DATA_CLEANSING"}</Text></text>
                   <rect x="20" y="80" width="120" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
-                  <text x="25" y="92" fill="currentColor" className="text-[8px] font-mono">CONQ_CALCULATION</text>
-                  <text x="0" y="-10" fill="#60a5fa" className="text-[10px] font-mono font-bold">ETL_WORKFLOW</text>
+                  <text x="25" y="92" fill="currentColor" className="text-[8px] font-mono"><Text>{"CONQ_CALCULATION"}</Text></text>
+                  <text x="0" y="-10" fill="#60a5fa" className="text-[10px] font-mono font-bold"><Text>{"ETL_WORKFLOW"}</Text></text>
                 </g>
 
                 <path d="M 460 100 L 600 100" stroke="currentColor" strokeWidth="2" strokeDasharray="6 6" />
@@ -53,14 +54,14 @@ export default function Showcase() {
                 <g transform="translate(600, 60)">
                   <rect x="0" y="0" width="100" height="80" rx="4" stroke="currentColor" strokeWidth="1" />
                   <path d="M 0 20 L 100 20 M 0 40 L 100 40 M 0 60 L 100 60" stroke="currentColor" strokeWidth="0.5" />
-                  <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono font-bold">SKYWISE_ONTOLOGY</text>
+                  <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono font-bold"><Text>{"SKYWISE_ONTOLOGY"}</Text></text>
                 </g>
               </svg>
             </div>
           </div>
           
           <div className="space-y-4">
-            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase">Option B: Root Cause Tracing</h3>
+            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase"><Text>{"Option B: Root Cause Tracing"}</Text></h3>
             <div className="w-full bg-black/40 border border-white/5 rounded-xl overflow-hidden shadow-2xl relative">
               <svg viewBox="0 0 800 200" className="w-full h-full text-blue-400/30" preserveAspectRatio="xMidYMid slice">
                 <pattern id="dots-m1-2" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -70,7 +71,7 @@ export default function Showcase() {
 
                 <g transform="translate(600, 80)">
                   <rect x="0" y="0" width="120" height="40" rx="4" stroke="#60a5fa" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
-                  <text x="10" y="23" fill="#60a5fa" className="text-[10px] font-mono font-bold">NON_CONFORMANCE</text>
+                  <text x="10" y="23" fill="#60a5fa" className="text-[10px] font-mono font-bold"><Text>{"NON_CONFORMANCE"}</Text></text>
                 </g>
 
                 <path d="M 600 100 L 400 100 M 400 100 L 300 50 M 400 100 L 300 150 M 300 50 L 150 50 M 300 150 L 150 150 M 150 50 L 50 30 M 150 50 L 50 70 M 150 150 L 50 130 M 150 150 L 50 170" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
@@ -79,15 +80,15 @@ export default function Showcase() {
                 <motion.circle cx="600" cy="100" r="3" fill="#2dd4bf" animate={{ cx: [600, 400, 300, 150, 50], cy: [100, 100, 150, 150, 170] }} transition={{ duration: 3.5, repeat: Infinity, ease: "linear", delay: 1 }} />
 
                 <rect x="250" y="35" width="50" height="30" rx="4" stroke="currentColor" strokeWidth="1" fill="#020617" />
-                <text x="255" y="53" fill="currentColor" className="text-[8px] font-mono">SUPPLIER</text>
+                <text x="255" y="53" fill="currentColor" className="text-[8px] font-mono"><Text>{"SUPPLIER"}</Text></text>
                 
                 <rect x="250" y="135" width="50" height="30" rx="4" stroke="currentColor" strokeWidth="1" fill="#020617" />
-                <text x="255" y="153" fill="currentColor" className="text-[8px] font-mono">ASSEMBLY</text>
+                <text x="255" y="153" fill="currentColor" className="text-[8px] font-mono"><Text>{"ASSEMBLY"}</Text></text>
 
                 {[30, 70, 130, 170].map((y, i) => (
                   <g key={i}>
                     <rect x="20" y={y-10} width="40" height="20" rx="2" stroke="currentColor" strokeWidth="1" fill="#020617" />
-                    <text x="25" y={y+2} fill="currentColor" className="text-[8px] font-mono">RCA_{i+1}</text>
+                    <text x="25" y={y+2} fill="currentColor" className="text-[8px] font-mono"><Text>{"RCA_"}</Text>{i+1}</text>
                   </g>
                 ))}
               </svg>
@@ -98,12 +99,12 @@ export default function Showcase() {
 
       {/* ========================================= M2: GREEN PRAXIS ========================================= */}
       <div>
-        <h2 className="text-3xl font-bold mb-12 font-display text-emerald-400 border-l-4 border-emerald-400 pl-4">M2: Green Praxis (Flat + Satellite/Tiles)</h2>
+        <h2 className="text-3xl font-bold mb-12 font-display text-emerald-400 border-l-4 border-emerald-400 pl-4"><Text>{"M2: Green Praxis (Flat + Satellite/Tiles)"}</Text></h2>
         <div className="space-y-16">
           
           {/* M2 - Option A: The Schematic Tile Stack */}
           <div className="space-y-4">
-            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase">Option A: The Schematic Tile Stack</h3>
+            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase"><Text>{"Option A: The Schematic Tile Stack"}</Text></h3>
             <div className="w-full bg-black/40 border border-white/5 rounded-xl overflow-hidden shadow-2xl relative">
               <svg viewBox="0 0 800 200" className="w-full h-full text-emerald-400/30" preserveAspectRatio="xMidYMid slice">
                 <pattern id="dots-m2-a" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -116,7 +117,7 @@ export default function Showcase() {
                   <rect x="0" y="0" width="40" height="20" rx="2" stroke="#34d399" strokeWidth="1.5" fill="#020617" />
                   <rect x="-15" y="5" width="10" height="10" fill="#34d399" fillOpacity="0.4" />
                   <rect x="45" y="5" width="10" height="10" fill="#34d399" fillOpacity="0.4" />
-                  <text x="-5" y="-10" fill="#34d399" className="text-[8px] font-mono font-bold">STAC_CATALOG</text>
+                  <text x="-5" y="-10" fill="#34d399" className="text-[8px] font-mono font-bold"><Text>{"STAC_CATALOG"}</Text></text>
                   
                   {/* Data Beam dropping down and right */}
                   <path d="M 20 20 L 20 80 L 150 80" stroke="#34d399" strokeWidth="1.5" strokeDasharray="3 3" />
@@ -125,7 +126,7 @@ export default function Showcase() {
 
                 {/* Staggered Flat Tiles (Isometric architecture but drawn in 2D vector style) */}
                 <g transform="translate(180, 40)">
-                  <text x="30" y="-10" fill="currentColor" className="text-[10px] font-mono">GEE_TILE_MATRIX</text>
+                  <text x="30" y="-10" fill="currentColor" className="text-[10px] font-mono"><Text>{"GEE_TILE_MATRIX"}</Text></text>
                   
                   {/* Base framework */}
                   <rect x="0" y="0" width="180" height="120" rx="4" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.05" />
@@ -150,7 +151,7 @@ export default function Showcase() {
                   <rect x="0" y="0" width="120" height="60" rx="4" stroke="#34d399" strokeWidth="1.5" fill="#020617" />
                   <rect x="15" y="20" width="90" height="10" rx="2" fill="currentColor" fillOpacity="0.2" />
                   <rect x="15" y="35" width="70" height="10" rx="2" fill="currentColor" fillOpacity="0.2" />
-                  <text x="15" y="-5" fill="#34d399" className="text-[10px] font-mono font-bold">DYNAMIC_MAP_API</text>
+                  <text x="15" y="-5" fill="#34d399" className="text-[10px] font-mono font-bold"><Text>{"DYNAMIC_MAP_API"}</Text></text>
                 </g>
               </svg>
             </div>
@@ -158,7 +159,7 @@ export default function Showcase() {
 
           {/* M2 - Option B: The Flat Top-Down Grid Scanner */}
           <div className="space-y-4">
-            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase">Option B: The Top-Down Grid Scanner</h3>
+            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase"><Text>{"Option B: The Top-Down Grid Scanner"}</Text></h3>
             <div className="w-full bg-black/40 border border-white/5 rounded-xl overflow-hidden shadow-2xl relative">
               <svg viewBox="0 0 800 200" className="w-full h-full text-emerald-400/30" preserveAspectRatio="xMidYMid slice">
                 <pattern id="dots-m2-b" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -174,7 +175,7 @@ export default function Showcase() {
                     {[20, 40, 60].map(y => <line key={`h-${y}`} x1="0" y1={y} x2="240" y2={y} stroke="currentColor" strokeWidth="0.5" />)}
                     {[20, 40, 60, 80, 100, 120, 140, 160, 180, 200, 220].map(x => <line key={`v-${x}`} x1={x} y1="0" x2={x} y2="80" stroke="currentColor" strokeWidth="0.5" />)}
                     
-                    <text x="0" y="-15" fill="currentColor" className="text-[10px] font-mono">GLOBAL_SURFACE_GRID</text>
+                    <text x="0" y="-15" fill="currentColor" className="text-[10px] font-mono"><Text>{"GLOBAL_SURFACE_GRID"}</Text></text>
 
                     {/* Illuminated Tile trailing the satellite */}
                     <motion.rect x="0" y="20" width="20" height="20" fill="#34d399" fillOpacity="0.8"
@@ -184,7 +185,7 @@ export default function Showcase() {
                   {/* Satellite orbiting directly above the grid */}
                   <motion.g animate={{ x: [0, 220, 0] }} transition={{ duration: 8, repeat: Infinity, ease: "linear" }}>
                     <rect x="-10" y="0" width="40" height="15" rx="2" stroke="#34d399" strokeWidth="1.5" fill="#020617" />
-                    <text x="-15" y="-10" fill="#34d399" className="text-[8px] font-mono font-bold">ORBIT</text>
+                    <text x="-15" y="-10" fill="#34d399" className="text-[8px] font-mono font-bold"><Text>{"ORBIT"}</Text></text>
                     {/* Scanner laser pointing straight down to the grid */}
                     <line x1="10" y1="15" x2="10" y2="80" stroke="#34d399" strokeWidth="1" strokeDasharray="2 4" />
                   </motion.g>
@@ -197,7 +198,7 @@ export default function Showcase() {
 
                 <g transform="translate(500, 90)">
                   <rect x="0" y="0" width="120" height="60" rx="4" stroke="currentColor" strokeWidth="1.5" fill="#020617" />
-                  <text x="15" y="25" fill="currentColor" className="text-[10px] font-mono">AIRFLOW_CACHE</text>
+                  <text x="15" y="25" fill="currentColor" className="text-[10px] font-mono"><Text>{"AIRFLOW_CACHE"}</Text></text>
                   <rect x="15" y="40" width="90" height="4" fill="#34d399" fillOpacity="0.5" />
                 </g>
               </svg>
@@ -208,11 +209,11 @@ export default function Showcase() {
 
       {/* ========================================= M4: MUREX SYSTEMS ========================================= */}
       <div>
-        <h2 className="text-3xl font-bold mb-12 font-display text-cyan-400 border-l-4 border-cyan-400 pl-4">M4: Murex Systems (Approved)</h2>
+        <h2 className="text-3xl font-bold mb-12 font-display text-cyan-400 border-l-4 border-cyan-400 pl-4"><Text>{"M4: Murex Systems (Approved)"}</Text></h2>
         <div className="space-y-16">
           
           <div className="space-y-4">
-            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase">Option A: The Logic Sieve</h3>
+            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase"><Text>{"Option A: The Logic Sieve"}</Text></h3>
             <div className="w-full bg-black/40 border border-white/5 rounded-xl overflow-hidden shadow-2xl relative">
               <svg viewBox="0 0 800 200" className="w-full h-full text-cyan-400/30" preserveAspectRatio="xMidYMid slice">
                 <pattern id="dots-m4-a" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -221,7 +222,7 @@ export default function Showcase() {
                 <rect width="800" height="200" fill="url(#dots-m4-a)" />
 
                 <g transform="translate(50, 40)">
-                  <text x="0" y="-15" fill="currentColor" className="text-[10px] font-mono">UNSTRUCTURED_LOGS</text>
+                  <text x="0" y="-15" fill="currentColor" className="text-[10px] font-mono"><Text>{"UNSTRUCTURED_LOGS"}</Text></text>
                   {[...Array(20)].map((_, i) => (
                     <motion.rect key={i} x="0" y={Math.random() * 120} width={Math.random() * 20 + 10} height="4" rx="2" fill="currentColor" fillOpacity="0.6" 
                       animate={{ x: [0, 200] }} transition={{ duration: 1.5 + Math.random(), repeat: Infinity, ease: "linear" }} />
@@ -230,7 +231,7 @@ export default function Showcase() {
 
                 <g transform="translate(280, 40)">
                   <rect x="0" y="0" width="60" height="120" rx="4" stroke="#22d3ee" strokeWidth="2" fill="#020617" />
-                  <text x="10" y="-15" fill="#22d3ee" className="text-[10px] font-mono font-bold">PYTHON_PARSER</text>
+                  <text x="10" y="-15" fill="#22d3ee" className="text-[10px] font-mono font-bold"><Text>{"PYTHON_PARSER"}</Text></text>
                   <rect x="20" y="20" width="20" height="10" rx="2" fill="#22d3ee" fillOpacity="0.2" />
                   <rect x="20" y="55" width="20" height="10" rx="2" fill="#ef4444" fillOpacity="0.2" />
                   <rect x="20" y="90" width="20" height="10" rx="2" fill="#22d3ee" fillOpacity="0.2" />
@@ -244,22 +245,22 @@ export default function Showcase() {
 
                 <g transform="translate(500, 45)">
                   <rect x="0" y="0" width="100" height="30" rx="4" stroke="currentColor" fill="#020617" />
-                  <text x="10" y="18" fill="currentColor" className="text-[8px] font-mono">NOMINAL_TRAFFIC</text>
+                  <text x="10" y="18" fill="currentColor" className="text-[8px] font-mono"><Text>{"NOMINAL_TRAFFIC"}</Text></text>
                 </g>
                 <g transform="translate(500, 80)">
                   <rect x="0" y="0" width="100" height="30" rx="4" stroke="#ef4444" fill="rgba(239,68,68,0.1)" />
-                  <text x="10" y="18" fill="#ef4444" className="text-[8px] font-mono font-bold">ANOMALY_PATTERN_A</text>
+                  <text x="10" y="18" fill="#ef4444" className="text-[8px] font-mono font-bold"><Text>{"ANOMALY_PATTERN_A"}</Text></text>
                 </g>
                 <g transform="translate(500, 115)">
                   <rect x="0" y="0" width="100" height="30" rx="4" stroke="currentColor" fill="#020617" />
-                  <text x="10" y="18" fill="currentColor" className="text-[8px] font-mono">NOISE_DISCARDED</text>
+                  <text x="10" y="18" fill="currentColor" className="text-[8px] font-mono"><Text>{"NOISE_DISCARDED"}</Text></text>
                 </g>
               </svg>
             </div>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase">Option B: The Machine Learning Vector Matrix</h3>
+            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase"><Text>{"Option B: The Machine Learning Vector Matrix"}</Text></h3>
             <div className="w-full bg-black/40 border border-white/5 rounded-xl overflow-hidden shadow-2xl relative">
               <svg viewBox="0 0 800 200" className="w-full h-full text-cyan-400/30" preserveAspectRatio="xMidYMid slice">
                 <pattern id="dots-m4-b" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -268,7 +269,7 @@ export default function Showcase() {
                 <rect width="800" height="200" fill="url(#dots-m4-b)" />
 
                 <g transform="translate(100, 30)">
-                  <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono">LOG_VECTOR_SPACE</text>
+                  <text x="0" y="-10" fill="currentColor" className="text-[10px] font-mono"><Text>{"LOG_VECTOR_SPACE"}</Text></text>
                   
                   <g opacity="0.3">
                     {[...Array(6)].map((_, y) => <path key={`h-${y}`} d={`M 0 ${y*24} L 400 ${y*24}`} stroke="currentColor" strokeWidth="1" />)}
@@ -292,7 +293,7 @@ export default function Showcase() {
 
                 <g transform="translate(600, 58)">
                   <rect x="0" y="0" width="120" height="40" rx="4" stroke="#ef4444" strokeWidth="1.5" fill="#020617" />
-                  <text x="15" y="23" fill="#ef4444" className="text-[10px] font-mono font-bold">PATTERN_ISOLATED</text>
+                  <text x="15" y="23" fill="#ef4444" className="text-[10px] font-mono font-bold"><Text>{"PATTERN_ISOLATED"}</Text></text>
                 </g>
               </svg>
             </div>
@@ -302,10 +303,10 @@ export default function Showcase() {
 
       {/* ========================================= M5: ZAKA ========================================= */}
       <div>
-        <h2 className="text-3xl font-bold mb-12 font-display text-teal-400 border-l-4 border-teal-400 pl-4">M5: ZAKA (Approved)</h2>
+        <h2 className="text-3xl font-bold mb-12 font-display text-teal-400 border-l-4 border-teal-400 pl-4"><Text>{"M5: ZAKA (Approved)"}</Text></h2>
         <div className="space-y-16">
           <div className="space-y-4">
-            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase">Option A: The Central GPU (Fixed + Cells)</h3>
+            <h3 className="text-teal-400 font-mono text-sm tracking-wider uppercase"><Text>{"Option A: The Central GPU (Fixed + Cells)"}</Text></h3>
             <div className="w-full bg-black/40 border border-white/5 rounded-xl overflow-hidden shadow-2xl relative">
               <svg viewBox="0 0 800 200" className="w-full h-full text-teal-400/30" preserveAspectRatio="xMidYMid slice">
                 <pattern id="dots-m5-1" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -317,7 +318,7 @@ export default function Showcase() {
                   <g key={`cam-${i}`}>
                     <rect x="50" y={y-10} width="40" height="20" rx="2" stroke="currentColor" strokeWidth="1" />
                     <circle cx="60" cy={y} r="3" fill="#2dd4bf" />
-                    <text x="70" y={y+3} fill="currentColor" className="text-[8px] font-mono">CAM</text>
+                    <text x="70" y={y+3} fill="currentColor" className="text-[8px] font-mono"><Text>{"CAM"}</Text></text>
                     <path d={`M 90 ${y} C 150 ${y}, 200 ${y < 100 ? 80 : 120}, 250 ${y < 100 ? 80 : 120}`} stroke="currentColor" strokeWidth="1" strokeOpacity="0.5" fill="none" />
                     <motion.circle cx="90" cy={y} r="2" fill="#2dd4bf" animate={{ cx: [90, 250], cy: [y, y < 100 ? 80 : 120] }} transition={{ duration: 2, repeat: Infinity, delay: i*0.4 }} />
                   </g>
@@ -325,7 +326,7 @@ export default function Showcase() {
 
                 <g transform="translate(250, 40)">
                   <rect x="0" y="0" width="160" height="120" rx="8" stroke="#5eead4" strokeWidth="2" fill="currentColor" fillOpacity="0.05" />
-                  <text x="0" y="-10" fill="#5eead4" className="text-[10px] font-mono font-bold">DEEPSTREAM_GPU_NODE</text>
+                  <text x="0" y="-10" fill="#5eead4" className="text-[10px] font-mono font-bold"><Text>{"DEEPSTREAM_GPU_NODE"}</Text></text>
                   
                   <path d="M 20 20 L 140 20 M 20 40 L 140 40 M 20 60 L 140 60 M 20 80 L 140 80 M 20 100 L 140 100" stroke="currentColor" strokeWidth="0.5" />
                   <path d="M 20 20 L 20 100 M 50 20 L 50 100 M 80 20 L 80 100 M 110 20 L 110 100 M 140 20 L 140 100" stroke="currentColor" strokeWidth="0.5" />
@@ -341,7 +342,7 @@ export default function Showcase() {
 
                 <g transform="translate(550, 80)">
                   <rect x="0" y="0" width="100" height="40" rx="4" stroke="currentColor" strokeWidth="1.5" />
-                  <text x="10" y="23" fill="currentColor" className="text-[10px] font-mono">INFERENCE_OUT</text>
+                  <text x="10" y="23" fill="currentColor" className="text-[10px] font-mono"><Text>{"INFERENCE_OUT"}</Text></text>
                 </g>
               </svg>
             </div>

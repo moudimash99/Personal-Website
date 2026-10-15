@@ -1,4 +1,5 @@
 'use client'
+import { Text } from '@/components/LanguageProvider'
 
 import { ReactNode } from 'react'
 import Image from 'next/image'
@@ -22,7 +23,7 @@ function Pop({ i, children, className = '' }: { i: number, children: ReactNode, 
       transition={{ delay: 0.12 + i * 0.06, type: 'spring', stiffness: 260, damping: 22 }}
       className={className}
     >
-      {children}
+      <Text>{children}</Text>
     </motion.div>
   )
 }
@@ -30,8 +31,8 @@ function Pop({ i, children, className = '' }: { i: number, children: ReactNode, 
 function Cta({ tile, className = '' }: { tile: AboutTile, className?: string }) {
   if (!tile.cta) return null
   const cls = `mt-6 text-right font-hand text-3xl text-accent-300 -rotate-2 ${className}`
-  if (!tile.ctaHref) return <p className={cls}>{tile.cta} →</p>
-  return <p className={cls}><a href={tile.ctaHref} className="underline decoration-accent-500/50 underline-offset-4 hover:text-accent-100 hover:decoration-accent-300 transition-colors">{tile.cta} →</a></p>
+  if (!tile.ctaHref) return <p className={cls}><Text>{tile.cta}</Text> →</p>
+  return <p className={cls}><a href={tile.ctaHref} className="underline decoration-accent-500/50 underline-offset-4 hover:text-accent-100 hover:decoration-accent-300 transition-colors"><Text>{tile.cta}</Text> →</a></p>
 }
 
 /* ── Tabletop: scrapbook ─────────────────────────────────────────────── */
@@ -48,36 +49,36 @@ function Scrapbook({ tile }: { tile: AboutTile }) {
       <div className={`${paper} relative p-2.5 pb-10`}>
         <span aria-hidden className="absolute -top-3 left-1/2 h-6 w-20 -translate-x-1/2 rotate-3 bg-[#f5b942]/60" />
         <div className="relative aspect-[4/3] overflow-hidden"><Image src={tile.image} alt={tile.title} fill unoptimized className="object-cover" /></div>
-        <p className="absolute inset-x-0 bottom-1.5 text-center font-hand text-2xl">{tile.caption}</p>
+        <p className="absolute inset-x-0 bottom-1.5 text-center font-hand text-2xl"><Text>{tile.caption}</Text></p>
       </div>
     )],
     ...(tile.facts ?? []).map(f => [`f-${f.label}`, (
       <div className={`${sticky()} p-4 font-hand text-[#1b2326] shadow-[0_10px_20px_rgba(0,0,0,0.4)]`}>
-        <p className="text-lg leading-none opacity-70">{f.label}:</p>
-        <p className="mt-1 text-2xl font-bold leading-tight">{f.value}</p>
+        <p className="text-lg leading-none opacity-70"><Text>{f.label}</Text>:</p>
+        <p className="mt-1 text-2xl font-bold leading-tight"><Text>{f.value}</Text></p>
       </div>
     )] as [string, ReactNode]),
     ...(tile.lists ?? []).map(l => [`l-${l.label}`, (
       <div className={`${paper} px-5 py-4 font-hand`}>
-        <p className="text-2xl font-bold">{l.label}</p>
-        <ol className="mt-1 list-decimal pl-6 text-xl leading-snug">{l.items.map(it => <li key={it}>{it}</li>)}</ol>
+        <p className="text-2xl font-bold"><Text>{l.label}</Text></p>
+        <ol className="mt-1 list-decimal pl-6 text-xl leading-snug"><Text>{l.items.map(it => <li key={it}><Text>{it}</Text></li>)}</Text></ol>
       </div>
     )] as [string, ReactNode]),
     ...(tile.notes ?? []).map(n => [`n-${n.label}`, (
       <div className={`${sticky()} p-4 font-hand text-[#1b2326] shadow-[0_10px_20px_rgba(0,0,0,0.4)]`}>
-        <p className="text-lg leading-none opacity-70">{n.label}:</p>
-        <p className="mt-1 text-[1.35rem] leading-tight">{n.text}</p>
+        <p className="text-lg leading-none opacity-70"><Text>{n.label}</Text>:</p>
+        <p className="mt-1 text-[1.35rem] leading-tight"><Text>{n.text}</Text></p>
       </div>
     )] as [string, ReactNode]),
   ]
   return (
     <>
       <div className="columns-1 gap-6 sm:columns-2">
-        {scraps.map(([key, node], i) => (
+        <Text>{scraps.map(([key, node], i) => (
           <Pop key={key} i={i} className="mb-7 break-inside-avoid">
-            <div className={`${TILTS[i % TILTS.length]} transition-transform duration-300 hover:rotate-0 hover:scale-[1.03]`}>{node}</div>
+            <div className={`${TILTS[i % TILTS.length]} transition-transform duration-300 hover:rotate-0 hover:scale-[1.03]`}><Text>{node}</Text></div>
           </Pop>
-        ))}
+        ))}</Text>
       </div>
       <Cta tile={tile} />
     </>
@@ -98,17 +99,17 @@ function Court({ tile }: { tile: AboutTile }) {
             <span aria-hidden className="absolute inset-x-0 top-[18%] h-[2px] bg-white/80" />
             <span aria-hidden className="absolute inset-x-0 bottom-[18%] h-[2px] bg-white/80" />
             <div className="relative p-5 pt-14 pb-14 pr-8">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-white/70">Where I train</p>
-              <p className="font-display text-xl font-bold text-white">{fact(tile, 'Where I train')}</p>
-              <p className="mt-4 font-mono text-[10px] uppercase tracking-widest text-white/70">Racket</p>
-              <p className="font-display text-lg font-bold text-white">{fact(tile, 'Racket')}</p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-white/70"><Text>{"Where I train"}</Text></p>
+              <p className="font-display text-xl font-bold text-white"><Text>{fact(tile, 'Where I train')}</Text></p>
+              <p className="mt-4 font-mono text-[10px] uppercase tracking-widest text-white/70"><Text>{"Racket"}</Text></p>
+              <p className="font-display text-lg font-bold text-white"><Text>{fact(tile, 'Racket')}</Text></p>
             </div>
             <div className="relative p-5 pt-14 pb-14 pl-8">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-white/70">Favorite players</p>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-white/70"><Text>{"Favorite players"}</Text></p>
               <ul className="mt-1 space-y-2">
                 {players.map(p => {
                   const [name, why] = p.split(': ')
-                  return <li key={p}><span className="block font-display font-bold text-white">{name}</span><span className="text-sm text-white/80">{why}</span></li>
+                  return <li key={p}><span className="block font-display font-bold text-white">{name}</span><span className="text-sm text-white/80"><Text>{why}</Text></span></li>
                 })}
               </ul>
             </div>
@@ -118,10 +119,10 @@ function Court({ tile }: { tile: AboutTile }) {
       <Pop i={1} className="mt-5">
         <div className="rounded-xl border-4 border-[#1f2a30] bg-[#0b0f11] p-4 shadow-[0_12px_24px_rgba(0,0,0,0.5)]">
           <div className="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-[#8fa3a8]">
-            <span>Level · {fact(tile, 'Level')}</span><span>Current goal</span>
+            <span><Text>{"Level · "}</Text><Text>{fact(tile, 'Level')}</Text></span><span><Text>{"Current goal"}</Text></span>
           </div>
           <p className="mt-2 font-mono text-lg uppercase leading-snug tracking-wider text-[#ffd84d] [text-shadow:0_0_8px_rgba(255,216,77,0.55)]">
-            {note(tile, 'Current goal')}
+            <Text>{note(tile, 'Current goal')}</Text>
           </p>
         </div>
       </Pop>
@@ -142,20 +143,20 @@ function Goggles({ tile }: { tile: AboutTile }) {
           <div aria-hidden className="absolute inset-0 bg-[repeating-linear-gradient(0deg,rgba(0,0,0,0.18)_0px,rgba(0,0,0,0.18)_1px,transparent_2px,transparent_4px)]" />
           <div aria-hidden className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(0,0,0,0.7))]" />
           <div className={`absolute left-4 top-3 text-[11px] leading-relaxed ${osd}`}>
-            <p className="text-[#ff5a4e]">● REC</p>
-            <p className="text-white/70">The fleet</p>
-            <p>{fact(tile, 'The fleet')}</p>
+            <p className="text-[#ff5a4e]"><Text>{"● REC"}</Text></p>
+            <p className="text-white/70"><Text>{"The fleet"}</Text></p>
+            <p><Text>{fact(tile, 'The fleet')}</Text></p>
           </div>
-          <p className={`absolute right-4 top-3 text-[11px] ${osd}`}>▮▮▮▯ ACRO</p>
+          <p className={`absolute right-4 top-3 text-[11px] ${osd}`}><Text>{"▮▮▮▯ ACRO"}</Text></p>
           <p aria-hidden className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl ${osd}`}>—+—</p>
           <div className={`absolute bottom-3 left-4 text-[11px] ${osd}`}>
-            <p className="text-white/70">Current challenge</p>
-            <p className="text-[#ffd84d]">{note(tile, 'Current challenge')}</p>
+            <p className="text-white/70"><Text>{"Current challenge"}</Text></p>
+            <p className="text-[#ffd84d]"><Text>{note(tile, 'Current challenge')}</Text></p>
           </div>
         </div>
       </Pop>
       <Pop i={1} className="mt-5">
-        <p className="font-hand text-2xl leading-snug text-muted">“{note(tile, 'Why I love it')}”</p>
+        <p className="font-hand text-2xl leading-snug text-muted">“<Text>{note(tile, 'Why I love it')}</Text>”</p>
       </Pop>
     </>
   )
@@ -192,7 +193,7 @@ function Key({ k }: { k: K }) {
   const [label, tone = 'plain'] = k
   return (
     <span className={`grid aspect-square place-items-center rounded-[7px] px-0.5 text-center font-mono text-[9px] leading-[1.05] ${KEY_TONES[tone]}`}>
-      {label.split(' ').map(w => <span key={w} className="block">{w}</span>)}
+      <Text>{label.split(' ').map(w => <span key={w} className="block"><Text>{w}</Text></span>)}</Text>
     </span>
   )
 }
@@ -201,10 +202,10 @@ function Half({ rows, thumbs, side }: { rows: K[][], thumbs: K[], side: 'l' | 'r
   return (
     <div className={`flex-1 rounded-xl bg-[#1b2326] p-2.5 shadow-[0_10px_22px_rgba(0,0,0,0.5)] ${side === 'l' ? 'rotate-[4deg]' : '-rotate-[4deg]'}`}>
       <div className="grid grid-cols-5 gap-[5px]">
-        {rows.flat().map((k, i) => <Key key={i} k={k} />)}
+        <Text>{rows.flat().map((k, i) => <Key key={i} k={k} />)}</Text>
       </div>
       <div className={`mt-1.5 flex gap-[5px] ${side === 'l' ? 'justify-end' : 'justify-start'}`}>
-        {thumbs.map((k, i) => <span key={i} className="w-[19%]"><Key k={k} /></span>)}
+        <Text>{thumbs.map((k, i) => <span key={i} className="w-[19%]"><Key k={k} /></span>)}</Text>
       </div>
     </div>
   )
@@ -227,16 +228,16 @@ function SplitBoard({ tile }: { tile: AboutTile }) {
       </Pop>
       <Pop i={1} className="mt-6">
         <dl className="grid grid-cols-[auto_1fr] items-start gap-x-3 gap-y-2 text-sm text-muted">
-          {legend.map(([swatch, label, value]) => (
+          <Text>{legend.map(([swatch, label, value]) => (
             <div key={label} className="contents">
               <dt className={`mt-1 h-3.5 w-3.5 rounded ${swatch}`} aria-hidden />
-              <dd><span className="font-semibold text-foreground">{label}:</span> {value}</dd>
+              <dd><span className="font-semibold text-foreground"><Text>{label}</Text>:</span> <Text>{value}</Text></dd>
             </div>
-          ))}
+          ))}</Text>
         </dl>
       </Pop>
       <Pop i={2} className="mt-5">
-        <p className="text-sm text-muted"><span className="text-foreground">Why split?</span> {note(tile, 'Why split keyboards')}</p>
+        <p className="text-sm text-muted"><span className="text-foreground"><Text>{"Why split?"}</Text></span> <Text>{note(tile, 'Why split keyboards')}</Text></p>
       </Pop>
     </>
   )
@@ -252,17 +253,17 @@ function Slicer({ tile }: { tile: AboutTile }) {
       <Pop i={0}>
         <div className="overflow-hidden rounded-2xl border border-[#2a3338] bg-[#161b1f] shadow-[0_14px_28px_rgba(0,0,0,0.5)]">
           <div className="flex flex-wrap items-center gap-2 border-b border-[#2a3338] px-4 py-2.5 font-mono text-[11px]">
-            <span className="text-[#8fa3a8]">Printer</span>
-            <span className="rounded-md border border-accent-500/50 bg-accent-500/15 px-2 py-0.5 text-accent-100">{fact(tile, 'Current printer')} · current ▾</span>
-            <span className="text-[#8fa3a8]"><span className="line-through decoration-[#ef6f51]">{fact(tile, 'Decommissioned')}</span> · decommissioned</span>
+            <span className="text-[#8fa3a8]"><Text>{"Printer"}</Text></span>
+            <span className="rounded-md border border-accent-500/50 bg-accent-500/15 px-2 py-0.5 text-accent-100">{fact(tile, 'Current printer')} · <Text>{"current"}</Text> ▾</span>
+            <span className="text-[#8fa3a8]"><span className="line-through decoration-[#ef6f51]">{fact(tile, 'Decommissioned')}</span> · <Text>{"decommissioned"}</Text></span>
           </div>
           <div className="p-4">
             <div className="relative rounded-lg bg-[#2b2f33] p-3 [background-image:radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1.5px)] [background-size:12px_12px]">
-              <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[#8fa3a8]">Build plate · what I print</p>
+              <p className="mb-2 font-mono text-[10px] uppercase tracking-widest text-[#8fa3a8]"><Text>{"Build plate · what I print"}</Text></p>
               <div className="flex flex-wrap gap-2.5">
-                {prints.map((p, i) => (
-                  <span key={p} className="rounded-md px-3 py-2 text-[13px] font-medium text-[#0b1214] shadow-[0_4px_0_rgba(0,0,0,0.35)]" style={{ background: tints[i % tints.length] }}>{p}</span>
-                ))}
+                <Text>{prints.map((p, i) => (
+                  <span key={p} className="rounded-md px-3 py-2 text-[13px] font-medium text-[#0b1214] shadow-[0_4px_0_rgba(0,0,0,0.35)]" style={{ background: tints[i % tints.length] }}><Text>{p}</Text></span>
+                ))}</Text>
               </div>
             </div>
           </div>
@@ -271,9 +272,9 @@ function Slicer({ tile }: { tile: AboutTile }) {
       <Pop i={1} className="mt-5">
         <div className="rounded-xl border border-border bg-surface2 px-4 py-3">
           <div className="flex items-center justify-between font-mono text-[11px]">
-            <span className="text-accent-300">Next big build</span><span className="text-[#8fa3a8]">slicing…</span>
+            <span className="text-accent-300"><Text>{"Next big build"}</Text></span><span className="text-[#8fa3a8]"><Text>{"slicing…"}</Text></span>
           </div>
-          <p className="mt-1 text-foreground">{note(tile, 'Next big build')}</p>
+          <p className="mt-1 text-foreground"><Text>{note(tile, 'Next big build')}</Text></p>
           <div className="mt-2 h-1.5 overflow-hidden rounded-full bg-surface"><div className="h-full w-1/4 animate-pulse rounded-full bg-accent-400" /></div>
         </div>
       </Pop>
@@ -292,9 +293,9 @@ function Staff({ tile, name, title, detail, focus }: { tile: AboutTile, name: st
         className="mx-auto h-16 w-16 rounded-full border-[3px] border-[#f5b942] bg-no-repeat"
         style={{ backgroundImage: `url(${tile.image})`, backgroundSize: '600% auto', backgroundPosition: focus }}
       />
-      <p className="mt-2 font-display text-lg font-bold text-foreground">{name}</p>
-      <p className="text-[13px] text-accent-300">{title}</p>
-      <p className="mt-0.5 text-[12px] text-muted">{detail?.toLowerCase()} · {fact(tile, 'Breed')}</p>
+      <p className="mt-2 font-display text-lg font-bold text-foreground"><Text>{name}</Text></p>
+      <p className="text-[13px] text-accent-300"><Text>{title}</Text></p>
+      <p className="mt-0.5 text-[12px] text-muted"><Text>{detail?.toLowerCase()}</Text> · <Text>{fact(tile, 'Breed')}</Text></p>
     </div>
   )
 }
@@ -305,11 +306,11 @@ function OrgChart({ tile }: { tile: AboutTile }) {
   const [mascots, testing, distraction] = list(tile, 'Official job titles')
   return (
     <div className="flex flex-col items-center">
-      <p className="font-mono text-[10px] uppercase tracking-widest text-accent-300">MM HQ · organisation chart</p>
+      <p className="font-mono text-[10px] uppercase tracking-widest text-accent-300"><Text>{"MM HQ · organisation chart"}</Text></p>
       <Pop i={0} className="mt-4 w-full max-w-xs">
         <div className="rounded-xl border border-[#f5b942] bg-[#f5b942]/10 px-4 py-3 text-center">
-          <p className="font-display text-lg font-bold text-foreground">{mascots}</p>
-          <p className="text-[12px] text-muted">shared leadership</p>
+          <p className="font-display text-lg font-bold text-foreground"><Text>{mascots}</Text></p>
+          <p className="text-[12px] text-muted"><Text>{"shared leadership"}</Text></p>
         </div>
       </Pop>
       <Line className="h-5 w-[2px]" />
@@ -324,11 +325,11 @@ function OrgChart({ tile }: { tile: AboutTile }) {
       <Line className="h-6 w-[2px]" />
       <Pop i={2} className="w-full max-w-sm">
         <div className="rounded-xl border border-dashed border-border px-4 py-3 text-center">
-          <p className="font-display font-bold text-foreground">Several hardware projects</p>
-          <p className="text-[12px] text-muted">report directly to the cats</p>
+          <p className="font-display font-bold text-foreground"><Text>{"Several hardware projects"}</Text></p>
+          <p className="text-[12px] text-muted"><Text>{"report directly to the cats"}</Text></p>
         </div>
       </Pop>
-      <p className="mt-3 font-mono text-[11px] text-muted">est. {fact(tile, 'Born')}</p>
+      <p className="mt-3 font-mono text-[11px] text-muted"><Text>{"est. "}</Text><Text>{fact(tile, 'Born')}</Text></p>
     </div>
   )
 }

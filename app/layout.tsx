@@ -4,20 +4,28 @@ import { Inter, Space_Grotesk, JetBrains_Mono, Caveat } from 'next/font/google'
 import { profile } from '@/data/profile'
 import RefBeacon from '@/components/RefBeacon'
 import HashScroll from '@/components/HashScroll'
+import LanguageProvider from '@/components/LanguageProvider'
+import { getLocale } from '@/lib/locale'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const space = Space_Grotesk({ subsets: ['latin'], variable: '--font-spacegrotesk' })
 const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains' })
 const caveat = Caveat({ subsets: ['latin'], variable: '--font-caveat' })
 
-export const metadata: Metadata = {
-  title: `${profile.name} | ${profile.headline}`,
-  description: 'Systems engineering, cloud, and real-time data portfolio for aerospace and mission-critical platforms.',
+export function generateMetadata(): Metadata {
+  const english = getLocale() === 'en'
+  return {
+    title: `${profile.name} | ${english ? profile.headline : 'Ingénieur systèmes'}`,
+    description: english
+      ? 'Systems engineering, cloud, and real-time data portfolio for aerospace and mission-critical platforms.'
+      : 'Portfolio en ingénierie systèmes, cloud et données en temps réel pour l’aéronautique et les plateformes critiques.',
+  }
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = getLocale()
   return (
-    <html lang="en" className={[inter.variable, space.variable, jetbrains.variable, caveat.variable].join(' ')}>
+    <html lang={locale} className={[inter.variable, space.variable, jetbrains.variable, caveat.variable].join(' ')}>
       <body className="min-h-screen bg-base text-foreground antialiased">
         <div className="pointer-events-none fixed inset-0 -z-10">
           {/* <div className="absolute inset-0 bg-grid opacity-20" />
@@ -25,7 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[70rem] h-[35rem] bg-aurora animate-aurora rounded-full" />
         </div>
         <div className="grain" />
-        {children}
+        <LanguageProvider locale={locale}>{children}</LanguageProvider>
         <RefBeacon />
         <HashScroll />
       </body>

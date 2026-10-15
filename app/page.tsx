@@ -1,4 +1,5 @@
 'use client'
+import { Text } from '@/components/LanguageProvider'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
@@ -36,7 +37,7 @@ export default function Page() {
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 3 }}
           className="text-[10px] sm:text-xs font-mono text-muted tracking-widest md:tracking-[0.5em] uppercase mb-8"
         >
-          {profile.name} // {profile.title}
+          <Text>{profile.name}</Text> // <Text>{profile.title}</Text>
         </motion.p>
         
         <motion.h1 
@@ -44,20 +45,14 @@ export default function Page() {
           animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
           transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
           className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white leading-[0.9]"
-        >
-          Architecting
-          <br/>
-          <motion.span style={{ letterSpacing }} className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/30 inline-block">
-            resilience
-          </motion.span>
+        ><Text>{"Architecting"}</Text><br/>
+          <motion.span style={{ letterSpacing }} className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/30 inline-block"><Text>{"resilience"}</Text></motion.span>
         </motion.h1>
         
         <motion.h2 
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.5, duration: 2 }}
           className="mt-6 md:mt-8 text-xl sm:text-3xl md:text-5xl font-light text-slate-400"
-        >
-          for data-intensive systems.
-        </motion.h2>
+        ><Text>{"for data-intensive systems."}</Text></motion.h2>
 
         {/* The Missing Intro Paragraphs - Fixed Contrast */}
         <motion.div 
@@ -66,21 +61,19 @@ export default function Page() {
           transition={{ delay: 2.5, duration: 2 }}
           className="mt-12 max-w-3xl mx-auto space-y-6 text-base md:text-lg lg:text-xl text-slate-100 font-medium leading-relaxed px-4 drop-shadow-md"
         >
-          <p>{profile.introLines[0]}</p>
-          <p className="text-emerald-300 italic">{profile.introLines[1]}</p>
+          <p><Text>{profile.introLines[0]}</Text></p>
+          <p className="text-emerald-300 italic"><Text>{profile.introLines[1]}</Text></p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 3.5, duration: 2 }} className="mt-16 pointer-events-auto">
           <div className="w-px h-16 bg-gradient-to-b from-emerald-500/50 to-transparent mx-auto" />
-          <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-emerald-500 mt-4 animate-pulse">Scroll to Continue</p>
+          <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-emerald-500 mt-4 animate-pulse"><Text>{"Scroll to Continue"}</Text></p>
         </motion.div>
       </motion.div>
 
       {/* BOTTOM: Pulsing 2-Row Grid (from v14) */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-6 mt-8 pb-32">
-        <h3 className="text-[10px] font-mono text-white/40 uppercase tracking-[0.4em] mb-12 text-center border-b border-white/10 pb-4">
-          Trusted By
-        </h3>
+        <h3 className="text-[10px] font-mono text-white/40 uppercase tracking-[0.4em] mb-12 text-center border-b border-white/10 pb-4"><Text>{"Trusted By"}</Text></h3>
         
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
           {credentials.map((cred, i) => (
@@ -103,17 +96,15 @@ export default function Page() {
               </div>
               
               <div className="mt-6 z-10">
-                <h4 className="text-sm font-bold text-white tracking-wide">{cred.name}</h4>
-                <p className="text-[9px] text-emerald-400/80 uppercase tracking-widest mt-1">{cred.subtitle}</p>
+                <h4 className="text-sm font-bold text-white tracking-wide"><Text>{cred.name}</Text></h4>
+                <p className="text-[9px] text-emerald-400/80 uppercase tracking-widest mt-1"><Text>{cred.subtitle}</Text></p>
               </div>
             </motion.div>
           ))}
         </div>
 
         {/* Site guide: what each page holds, in nav order */}
-        <h3 className="text-[10px] font-mono text-white/40 uppercase tracking-[0.4em] mt-24 mb-12 text-center border-b border-white/10 pb-4">
-          What&apos;s on this site
-        </h3>
+        <h3 className="text-[10px] font-mono text-white/40 uppercase tracking-[0.4em] mt-24 mb-12 text-center border-b border-white/10 pb-4"><Text>{"What's on this site"}</Text></h3>
 
         <div className="grid sm:grid-cols-2 gap-4">
           {sitePages.map((page, i) => (
@@ -131,10 +122,10 @@ export default function Page() {
                 <span className="font-mono text-xs text-emerald-400/80 pt-1">0{i + 1}</span>
                 <div className="flex-1">
                   <h4 className="flex items-center text-base font-bold text-white tracking-wide">
-                    {page.label}
+                    <Text>{page.label}</Text>
                     <ArrowRight className="ml-2 h-4 w-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-emerald-400" />
                   </h4>
-                  <p className="mt-1 text-sm text-slate-400 leading-relaxed">{page.blurb}</p>
+                  <p className="mt-1 text-sm text-slate-400 leading-relaxed"><Text>{page.blurb}</Text></p>
                 </div>
               </Link>
             </motion.div>
@@ -150,11 +141,10 @@ export default function Page() {
           className="flex flex-wrap justify-center gap-4 mt-16 pointer-events-auto"
         >
           <Button href="/experience">
-            Start with my experience <ArrowRight className="ml-2 h-4 w-4" />
+            <Text>{"Start with my experience"}</Text> <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
           <Button href={profile.cvUrl} variant="outline" newTab>
-            <Download className="mr-2 h-4 w-4" /> Download CV
-          </Button>
+            <Download className="mr-2 h-4 w-4" /><Text>{"Download CV"}</Text></Button>
         </motion.div>
       </div>
       <Footer />

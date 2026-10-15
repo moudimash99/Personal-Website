@@ -5,8 +5,10 @@ import Container from './Container'
 import { useEffect, useState } from 'react'
 import { profile } from '@/data/profile'
 import { sitePages } from '@/data/site'
+import { LanguageSwitch, useTranslation } from './LanguageProvider'
 
 export default function Nav() {
+  const t = useTranslation()
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
@@ -29,17 +31,18 @@ export default function Nav() {
                   <span aria-hidden className="h-4 w-px bg-border mr-3 sm:mr-4" />
                   <Link
                     href={href}
-                    title={blurb}
+                    title={t(blurb)}
                     aria-current={active ? 'page' : undefined}
                     className={`relative h-full flex items-center whitespace-nowrap mr-3 sm:mr-4 transition-colors ${active ? 'text-foreground' : 'text-muted hover:text-accent-300'}`}
                   >
-                    {label}
+                    {t(label)}
                     {active && <span className="absolute inset-x-0 bottom-0 h-0.5 rounded-full bg-accent-400" />}
                   </Link>
                 </div>
               )
             })}
           </nav>
+          <LanguageSwitch />
         </div>
       </Container>
     </div>
