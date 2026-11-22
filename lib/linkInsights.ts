@@ -1,6 +1,6 @@
 import type { getOverview, TrackEvent } from './tracking'
 
-// Turns the raw CV-link overview into dashboard material: what's hot, what's new, who hasn't opened yet.
+// Turns the raw CV-link overview into dashboard material: who opened what, what's new, who hasn't opened yet.
 
 export type OverviewEntry = Awaited<ReturnType<typeof getOverview>>[number]
 
@@ -9,7 +9,6 @@ const TZ = 'Europe/Paris'
 // An open counts 3x a page view, and any event loses half its weight every 3 days
 const HALF_LIFE_DAYS = 3
 const OPEN_WEIGHT = 3
-const HOT_THRESHOLD = 0.1
 // Events from the same person on the same link less than 30 minutes apart are one visit
 const VISIT_GAP = 30 * 60e3
 
@@ -67,6 +66,33 @@ function insightOf(entry: OverviewEntry, now: number) {
 }
 
 export type Row = OverviewEntry & { insight: ReturnType<typeof insightOf> }
+
+/** The lists of "All links". An unregistered code that was opened is in both Opened and Unregistered. */
+export type Kind = 'opened' | 'scanned' | 'waiting' | 'unregistered'
+export const inKind = (r: Row, kind: Kind | 'all') =>
+  kind === 'all' || (kind === 'unregistered' ? !r.link : kind === 'opened' ? r.insight.status === 'opened' : !!r.link && r.insight.status === kind)
+/** The list to show a row in when it is asked for by itself. */
+export const kindOf = (r: Row): Kind => (r.insight.status === 'opened' ? 'opened' : !r.link ? 'unregistered' : r.insight.status)
+
+/** Opened links of one company: several roles opened at the same company read as one line. */
+export type Group = { key: string; company: string; rows: Row[]; opens: number; pageViews: number; lastSeen?: string; signals: Signal[] }
+
+function groupByCompany(rows: Row[]): Group[] {
+  const groups = new Map<string, Group>()
+  for (const r of rows) {
+    const company = r.link?.company?.trim() || ''
+    const key = company ? company.toLowerCase() : r.code
+    const g = groups.get(key) || { key, company, rows: [], opens: 0, pageViews: 0, lastSeen: undefined, signals: [] }
+    g.rows.push(r)
+    g.opens += r.stats.opens
+    g.pageViews += r.stats.pageViews
+    if ((r.stats.lastSeen || '') > (g.lastSeen || '')) g.lastSeen = r.stats.lastSeen
+    r.insight.signals.forEach((s) => g.signals.includes(s) || g.signals.push(s))
+    groups.set(key, g)
+  }
+  // Rows arrive ranked, so each group sits where its hottest row would
+  return [...groups.values()]
+}
 
 export function buildDashboard(overview: OverviewEntry[], now = Date.now()) {
   const rows: Row[] = overview.map((o) => ({ ...o, insight: insightOf(o, now) }))
@@ -139,19 +165,23 @@ export function buildDashboard(overview: OverviewEntry[], now = Date.now()) {
   })
 
   const recency = (r: Row) => r.stats.lastSeen || r.link?.createdAt || ''
+  const ranked = [...rows].sort((a, b) => b.insight.score - a.insight.score || recency(b).localeCompare(recency(a)))
+  // Oldest first: those are the ones worth a follow-up
+  const waiting = registered
+    .filter((r) => r.insight.status !== 'opened')
+    .sort((a, b) => a.link!.createdAt.localeCompare(b.link!.createdAt))
+  const sentAgo = (r: Row) => (now - Date.parse(r.link!.createdAt)) / DAY
   return {
     kpis,
     daily,
-    hot: rows
-      .filter((r) => r.insight.score >= HOT_THRESHOLD)
-      .sort((a, b) => b.insight.score - a.insight.score)
-      .slice(0, 6),
-    feed: visits.reverse().slice(0, 15),
-    topPages: [...pages.entries()].sort((a, b) => b[1].views - a[1].views).slice(0, 8),
-    // Oldest first: those are the ones worth a follow-up
-    waiting: registered
-      .filter((r) => r.insight.status !== 'opened')
-      .sort((a, b) => a.link!.createdAt.localeCompare(b.link!.createdAt)),
-    all: [...rows].sort((a, b) => b.insight.score - a.insight.score || recency(b).localeCompare(recency(a))),
+    // Every link a person opened, ranked by activity (then most recent), one line per company
+    opened: groupByCompany(ranked.filter((r) => r.insight.status === 'opened')),
+    feed: visits.reverse(),
+    topPages: [...pages.entries()].sort((a, b) => b[1].views - a[1].views),
+    waiting,
+    scanned: waiting.filter((r) => r.insight.status === 'scanned'),
+    // Sent 7 to 14 days ago and still not opened: the follow-ups due now
+    followUp: waiting.filter((r) => r.insight.status === 'waiting' && sentAgo(r) >= 7 && sentAgo(r) < 14),
+    all: ranked,
   }
 }

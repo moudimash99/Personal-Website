@@ -2,10 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getLink, isValidCode, logEvent, requestMeta, REF_COOKIE } from '@/lib/tracking'
 import cvSections from '@/data/cv-sections.json'
 
-// CV section slugs (/r/<code>/<section>) → site paths, e.g. green-praxis → /experience#green
+// CV section slugs (/r/<code>/<section>) → site paths, e.g. green-praxis → /experience#green; recruiter emails also
+// link the booking page and the side projects page
 const SECTION_TARGETS: Record<string, string> = Object.fromEntries([
   ...Object.entries(cvSections.website_links).map(([key, target]) => [key.replace(/_/g, '-'), target]),
   ['book', cvSections.booking_link],
+  ['skunkworks', '/skunkworks'],
 ])
 
 // Any well-formed code is tracked, registered or not: codes can be handed out first and described later.

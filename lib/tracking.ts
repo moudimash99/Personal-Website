@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs'
 import path from 'path'
 import crypto from 'crypto'
+import ignore from '@/data/tracking-ignore.json'
 
 // Personalised CV links: each code maps to who it was sent to; every open / page view is appended to a JSONL log.
 
@@ -56,6 +57,10 @@ export function isValidCode(code: string) {
   return /^[a-z0-9-]{3,40}$/i.test(code)
 }
 
+// Codes that are not a recipient (my own browser's cookie, link checks): never logged, never shown
+const IGNORED = new Set(ignore.codes.map((c) => c.toLowerCase()))
+export const isIgnored = (code: string) => IGNORED.has(code.toLowerCase())
+
 async function ensureDir() {
   await fs.mkdir(DIR, { recursive: true })
 }
@@ -110,6 +115,7 @@ export async function deleteLink(code: string) {
 }
 
 export async function logEvent(e: TrackEvent) {
+  if (isIgnored(e.code)) return
   await ensureDir()
   await fs.appendFile(EVENTS_FILE, JSON.stringify(e) + '\n')
 }
@@ -162,10 +168,10 @@ export function summarize(events: TrackEvent[]) {
 export async function getOverview() {
   const [links, events] = await Promise.all([getLinks(), readEvents()])
   const byCode = new Map<string, TrackEvent[]>()
-  events.forEach((e) => byCode.set(e.code, [...(byCode.get(e.code) || []), e]))
+  events.filter((e) => !isIgnored(e.code)).forEach((e) => byCode.set(e.code, [...(byCode.get(e.code) || []), e]))
   const registered = new Set(links.map((l) => l.code))
   const entries = [
-    ...links.map((link) => ({ code: link.code, link: link as TrackedLink | undefined })),
+    ...links.filter((l) => !isIgnored(l.code)).map((link) => ({ code: link.code, link: link as TrackedLink | undefined })),
     ...[...byCode.keys()].filter((c) => !registered.has(c)).map((code) => ({ code, link: undefined })),
   ].map(({ code, link }) => {
     const ev = byCode.get(code) || []
