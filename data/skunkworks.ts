@@ -25,7 +25,7 @@ export const skunkworks: SkunkworksProject[] = [
     banner: '/images/skunkworks/free-motion.svg',
     status: { label: 'Active Development', tone: 'active' },
     stack: ['Node.js', 'Multi-Agent', 'agy + Claude Sonnet', 'Playwright MCP'],
-    repos: [{ name: 'career-ops', label: 'my fork' }],
+    repos: [{ name: 'career-ops', label: 'my fork', private: true }],
     catalyst: 'Applying for jobs means filling in the same form again and again, dozens of times a week. By hand it is slow, and it is easy to make mistakes.',
     goal: 'Have AI agents do the applying: read each posting, write a CV and cover letter that fit it, and send the application.',
     architecture:
